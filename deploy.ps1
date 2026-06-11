@@ -5,6 +5,11 @@
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
+# make sure gh is on PATH even in shells opened before it was installed
+if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
+  $env:Path += ";C:\Program Files\GitHub CLI"
+}
+
 # 1. make sure we're logged in
 gh auth status
 if ($LASTEXITCODE -ne 0) { Write-Host "Run 'gh auth login' first, then re-run this script." -ForegroundColor Yellow; exit 1 }
