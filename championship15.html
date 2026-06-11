@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Championship 15 — Build the Perfect Gaelic Football Team</title>
+<meta name="description" content="Draft a fantasy Gaelic football 15 from legendary county teams, choose your province, and go 5-0 to win the All-Ireland unbeaten.">
+<meta property="og:title" content="Championship 15 — can you go 5–0 for Sam?">
+<meta property="og:description" content="Draft a fantasy fifteen from legendary county teams and win the All-Ireland unbeaten. A PlayGaelic game.">
+<meta property="og:image" content="og-card.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1d14">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="%232ea36b"/><text x="50" y="72" font-size="60" text-anchor="middle">🏐</text></svg>'>
+<script src="analytics.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg0:#060f0b; --bg1:#0b1d14; --bg2:#10271b;
+  --card:rgba(255,255,255,.045); --card-bd:rgba(255,255,255,.09);
+  --gold:#f2c14e; --gold-hi:#ffd97a; --green:#2ea36b; --green-hi:#4ed492;
+  --ink:#eef5f0; --ink-dim:#9db5a8; --ink-faint:#5f7a6c;
+  --red:#e2574f; --amber:#e8b339;
+  --shadow:0 18px 50px rgba(0,0,0,.5);
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Sora',system-ui,sans-serif;color:var(--ink);
+  background:var(--bg0);min-height:100vh;overflow-x:hidden;
+}
+#bg{
+  position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(1100px 600px at 75% -10%, rgba(46,163,107,.22), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(242,193,78,.10), transparent 55%),
+    radial-gradient(700px 700px at 50% 115%, rgba(46,163,107,.14), transparent 60%),
+    linear-gradient(165deg, var(--bg1), var(--bg0) 55%, #08130d);
+}
+#bg::after{
+  content:"";position:absolute;inset:0;opacity:.035;
+  background-image:repeating-linear-gradient(0deg,transparent 0 58px,#fff 58px 59px),repeating-linear-gradient(90deg,transparent 0 58px,#fff 58px 59px);
+}
+header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(16px,4vw,48px);
+}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.brand .crest{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(140deg,var(--green),#176141);
+  box-shadow:0 6px 18px rgba(46,163,107,.35), inset 0 1px 0 rgba(255,255,255,.25);
+  font-size:22px;
+}
+.brand h1{font-family:'Bebas Neue';font-size:26px;letter-spacing:.06em;line-height:1}
+.brand h1 b{color:var(--gold)}
+.brand small{display:block;font-family:'Sora';font-size:10px;font-weight:600;color:var(--ink-dim);letter-spacing:.18em;text-transform:uppercase}
+.hdr-right{display:flex;gap:10px;align-items:center}
+.linkbtn{
+  background:none;border:1px solid var(--card-bd);color:var(--ink-dim);
+  padding:8px 14px;border-radius:999px;font:600 12px 'Sora';cursor:pointer;transition:.2s;
+}
+.linkbtn:hover{color:var(--ink);border-color:rgba(255,255,255,.25)}
+main{max-width:1180px;margin:0 auto;padding:0 clamp(14px,3vw,40px) 80px}
+section[hidden]{display:none!important}
+
+/* ============ HOME ============ */
+.hero{text-align:center;padding:clamp(20px,5vh,56px) 0 8px}
+.hero .kick{
+  display:inline-flex;align-items:center;gap:8px;font:700 11px 'Sora';letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);background:rgba(242,193,78,.08);
+  border:1px solid rgba(242,193,78,.25);padding:7px 16px;border-radius:999px;margin-bottom:22px;
+}
+.hero h2{
+  font-family:'Bebas Neue';font-size:clamp(56px,9vw,112px);line-height:.92;letter-spacing:.015em;
+  background:linear-gradient(180deg,#fff 30%, #cfe6d8 60%, #8fb8a2);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,.4));
+}
+.hero h2 .gold{
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,#c98e1f);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{max-width:640px;margin:18px auto 0;color:var(--ink-dim);font-size:15px;line-height:1.7}
+.hero p b{color:var(--ink)}
+.best-run{
+  margin:22px auto 0;display:inline-flex;gap:10px;align-items:center;
+  background:var(--card);border:1px solid var(--card-bd);border-radius:14px;padding:10px 18px;
+  font:600 13px 'Sora';color:var(--ink-dim);
+}
+.best-run b{color:var(--gold)}
+.best-run[hidden]{display:none}
+.config{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;
+  margin:36px 0 26px;
+}
+.cfg-card{
+  background:var(--card);border:1px solid var(--card-bd);border-radius:var(--r);
+  padding:22px;backdrop-filter:blur(8px);
+}
+.cfg-card h3{font:800 13px 'Sora';letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px}
+.cfg-card .sub{font-size:12px;color:var(--ink-faint);margin-bottom:14px}
+.seg{display:flex;flex-direction:column;gap:8px}
+.seg button{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;
+  background:rgba(255,255,255,.03);border:1px solid var(--card-bd);color:var(--ink-dim);
+  padding:12px 14px;border-radius:12px;font:600 13px 'Sora';cursor:pointer;transition:.18s;
+}
+.seg button small{font-weight:400;font-size:11px;color:var(--ink-faint);text-align:right}
+.seg button:hover{border-color:rgba(255,255,255,.22)}
+.seg button.on{
+  background:linear-gradient(140deg,rgba(46,163,107,.25),rgba(46,163,107,.08));
+  border-color:var(--green);color:#fff;box-shadow:0 0 0 1px rgba(46,163,107,.4), 0 6px 20px rgba(46,163,107,.15);
+}
+.seg button.on small{color:var(--green-hi)}
+.start-wrap{text-align:center;margin-top:34px}
+.btn-primary{
+  position:relative;border:none;cursor:pointer;border-radius:16px;
+  font:800 17px 'Sora';letter-spacing:.02em;color:#13230b;
+  padding:18px 52px;
+  background:linear-gradient(140deg,var(--gold-hi),var(--gold) 55%,#d8a02e);
+  box-shadow:0 14px 40px rgba(242,193,78,.3), inset 0 1px 0 rgba(255,255,255,.6);
+  transition:.2s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 50px rgba(242,193,78,.4), inset 0 1px 0 rgba(255,255,255,.6)}
+.btn-primary:active{transform:translateY(0)}
+.rules-strip{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:26px;margin-top:36px;
+  color:var(--ink-faint);font-size:12px;font-weight:600;
+}
+.rules-strip span{display:flex;align-items:center;gap:8px}
+.rules-strip i{font-style:normal;font-size:15px}
+
+/* ============ DRAFT ============ */
+.draft-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:6px 0 18px}
+.draft-head h2{font-family:'Bebas Neue';font-size:34px;letter-spacing:.04em}
+.draft-head h2 em{font-style:normal;color:var(--gold)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  background:var(--card);border:1px solid var(--card-bd);border-radius:999px;
+  padding:7px 14px;font:700 12px 'Sora';color:var(--ink-dim);
+}
+.chip b{color:var(--ink)}
+.draft-grid{display:grid;grid-template-columns:minmax(340px,1fr) minmax(360px,460px);gap:22px;align-items:start}
+@media(max-width:920px){.draft-grid{grid-template-columns:1fr}}
+.panel{
+  background:var(--card);border:1px solid var(--card-bd);border-radius:var(--r);
+  padding:20px;backdrop-filter:blur(8px);box-shadow:var(--shadow);
+}
+
+/* reel */
+.reel{
+  display:flex;align-items:center;gap:16px;
+  background:linear-gradient(140deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  border:1px solid var(--card-bd);border-radius:14px;padding:16px 18px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+}
+.reel.spin .badge,.reel.spin .reel-txt{filter:blur(1.5px)}
+.reel::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.06) 50%,transparent 70%);transform:translateX(-100%);}
+.reel.spin::before{animation:sheen .7s linear infinite}
+@keyframes sheen{to{transform:translateX(100%)}}
+.badge{
+  width:58px;height:58px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font:800 16px 'Sora';color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.45);
+  border:2px solid rgba(255,255,255,.35);box-shadow:0 8px 20px rgba(0,0,0,.4), inset 0 2px 4px rgba(255,255,255,.25);
+}
+.reel-txt{min-width:0}
+.reel-txt .cty{font:800 20px 'Sora';line-height:1.15}
+.reel-txt .era{font:600 12.5px 'Sora';color:var(--gold);margin-top:3px}
+.reel-txt .yrs{font:400 11px 'Sora';color:var(--ink-faint);margin-top:1px}
+.reel-txt .yrs .tier{color:var(--gold-hi);font-weight:700}
+.draft-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.act{
+  flex:1;min-width:110px;background:rgba(255,255,255,.04);border:1px solid var(--card-bd);
+  color:var(--ink);border-radius:12px;padding:10px 8px;font:700 12px 'Sora';cursor:pointer;transition:.18s;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+}
+.act small{font-weight:400;font-size:10px;color:var(--ink-faint)}
+.act:hover:not(:disabled){border-color:var(--gold);color:var(--gold-hi)}
+.act:disabled{opacity:.32;cursor:not-allowed}
+.pool-label{font:800 11px 'Sora';letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:4px 0 10px}
+.pool{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;min-height:120px}
+.pcard{
+  position:relative;text-align:left;background:rgba(255,255,255,.035);border:1px solid var(--card-bd);
+  border-radius:13px;padding:12px 13px;cursor:pointer;transition:.16s;color:var(--ink);
+  animation:rise .35s both;
+}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pcard:hover{border-color:var(--green);background:rgba(46,163,107,.12);transform:translateY(-2px)}
+.pcard .nm{font:700 13.5px 'Sora';line-height:1.25;padding-right:26px}
+.pcard .club{font:400 10px 'Sora';color:var(--ink-faint);margin-top:2px;min-height:12px}
+.pcard .ln{display:inline-block;margin-top:6px;font:700 9.5px 'Sora';letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:999px;border:1px solid var(--card-bd);color:var(--ink-dim)}
+.pcard .ln.GK{color:#7fd0ff;border-color:rgba(127,208,255,.35)}
+.pcard .ln.DEF{color:#7fe7b0;border-color:rgba(127,231,176,.35)}
+.pcard .ln.MID{color:#ffd97a;border-color:rgba(255,217,122,.35)}
+.pcard .ln.FWD{color:#ff9d8f;border-color:rgba(255,157,143,.35)}
+.pcard .rt{
+  position:absolute;top:10px;right:11px;font:800 14px 'Sora';
+  color:var(--gold-hi);
+}
+.pcard .rt.elite{color:#fff;text-shadow:0 0 12px var(--gold)}
+.pool-note{color:var(--ink-faint);font-size:12px;padding:10px 2px}
+
+/* pitch */
+.pitch-wrap{position:sticky;top:14px}
+.pitch{
+  position:relative;border-radius:16px;padding:18px 12px 14px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 44px, transparent 44px 88px),
+    linear-gradient(170deg,#13402a,#0d2e1e 70%,#0b2719);
+  border:2px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.35), var(--shadow);
+}
+.pitch::before,.pitch::after{
+  content:"";position:absolute;left:8%;right:8%;height:1px;background:rgba(255,255,255,.14);
+}
+.pitch::before{top:24%}.pitch::after{bottom:24%}
+.pline{display:flex;justify-content:center;gap:8px;margin:7px 0}
+.slot{
+  width:31%;max-width:128px;min-height:64px;border-radius:11px;padding:7px 6px 6px;
+  background:rgba(0,0,0,.28);border:1.5px dashed rgba(255,255,255,.18);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  text-align:center;transition:.25s;
+}
+.pline.two .slot{width:38%}
+.pline.one .slot{width:44%}
+.slot .pos{font:700 9px 'Sora';letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.slot.filled{
+  border-style:solid;border-color:rgba(242,193,78,.55);background:rgba(242,193,78,.07);
+  animation:pop .35s;
+}
+@keyframes pop{0%{transform:scale(.92)}60%{transform:scale(1.04)}100%{transform:scale(1)}}
+.slot.filled .pos{color:var(--gold)}
+.slot .pname{font:700 11px 'Sora';line-height:1.2;color:#fff}
+.slot .pmeta{display:flex;align-items:center;gap:5px;font:600 9px 'Sora';color:var(--ink-dim)}
+.slot .dot{width:9px;height:9px;border-radius:50%;border:1px solid rgba(255,255,255,.5)}
+.pitch-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font:700 12px 'Sora';color:var(--ink-dim)}
+.pitch-foot b{color:var(--gold)}
+.run-btn{display:none;width:100%;margin-top:12px}
+.run-btn.show{display:block;animation:rise .4s both}
+
+/* ============ MATCH SIM ============ */
+.sim-head{text-align:center;padding:10px 0 16px}
+.sim-head .comp{font:700 11px 'Sora';letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.sim-head h2{font-family:'Bebas Neue';font-size:clamp(28px,4.6vw,42px);letter-spacing:.04em;margin-top:4px}
+.sim-head .venue{color:var(--ink-faint);font-size:12.5px;margin-top:4px}
+.scoreboard{
+  max-width:680px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;
+  padding:16px 22px;
+}
+.sb-team{display:flex;flex-direction:column;gap:4px}
+.sb-team.them{align-items:flex-end;text-align:right}
+.sb-name{font:800 12px 'Sora';letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
+.sb-team.me .sb-name{color:var(--gold)}
+.sb-score{font:800 34px 'Sora';line-height:1;font-variant-numeric:tabular-nums}
+.sb-mid{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 10px}
+.clock{
+  font:800 17px 'Sora';color:#fff;background:rgba(0,0,0,.4);border:1px solid var(--card-bd);
+  border-radius:9px;padding:5px 11px;min-width:54px;text-align:center;font-variant-numeric:tabular-nums;
+}
+.half{font:600 9.5px 'Sora';letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.ticker-wrap{max-width:680px;margin:14px auto 0;padding:14px}
+.ticker{
+  display:flex;flex-direction:column;gap:6px;max-height:300px;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--ink-faint) transparent;
+}
+.ev{
+  display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:center;
+  background:rgba(255,255,255,.03);border:1px solid transparent;border-radius:10px;
+  padding:8px 12px;font-size:13px;animation:evin .3s both;
+}
+@keyframes evin{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.ev .min{font:800 11px 'Sora';color:var(--ink-faint);font-variant-numeric:tabular-nums}
+.ev .txt{color:var(--ink-dim);line-height:1.45}
+.ev .txt b{color:var(--ink)}
+.ev .sc{font:700 11.5px 'Sora';color:var(--ink-faint);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ev.my{border-color:rgba(46,163,107,.3)}
+.ev.my .txt b{color:var(--green-hi)}
+.ev.goal{background:rgba(46,163,107,.12)}
+.ev.goal.them{background:rgba(226,87,79,.1);border-color:rgba(226,87,79,.3)}
+.ev.goal .txt{color:var(--ink)}
+.ev.meta{
+  grid-template-columns:1fr;text-align:center;background:rgba(242,193,78,.07);
+  border-color:rgba(242,193,78,.25);font:700 11px 'Sora';letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+}
+.skip{width:100%;margin-top:12px;padding:10px;font-size:12px}
+.rail{max-width:680px;margin:16px auto 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.rail .res{
+  display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--card-bd);
+  border-radius:999px;padding:6px 13px;font:600 11px 'Sora';color:var(--ink-dim);animation:rise .35s both;
+}
+.rail .res b{color:var(--ink)}
+.rail .res.w{border-color:rgba(46,163,107,.4)}
+.rail .res.l{border-color:rgba(226,87,79,.45)}
+
+/* verdict */
+.verdict{
+  max-width:680px;margin:26px auto 0;text-align:center;border-radius:22px;padding:38px 26px;
+  background:var(--card);border:1px solid var(--card-bd);opacity:0;transform:scale(.96);transition:.5s;display:none;
+}
+.verdict.in{opacity:1;transform:none;display:block}
+.verdict.gold{
+  background:linear-gradient(160deg,rgba(242,193,78,.16),rgba(242,193,78,.04));
+  border-color:rgba(242,193,78,.45);box-shadow:0 0 80px rgba(242,193,78,.12);
+}
+.verdict .vemoji{font-size:54px}
+.verdict h3{font-family:'Bebas Neue';font-size:clamp(32px,5vw,50px);letter-spacing:.04em;margin-top:8px}
+.verdict.gold h3{color:var(--gold-hi)}
+.verdict p{color:var(--ink-dim);font-size:14px;line-height:1.7;max-width:500px;margin:10px auto 0}
+.verdict .rec{font:800 22px 'Sora';margin-top:14px;letter-spacing:.06em}
+.verdict .emojiline{font-size:18px;letter-spacing:3px;margin-top:8px}
+.scorers{
+  margin:20px auto 0;max-width:380px;text-align:left;
+  background:rgba(0,0,0,.22);border:1px solid var(--card-bd);border-radius:14px;padding:14px 18px;
+}
+.scorers h5{font:800 10.5px 'Sora';letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px}
+.scorers .srow{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--ink-dim);padding:3px 0}
+.scorers .srow b{color:var(--ink)}
+.scorers .srow .tot{font:700 13px 'Sora';color:var(--gold-hi);font-variant-numeric:tabular-nums}
+.verdict .vbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.btn-ghost{
+  background:rgba(255,255,255,.05);border:1px solid var(--card-bd);color:var(--ink);
+  padding:14px 30px;border-radius:14px;font:700 14px 'Sora';cursor:pointer;transition:.2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3)}
+.btn-primary.sm{padding:14px 34px;font-size:14px}
+
+/* dialog */
+dialog{
+  border:1px solid var(--card-bd);border-radius:20px;background:#0e2117;color:var(--ink);
+  max-width:560px;width:92vw;padding:30px;box-shadow:var(--shadow);
+}
+dialog::backdrop{background:rgba(3,8,5,.75);backdrop-filter:blur(4px)}
+dialog h3{font-family:'Bebas Neue';font-size:32px;letter-spacing:.05em;color:var(--gold);margin-bottom:14px}
+dialog h4{font:800 12px 'Sora';letter-spacing:.14em;text-transform:uppercase;color:var(--green-hi);margin:18px 0 6px}
+dialog p,dialog li{color:var(--ink-dim);font-size:13.5px;line-height:1.75}
+dialog ul{padding-left:20px}
+dialog .close{margin-top:22px;width:100%}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);z-index:60;
+  background:#163826;border:1px solid var(--green);color:#fff;font:700 13px 'Sora';
+  padding:12px 22px;border-radius:999px;transition:.35s;opacity:0;
+}
+.toast.show{transform:translate(-50%,0);opacity:1}
+footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16px 40px;line-height:1.8}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<canvas id="confetti"></canvas>
+
+<header>
+  <div class="brand" onclick="goHome()">
+    <div class="crest">🏐</div>
+    <div>
+      <h1>CHAMPIONSHIP <b>15</b></h1>
+      <small>The Perfect Season</small>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <a class="linkbtn" href="index.html" style="text-decoration:none">⌂ All games</a>
+    <button class="linkbtn" onclick="howto.showModal()">How to play</button>
+    <button class="linkbtn" onclick="tips.showModal()">Tips</button>
+  </div>
+</header>
+
+<main>
+<!-- ================= HOME ================= -->
+<section id="home">
+  <div class="hero">
+    <span class="kick">⚡ Gaelic Football Draft Challenge</span>
+    <h2>BUILD THE <span class="gold">PERFECT 15.</span><br>GO 5–0 FOR SAM.</h2>
+    <p>Spin the wheel of county teams — the legends <b>and</b> the underdogs — and draft a fantasy fifteen, one player at a time. Then win your <b>provincial quarter-final, semi-final and final</b>, and finish the job in the <b>All-Ireland semi-final and final</b>. Five games. Five wins. Zero excuses.</p>
+    <div class="best-run" id="bestRun" hidden></div>
+  </div>
+
+  <div class="config">
+    <div class="cfg-card">
+      <h3>Province</h3>
+      <div class="sub">Your road to Croke Park starts here.</div>
+      <div class="seg" id="segProv">
+        <button data-v="munster" class="on"><span>Munster</span><small>the southern route</small></button>
+        <button data-v="leinster"><span>Leinster</span><small>the eastern route</small></button>
+        <button data-v="ulster"><span>Ulster</span><small>the northern route</small></button>
+        <button data-v="connacht"><span>Connacht</span><small>the western route</small></button>
+      </div>
+    </div>
+    <div class="cfg-card">
+      <h3>Difficulty</h3>
+      <div class="sub">How forgiving is the draft?</div>
+      <div class="seg" id="segDiff">
+        <button data-v="easy"><span>Club Player</span><small>3 re-spins</small></button>
+        <button data-v="normal" class="on"><span>County Star</span><small>1 re-spin</small></button>
+        <button data-v="hard"><span>All-Star</span><small>no re-spins</small></button>
+      </div>
+    </div>
+    <div class="cfg-card">
+      <h3>Era Pool</h3>
+      <div class="sub">Which generations can you draft from?</div>
+      <div class="seg" id="segEra">
+        <button data-v="all" class="on"><span>All-Time</span><small>1960s–today</small></button>
+        <button data-v="classic"><span>Classic</span><small>60s–90s greats</small></button>
+        <button data-v="modern"><span>Modern</span><small>2000s–today</small></button>
+      </div>
+    </div>
+    <div class="cfg-card">
+      <h3>Your Lifelines</h3>
+      <div class="sub">Fixed for every draft — spend them well.</div>
+      <div class="seg">
+        <button style="cursor:default"><span>🔁 County Swap ×1</span><small>keep era, new county</small></button>
+        <button style="cursor:default"><span>⏳ Era Swap ×1</span><small>keep county, new era</small></button>
+        <button style="cursor:default"><span>🎰 Re-spins</span><small>set by difficulty</small></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="start-wrap">
+    <button class="btn-primary" onclick="startDraft()">Start the Draft →</button>
+    <div class="rules-strip">
+      <span><i>🎰</i> Spin a county &amp; era</span>
+      <span><i>👤</i> Draft your fifteen</span>
+      <span><i>🏟️</i> Win your province</span>
+      <span><i>🏆</i> Go 5–0 for Sam</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DRAFT ================= -->
+<section id="draftS" hidden>
+  <div class="draft-head">
+    <h2>THE DRAFT — PICK <em id="pickNo">1</em>/15</h2>
+    <div class="chips">
+      <span class="chip">🎰 Re-spins <b id="cReroll">1</b></span>
+      <span class="chip">🔁 County swap <b id="cCty">1</b></span>
+      <span class="chip">⏳ Era swap <b id="cEra">1</b></span>
+    </div>
+  </div>
+  <div class="draft-grid">
+    <div class="panel">
+      <div class="reel" id="reel">
+        <div class="badge" id="rBadge">—</div>
+        <div class="reel-txt">
+          <div class="cty" id="rCty">Spinning…</div>
+          <div class="era" id="rEra">&nbsp;</div>
+          <div class="yrs" id="rYrs">&nbsp;</div>
+        </div>
+      </div>
+      <div class="draft-actions">
+        <button class="act" id="bReroll" onclick="useReroll()">🎰 Re-spin<small>new county &amp; era</small></button>
+        <button class="act" id="bCty" onclick="useCtySwap()">🔁 County swap<small>same era</small></button>
+        <button class="act" id="bEra" onclick="useEraSwap()">⏳ Era swap<small>same county</small></button>
+      </div>
+      <div class="pool-label" id="poolLabel">Available players</div>
+      <div class="pool" id="pool"></div>
+    </div>
+    <div class="pitch-wrap">
+      <div class="panel" style="padding:14px">
+        <div class="pitch" id="pitch"></div>
+        <div class="pitch-foot">
+          <span>Squad: <b id="fillCount">0</b>/15</span>
+          <span id="ratingPeek"></span>
+        </div>
+        <button class="btn-primary sm run-btn" id="runBtn" onclick="startSeason()">🏆 Throw In the Championship</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MATCH SIM ================= -->
+<section id="simS" hidden>
+  <div class="sim-head">
+    <div class="comp" id="simComp">MUNSTER CHAMPIONSHIP</div>
+    <h2 id="simRound">QUARTER-FINAL</h2>
+    <div class="venue" id="simVenue"></div>
+  </div>
+  <div class="scoreboard panel" id="sbWrap">
+    <div class="sb-team me"><span class="sb-name">Championship 15</span><span class="sb-score" id="sbMy">0-00</span></div>
+    <div class="sb-mid"><span class="clock" id="clock">0'</span><span class="half" id="halfTag">Throw-in</span></div>
+    <div class="sb-team them"><span class="sb-name" id="sbOppName">—</span><span class="sb-score" id="sbTh">0-00</span></div>
+  </div>
+  <div class="ticker-wrap panel" id="tickerWrap">
+    <div class="ticker" id="ticker"></div>
+    <button class="btn-ghost skip" id="skipBtn" onclick="skipMatch()">⏩ Skip to full-time</button>
+  </div>
+  <div class="rail" id="rail"></div>
+  <div class="verdict" id="verdict"></div>
+</section>
+</main>
+
+<dialog id="howto">
+  <h3>How to Play</h3>
+  <p><b style="color:var(--ink)">Championship 15</b> is a draft-and-simulate challenge built on a database of Gaelic football's greatest (and pluckiest) county teams.</p>
+  <h4>1 · The Spin</h4>
+  <p>Each pick, the reel lands on a county team and era — it might be Kerry's Golden Years (★★★), it might be Laois 2003 (★). Better teams mean better players, so the spin matters.</p>
+  <h4>2 · The Pick</h4>
+  <p>Choose one player from that panel. He fills the next open slot in his line — goalkeeper, the 6 backs, midfield, or the 6 forwards. Once a line is full, players from that line stop appearing.</p>
+  <h4>3 · Lifelines</h4>
+  <p>You get one <b style="color:var(--ink)">county swap</b>, one <b style="color:var(--ink)">era swap</b>, and a difficulty-based number of full re-spins. No take-backs on picks.</p>
+  <h4>4 · The Championship</h4>
+  <p>You picked a province — win its quarter-final, semi-final and final. Champions go straight to the All-Ireland semi-final, then the final in Croke Park. Every game plays out live, score by score. <b style="color:var(--ink)">Five games, five wins.</b> One defeat ends the run.</p>
+  <button class="btn-ghost close" onclick="howto.close()">Got it</button>
+</dialog>
+
+<dialog id="tips">
+  <h3>Drafting Tips</h3>
+  <ul>
+    <li><b style="color:var(--ink)">Mind the spine.</b> Goalkeeper, full-back, centre-back, midfield and full-forward carry the heaviest weight in the simulation. A weak spine loses semi-finals.</li>
+    <li><b style="color:var(--ink)">Balance beats glamour.</b> Six superstar forwards and a shaky defence will be found out in Croke Park. Your weakest line drags the whole rating down.</li>
+    <li><b style="color:var(--ink)">Respect the underdog spin.</b> Land on a ★ team and there's still value — their best one or two players (a Matt Connor, a Dessie Dolan) hold their own anywhere.</li>
+    <li><b style="color:var(--ink)">Every road runs through a final.</b> Whatever province you pick, the early rounds are winnable — it's the provincial final and the business end in Croke Park that find you out.</li>
+    <li><b style="color:var(--ink)">Take the keeper when he comes.</b> There's only one goalkeeper slot and few elite keepers in the pool. If Cluxton appears, you take him.</li>
+    <li><b style="color:var(--ink)">Even a perfect 15 isn't safe.</b> The best possible team goes 5–0 less than half the time. That's the point.</li>
+  </ul>
+  <button class="btn-ghost close" onclick="tips.close()">Got it</button>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  Championship 15 is an unofficial fan project. Player names are used in a historical, editorial context.<br>
+  Not affiliated with the GAA or any county board. Inspired by the 38-0 challenge.
+</footer>
+
+<script src="gaa-db.js"></script>
+<script>
+/* ============================================================
+   DATA — built from the central GAA_DB (see gaa-db.js / DATABASE.md)
+============================================================ */
+const DATA = GAA_DB.teams.map(t=>{
+  const c = GAA_DB.counties[t.county];
+  return {
+    id:t.id, county:t.county, era:t.name, years:t.years, dec:t.dec, tier:t.tier,
+    abbr:c.abbr, c1:c.c1, c2:c.c2, tx:c.tx||null,
+    players: GAA_DB.players.filter(p=>p.team===t.id)
+              .map(p=>({name:p.name, line:p.line, rt:p.rating, club:p.club, used:false}))
+  };
+});
+
+/* slots: GAA team-sheet, spine first within each line, with sim weights */
+const SLOT_DEF=[
+ {code:"GK",label:"Goalkeeper",line:"GK",w:1.6},
+ {code:"FB",label:"Full-Back",line:"DEF",w:1.3},
+ {code:"CHB",label:"Centre Half-Back",line:"DEF",w:1.3},
+ {code:"RCB",label:"Right Corner-Back",line:"DEF",w:1.0},
+ {code:"LCB",label:"Left Corner-Back",line:"DEF",w:1.0},
+ {code:"RHB",label:"Right Half-Back",line:"DEF",w:1.0},
+ {code:"LHB",label:"Left Half-Back",line:"DEF",w:1.0},
+ {code:"MF1",label:"Midfield",line:"MID",w:1.25},
+ {code:"MF2",label:"Midfield",line:"MID",w:1.25},
+ {code:"FF",label:"Full-Forward",line:"FWD",w:1.2},
+ {code:"CHF",label:"Centre Half-Forward",line:"FWD",w:1.1},
+ {code:"RHF",label:"Right Half-Forward",line:"FWD",w:1.0},
+ {code:"LHF",label:"Left Half-Forward",line:"FWD",w:1.0},
+ {code:"RCF",label:"Right Corner-Forward",line:"FWD",w:1.0},
+ {code:"LCF",label:"Left Corner-Forward",line:"FWD",w:1.0},
+];
+const PITCH_LINES=[["RCF","FF","LCF"],["RHF","CHF","LHF"],["MF1","MF2"],["RHB","CHB","LHB"],["RCB","FB","LCB"],["GK"]];
+
+/* ============================================================
+   THE ROAD TO SAM — provincial QF/SF/Final + All-Ireland SF/Final
+============================================================ */
+const PROVINCES={
+ munster:{name:"Munster",comp:"MUNSTER CHAMPIONSHIP",
+  rounds:[
+   {round:"Munster Quarter-Final",opp:74,pool:["Waterford","Tipperary","Limerick"],venue:"Fraher Field, Dungarvan"},
+   {round:"Munster Semi-Final",opp:79,pool:["Clare","Limerick","Tipperary"],venue:"Cusack Park, Ennis"},
+   {round:"Munster Final",opp:85,pool:["Kerry","Cork"],venue:"Fitzgerald Stadium, Killarney"}]},
+ leinster:{name:"Leinster",comp:"LEINSTER CHAMPIONSHIP",
+  rounds:[
+   {round:"Leinster Quarter-Final",opp:73,pool:["Wicklow","Longford","Carlow","Wexford"],venue:"Netwatch Cullen Park, Carlow"},
+   {round:"Leinster Semi-Final",opp:78,pool:["Laois","Westmeath","Offaly","Louth","Kildare"],venue:"O'Moore Park, Portlaoise"},
+   {round:"Leinster Final",opp:86,pool:["Dublin","Meath"],venue:"Croke Park, Dublin"}]},
+ ulster:{name:"Ulster",comp:"ULSTER CHAMPIONSHIP",
+  rounds:[
+   {round:"Ulster Quarter-Final",opp:76,pool:["Fermanagh","Antrim","Cavan","Down"],venue:"Brewster Park, Enniskillen"},
+   {round:"Ulster Semi-Final",opp:81,pool:["Monaghan","Donegal","Cavan","Down"],venue:"St Tiernach's Park, Clones"},
+   {round:"Ulster Final",opp:85,pool:["Tyrone","Armagh","Derry","Donegal"],venue:"St Tiernach's Park, Clones"}]},
+ connacht:{name:"Connacht",comp:"CONNACHT CHAMPIONSHIP",
+  rounds:[
+   {round:"Connacht Quarter-Final",opp:73,pool:["New York","London","Leitrim","Sligo"],venue:"Gaelic Park, New York"},
+   {round:"Connacht Semi-Final",opp:78,pool:["Roscommon","Sligo","Leitrim"],venue:"Dr Hyde Park, Roscommon"},
+   {round:"Connacht Final",opp:84,pool:["Galway","Mayo"],venue:"Pearse Stadium, Salthill"}]}
+};
+const AI_ROUNDS=[
+ {round:"All-Ireland Semi-Final",opp:86,venue:"Croke Park, Dublin"},
+ {round:"All-Ireland Final",opp:88,venue:"Croke Park, Dublin"}
+];
+const AI_POOL=["Dublin","Kerry","Tyrone","Mayo","Galway","Derry","Armagh","Donegal","Monaghan","Cork","Kildare","Meath","Down"];
+const SURNAMES=["Murphy","O'Brien","Walsh","Kelly","Ryan","O'Connor","McCarthy","Lynch","Brennan","Daly","Maguire","Hughes","Doyle","Sweeney","Quinn","Boyle","Duffy","Gallagher","Kennedy","Burke","Moran","Reilly","Flanagan","Smith","Nolan","Casey"];
+const PT_VERBS=["splits the posts","curls a beauty over","points from play","fists it over the bar","nails it off the outside of the boot","sweeps one over from 40 metres","points under pressure","floats it over off his left","arrows one over from the wing"];
+const GL_VERBS=["buries it in the bottom corner","palms it to the net","smashes it past the keeper","finishes low to the net","flicks it home at the near post","drills it under the diving keeper"];
+const TIER_LABEL={1:"★★★ All-time greats",2:"★★ Contenders",3:"★ Underdogs"};
+
+/* ============================================================ STATE */
+const cfg={diff:"normal", era:"all", prov:"munster"};
+const DIFF={easy:3, normal:1, hard:0};
+let D=null;  // draft state
+let S=null;  // season state
+let M=null;  // current match playback
+const $=id=>document.getElementById(id);
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+
+function wireSeg(id,key){
+  $(id).querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    $(id).querySelectorAll("button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on"); cfg[key]=b.dataset.v;
+  });
+}
+wireSeg("segDiff","diff"); wireSeg("segEra","era"); wireSeg("segProv","prov");
+
+function comboPool(){
+  return DATA.filter(c=>{
+    if(cfg.era==="classic") return c.dec>=60;
+    if(cfg.era==="modern")  return c.dec<60;
+    return true;
+  });
+}
+
+/* ============================================================ DRAFT */
+function startDraft(){
+  D={
+    slots: SLOT_DEF.map(s=>({...s,player:null,county:null})),
+    pools: comboPool().map(c=>({...c, players:c.players.map(p=>({...p,used:false}))})),
+    rerolls: DIFF[cfg.diff], ctySwap:1, eraSwap:1,
+    cur:-1, spinning:false
+  };
+  $("home").hidden=true; $("simS").hidden=true; $("draftS").hidden=false;
+  $("runBtn").classList.remove("show");
+  renderPitch(); updateChips(); spin();
+  window.scrollTo({top:0});
+  if(window.pgTrack) pgTrack("draft_started",{province:cfg.prov,difficulty:cfg.diff,era:cfg.era});
+}
+function goHome(){ $("draftS").hidden=true; $("simS").hidden=true; $("home").hidden=false; showBest(); }
+
+function openLines(){
+  const s=new Set();
+  D.slots.forEach(sl=>{ if(!sl.player) s.add(sl.line); });
+  return s;
+}
+function eligible(c){
+  const open=openLines();
+  return c.players.some(p=>!p.used && open.has(p.line));
+}
+function eligibleIdx(filter){
+  const out=[];
+  D.pools.forEach((c,i)=>{ if(i!==D.cur && eligible(c) && (!filter||filter(c))) out.push(i); });
+  return out;
+}
+
+function spin(filter){
+  let cand=eligibleIdx(filter);
+  if(!cand.length) cand=eligibleIdx();
+  if(!cand.length && D.cur>=0 && eligible(D.pools[D.cur])) cand=[D.cur];
+  const target=rnd(cand);
+  D.spinning=true; setActs();
+  const reel=$("reel"); reel.classList.add("spin");
+  $("pool").innerHTML=""; $("poolLabel").textContent="Spinning the counties…";
+  let ticks=0, max=14+Math.floor(Math.random()*6);
+  (function tick(){
+    const show = ticks<max ? D.pools[Math.floor(Math.random()*D.pools.length)] : D.pools[target];
+    paintReel(show);
+    ticks++;
+    if(ticks<=max) setTimeout(tick, 45+ticks*7);
+    else{
+      D.cur=target; D.spinning=false;
+      reel.classList.remove("spin");
+      setActs(); renderPool();
+    }
+  })();
+}
+function paintReel(c){
+  const b=$("rBadge");
+  b.style.background=`linear-gradient(135deg, ${c.c1} 50%, ${c.c2} 50%)`;
+  b.style.color=c.tx||"#fff";
+  b.textContent=c.abbr;
+  $("rCty").textContent=c.county;
+  $("rEra").innerHTML=c.era;
+  $("rYrs").innerHTML=`${c.years} · <span class="tier">${TIER_LABEL[c.tier]}</span>`;
+}
+function renderPool(){
+  const c=D.pools[D.cur], open=openLines(), pool=$("pool");
+  const avail=c.players.map((p,i)=>({...p,i})).filter(p=>!p.used && open.has(p.line));
+  avail.sort((a,b)=>b.rt-a.rt);
+  $("poolLabel").textContent=`Pick one — ${c.county}, ${c.years}`;
+  pool.innerHTML="";
+  const LN={GK:"Goalkeeper",DEF:"Back",MID:"Midfield",FWD:"Forward"};
+  avail.forEach((p,k)=>{
+    const el=document.createElement("button");
+    el.className="pcard"; el.style.animationDelay=(k*0.035)+"s";
+    el.innerHTML=`<div class="nm">${p.name}</div><div class="club">${p.club||""}</div>
+      <span class="ln ${p.line}">${LN[p.line]}</span>
+      <span class="rt ${p.rt>=94?'elite':''}">${p.rt}</span>`;
+    el.onclick=()=>pick(p.i);
+    pool.appendChild(el);
+  });
+  if(!avail.length) pool.innerHTML=`<div class="pool-note">No players here fit your open positions — spin again (free).</div>`;
+}
+
+function pick(pi){
+  if(D.spinning) return;
+  const c=D.pools[D.cur], p=c.players[pi];
+  if(p.used) return;
+  const slot=D.slots.find(s=>!s.player && s.line===p.line);
+  if(!slot) return;
+  p.used=true;
+  slot.player=p; slot.county=c;
+  $("pool").innerHTML=`<div class="pool-note">${p.name} joins the fifteen…</div>`;
+  renderPitch(); updateChips();
+  const filled=D.slots.filter(s=>s.player).length;
+  if(filled===15){
+    $("poolLabel").textContent="Squad complete!";
+    $("pool").innerHTML=`<div class="pool-note">Your fifteen is in. Time to find out if they're immortal.</div>`;
+    $("runBtn").classList.add("show");
+    setActs();
+  } else setTimeout(()=>spin(),420);
+}
+
+function renderPitch(){
+  const map=Object.fromEntries(D.slots.map(s=>[s.code,s]));
+  $("pitch").innerHTML=PITCH_LINES.map(line=>{
+    const cls=line.length===1?"one":line.length===2?"two":"";
+    return `<div class="pline ${cls}">`+line.map(code=>{
+      const s=map[code];
+      if(s.player){
+        return `<div class="slot filled"><span class="pos">${s.label}</span>
+          <span class="pname">${s.player.name}</span>
+          <span class="pmeta"><span class="dot" style="background:linear-gradient(135deg,${s.county.c1} 50%,${s.county.c2} 50%)"></span>${s.county.abbr} · ${s.player.rt}</span></div>`;
+      }
+      return `<div class="slot"><span class="pos">${s.label}</span><span style="font:300 20px Sora;color:var(--ink-faint)">+</span></div>`;
+    }).join("")+`</div>`;
+  }).join("");
+  const filled=D.slots.filter(s=>s.player).length;
+  $("fillCount").textContent=filled;
+  $("ratingPeek").innerHTML = filled>0 ? `Rating so far: <b>${teamRating(true)}</b>` : "";
+}
+function updateChips(){
+  $("pickNo").textContent=Math.min(D.slots.filter(s=>s.player).length+1,15);
+  $("cReroll").textContent=D.rerolls; $("cCty").textContent=D.ctySwap; $("cEra").textContent=D.eraSwap;
+  setActs();
+}
+function setActs(){
+  const done=D.slots.every(s=>s.player);
+  $("bReroll").disabled = D.spinning||done||D.rerolls<1;
+  $("bCty").disabled    = D.spinning||done||D.ctySwap<1;
+  $("bEra").disabled    = D.spinning||done||D.eraSwap<1;
+}
+function useReroll(){ if(D.rerolls<1)return; D.rerolls--; updateChips(); spin(); }
+function useCtySwap(){
+  if(D.ctySwap<1)return; D.ctySwap--;
+  const cur=D.pools[D.cur]; updateChips();
+  spin(c=>c.dec===cur.dec && c.county!==cur.county);
+}
+function useEraSwap(){
+  if(D.eraSwap<1)return; D.eraSwap--;
+  const cur=D.pools[D.cur]; updateChips();
+  spin(c=>c.county===cur.county && c.era!==cur.era);
+}
+
+/* ============================================================ RATING */
+function teamRating(partial){
+  let sw=0, sum=0;
+  const lines={GK:[],DEF:[],MID:[],FWD:[]};
+  D.slots.forEach(s=>{
+    if(!s.player) return;
+    sum+=s.player.rt*s.w; sw+=s.w; lines[s.line].push(s.player.rt);
+  });
+  if(!sw) return 0;
+  let base=sum/sw;
+  if(!partial){
+    const avgs=Object.values(lines).filter(a=>a.length).map(a=>a.reduce((x,y)=>x+y,0)/a.length);
+    const minL=Math.min(...avgs);
+    base-=Math.max(0,(base-minL))*0.25;
+  }
+  return Math.round(base*10)/10;
+}
+
+/* ============================================================ SEASON */
+function buildFixtures(){
+  const prov=PROVINCES[cfg.prov];
+  const used=new Set();
+  const fixtures=[];
+  prov.rounds.forEach(r=>{
+    let opp; do{ opp=rnd(r.pool); }while(used.has(opp));
+    used.add(opp);
+    fixtures.push({...r, comp:prov.comp, oppName:opp});
+  });
+  AI_ROUNDS.forEach(r=>{
+    let opp; do{ opp=rnd(AI_POOL); }while(used.has(opp));
+    used.add(opp);
+    fixtures.push({...r, comp:"ALL-IRELAND SERIES", oppName:opp});
+  });
+  return fixtures;
+}
+
+function startSeason(){
+  S={
+    team: teamRating(false),
+    fixtures: buildFixtures(),
+    idx:0, results:[], scorers:{}, alive:true
+  };
+  $("draftS").hidden=true; $("simS").hidden=false;
+  $("rail").innerHTML=""; const v=$("verdict"); v.className="verdict"; v.innerHTML="";
+  $("sbWrap").style.display=""; $("tickerWrap").style.display="";
+  window.scrollTo({top:0});
+  if(window.pgTrack) pgTrack("season_started",{team_rating:S.team,province:cfg.prov});
+  playFixture();
+}
+
+/* pick a scorer from the drafted 15, weighted by line + rating */
+function myScorer(type){
+  const W = type==="goal" ? {FWD:8,MID:2,DEF:.6,GK:.1} : {FWD:6,MID:3,DEF:1,GK:.15};
+  const cands=D.slots.filter(s=>s.player).map(s=>({s, w: W[s.line]*Math.pow(s.player.rt/85,2)}));
+  let t=cands.reduce((a,c)=>a+c.w,0)*Math.random();
+  for(const c of cands){ t-=c.w; if(t<=0) return c.s; }
+  return cands[cands.length-1].s;
+}
+function freeTaker(){
+  const fwds=D.slots.filter(s=>s.player && s.line==="FWD").sort((a,b)=>b.player.rt-a.player.rt);
+  return fwds[Math.random()<0.75?0:1]||fwds[0];
+}
+
+/* generate the full event timeline for a match */
+function genMatch(fx){
+  const p=Math.min(.96,Math.max(.05, 1/(1+Math.exp(-(S.team-fx.opp)/3.5))));
+  const r=Math.random();
+  const res = r<p ? "W" : "L";
+  const margin = Math.max(1, Math.min(16, Math.round(Math.abs(p-r)*22)+1));
+  const loTot=11+Math.floor(Math.random()*8);
+  const hiTot=loTot+margin;
+  const myTot = res==="L" ? loTot : hiTot;
+  const thTot = res==="L" ? hiTot : loTot;
+
+  const split=t=>{ let g=[0,1,1,2,2,3][Math.floor(Math.random()*6)]; while(g*3>t-2&&g>0)g--; return {g,p:t-g*3}; };
+  const my=split(myTot), th=split(thTot);
+
+  const oppNames=[]; while(oppNames.length<4){ const n=rnd(SURNAMES); if(!oppNames.includes(n)) oppNames.push(n); }
+  const initial=()=> "ABCDEJKMNPRST"[Math.floor(Math.random()*13)];
+  const oppPlayers=oppNames.map(n=>initial()+". "+n);
+
+  const events=[];
+  const usedMins=new Set();
+  const minute=()=>{ let m; do{ m=2+Math.floor(Math.random()*70); }while(usedMins.has(m)); usedMins.add(m); return m; };
+
+  for(let i=0;i<my.g;i++){ const sc=myScorer("goal");
+    events.push({min:minute(),side:"my",type:"goal",who:sc.player.name,txt:`<b>${sc.player.name}</b> ${rnd(GL_VERBS)} — <b>GOAL!</b>`}); }
+  for(let i=0;i<my.p;i++){
+    const isFree=Math.random()<0.3;
+    const sc=isFree?freeTaker():myScorer("pt");
+    const verb=isFree?"slots the free":rnd(PT_VERBS);
+    events.push({min:minute(),side:"my",type:"pt",who:sc.player.name,txt:`<b>${sc.player.name}</b> ${verb}`}); }
+  for(let i=0;i<th.g;i++){ events.push({min:minute(),side:"th",type:"goal",txt:`<b>${rnd(oppPlayers)}</b> ${rnd(GL_VERBS)} — goal for ${fx.oppName}`}); }
+  for(let i=0;i<th.p;i++){ events.push({min:minute(),side:"th",type:"pt",txt:`${rnd(oppPlayers)} points for ${fx.oppName}`}); }
+  events.sort((a,b)=>a.min-b.min);
+  return {fx,res,my,th,events};
+}
+
+const fmt=s=>`${s.g}-${String(s.p).padStart(2,"0")}`;
+
+function playFixture(){
+  const fx=S.fixtures[S.idx];
+  const match=genMatch(fx);
+  M={match, i:0, my:{g:0,p:0}, th:{g:0,p:0}, skip:false, timer:null, htShown:false};
+  $("simComp").textContent=fx.comp;
+  $("simRound").textContent=fx.round.toUpperCase()+" — CHAMPIONSHIP 15 v "+fx.oppName.toUpperCase();
+  $("simVenue").textContent=fx.venue;
+  $("sbOppName").textContent=fx.oppName;
+  $("sbMy").textContent="0-00"; $("sbTh").textContent="0-00";
+  $("clock").textContent="0'"; $("halfTag").textContent="Throw-in";
+  $("ticker").innerHTML=""; $("skipBtn").style.display="";
+  addEv({type:"meta",txt:`Throw-in at ${fx.venue}`});
+  M.timer=setTimeout(stepEvent, 700);
+}
+
+function addEv(e, score){
+  const t=$("ticker");
+  const div=document.createElement("div");
+  if(e.type==="meta"){ div.className="ev meta"; div.innerHTML=e.txt; }
+  else{
+    div.className=`ev ${e.side} ${e.type==="goal"?"goal":""} ${e.side==="th"&&e.type==="goal"?"them":""}`;
+    div.innerHTML=`<span class="min">${e.min}'</span><span class="txt">${e.txt}</span><span class="sc">${score}</span>`;
+  }
+  t.prepend(div);
+}
+
+function stepEvent(){
+  const ev=M.match.events[M.i];
+  if(!ev){ fullTime(); return; }
+  if(!M.htShown && ev.min>35){
+    M.htShown=true;
+    addEv({type:"meta",txt:`Half-time — ${fmt(M.my)} : ${fmt(M.th)}`});
+    $("halfTag").textContent="2nd Half";
+  } else {
+    if(ev.side==="my"){ ev.type==="goal"?M.my.g++:M.my.p++; tallyScorer(ev); }
+    else { ev.type==="goal"?M.th.g++:M.th.p++; }
+    $("sbMy").textContent=fmt(M.my); $("sbTh").textContent=fmt(M.th);
+    $("clock").textContent=ev.min+"'";
+    if(ev.min<=35) $("halfTag").textContent="1st Half";
+    addEv(ev, `${fmt(M.my)} : ${fmt(M.th)}`);
+    M.i++;
+  }
+  M.timer=setTimeout(stepEvent, M.skip?0:(ev.type==="goal"?420:170));
+}
+function tallyScorer(ev){
+  const k=ev.who;
+  if(!S.scorers[k]) S.scorers[k]={g:0,p:0};
+  ev.type==="goal"?S.scorers[k].g++:S.scorers[k].p++;
+}
+function skipMatch(){ if(M) M.skip=true; }
+
+function fullTime(){
+  const m=M.match;
+  const tag=m.res==="W"?"WIN":"DEFEAT";
+  addEv({type:"meta",txt:`Full-time — ${tag} · ${fmt(m.my)} : ${fmt(m.th)}`});
+  $("halfTag").textContent="Full-time";
+  $("clock").textContent="FT";
+  $("skipBtn").style.display="none";
+  S.results.push(m);
+  const icon=m.res==="W"?"✅":"❌";
+  const chip=document.createElement("span");
+  chip.className="res "+m.res.toLowerCase();
+  chip.innerHTML=`${icon} <b>${shortRound(m.fx.round)}</b> v ${m.fx.oppName} · ${fmt(m.my)}:${fmt(m.th)}`;
+  $("rail").appendChild(chip);
+  if(m.res==="L") S.alive=false;
+  S.idx++;
+  if(!S.alive || S.idx>=S.fixtures.length) setTimeout(verdict, 1100);
+  else M.timer=setTimeout(playFixture, 1400);
+}
+function shortRound(r){
+  return r.replace("All-Ireland","AI").replace("Quarter-Final","QF").replace("Semi-Final","SF");
+}
+
+/* ============================================================ VERDICT */
+function verdict(){
+  const w=S.results.filter(r=>r.res==="W").length;
+  const l=S.results.filter(r=>r.res==="L").length;
+  const total=S.fixtures.length;
+  const prov=PROVINCES[cfg.prov].name;
+  const v=$("verdict");
+  $("sbWrap").style.display="none"; $("tickerWrap").style.display="none";
+  const line=S.results.map(r=>r.res==="W"?"✅":"❌").join("");
+  let emoji,h,p,gold=false;
+  if(w===total){
+    gold=true; emoji="🏆";
+    h="THE PERFECT CHAMPIONSHIP";
+    p=`Five games. Five wins. The ${prov} title and Sam Maguire, and not one team laid a glove on your fifteen. A season they'll argue about in pubs for a hundred years.`;
+    confetti(true);
+  } else {
+    const fell=S.results[S.results.length-1];
+    const mar=(fell.th.g*3+fell.th.p)-(fell.my.g*3+fell.my.p);
+    emoji="💔";
+    h=`THE DREAM DIES — ${fell.fx.round.toUpperCase()}`;
+    p=`${fell.fx.oppName} got you by ${mar} point${mar>1?"s":""}. In the perfection game, one defeat is the end of the road.`;
+  }
+  const top=Object.entries(S.scorers).map(([n,s])=>({n,...s,tot:s.g*3+s.p}))
+    .sort((a,b)=>b.tot-a.tot).slice(0,3);
+  const scorerHtml = top.length ? `<div class="scorers"><h5>Top scorers of the run</h5>${
+    top.map(t=>`<div class="srow"><b>${t.n}</b><span class="tot">${t.g}-${String(t.p).padStart(2,"0")} (${t.tot})</span></div>`).join("")}</div>` : "";
+  v.innerHTML=`<div class="vemoji">${emoji}</div><h3>${h}</h3>
+    <div class="rec">${w}–${l}</div>
+    <div class="emojiline">${line}</div>
+    <p>${p}</p>
+    ${scorerHtml}
+    <div class="vbtns">
+      <button class="btn-primary sm" onclick="startDraft()">Draft Again</button>
+      <button class="btn-ghost" id="shareBtn">Share Result</button>
+      <button class="btn-ghost" onclick="goHome()">Home</button>
+    </div>`;
+  $("shareBtn").onclick=()=>shareResult(line,w,l,total,prov);
+  if(gold) v.classList.add("gold");
+  requestAnimationFrame(()=>v.classList.add("in"));
+  saveBest(w,l,total);
+  if(window.pgTrack) pgTrack("season_result",{wins:w,losses:l,perfect:w===total,team_rating:S.team,province:cfg.prov});
+}
+function shareResult(line,w,l,total,prov){
+  if(window.pgTrack) pgTrack("share_result",{perfect:w===total});
+  const txt=`CHAMPIONSHIP 15 🏐 (${prov} route)\nMy fifteen (rated ${S.team}) went ${w}-${l}\n${line}\n${w===total?"THE PERFECT CHAMPIONSHIP 🏆":"The dream died on the road to Sam 💔"}`;
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(
+    ()=>toast("Result copied — paste it in the group chat 📋"),
+    ()=>toast("Couldn't copy automatically — screenshot it instead!"));
+}
+function toast(msg){
+  const t=$("toast"); t.textContent=msg; t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2600);
+}
+function saveBest(w,l,total){
+  const cur=JSON.parse(localStorage.getItem("c15best")||"null");
+  const score=w*10+(w===total?5:0);
+  if(!cur || score>cur.score) localStorage.setItem("c15best",JSON.stringify({w,l,total,team:S.team,score}));
+}
+function showBest(){
+  const b=JSON.parse(localStorage.getItem("c15best")||"null");
+  const el=$("bestRun");
+  if(b && b.total){ el.hidden=false; el.innerHTML=`🏅 Your best run: <b>${b.w}–${b.l}</b> with a ${b.team}-rated fifteen ${b.w===b.total?"· <b>PERFECT</b> 🏆":""}`; }
+}
+showBest();
+
+/* ============================================================ CONFETTI */
+function confetti(big){
+  const cv=$("confetti"), ctx=cv.getContext("2d");
+  cv.width=innerWidth; cv.height=innerHeight;
+  const cols=["#f2c14e","#ffd97a","#2ea36b","#4ed492","#ffffff","#6CACE4"];
+  const N=big?220:120;
+  const ps=Array.from({length:N},()=>({
+    x:Math.random()*cv.width, y:-20-Math.random()*cv.height*.5,
+    s:4+Math.random()*6, vy:2+Math.random()*3.5, vx:(Math.random()-.5)*2,
+    r:Math.random()*Math.PI, vr:(Math.random()-.5)*.2, c:rnd(cols)
+  }));
+  let t=0;
+  (function loop(){
+    ctx.clearRect(0,0,cv.width,cv.height); t++;
+    ps.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.r+=p.vr;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r);
+      ctx.fillStyle=p.c; ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6); ctx.restore();
+    });
+    if(t<260) requestAnimationFrame(loop); else ctx.clearRect(0,0,cv.width,cv.height);
+  })();
+}
+</script>
+</body>
+</html>
