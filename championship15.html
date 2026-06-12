@@ -504,6 +504,21 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
   <button class="btn-ghost close" onclick="tips.close()">Got it</button>
 </dialog>
 
+<dialog id="codeChooser" style="border:1px solid var(--card-bd);border-radius:22px;background:#0e2117;color:var(--ink);max-width:480px;width:92vw;padding:30px;text-align:center">
+  <h3 style="font-family:'Bebas Neue';font-size:34px;letter-spacing:.05em;color:var(--gold)">CHAMPIONSHIP 15</h3>
+  <p style="color:var(--ink-dim);font-size:13px;margin-top:4px">Pick your code.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px">
+    <button onclick="codeChooser.close()" style="display:flex;flex-direction:column;gap:8px;align-items:center;background:linear-gradient(150deg,rgba(46,163,107,.2),rgba(46,163,107,.05));border:1px solid var(--green);border-radius:16px;padding:24px 14px;font:700 15px 'Sora';color:var(--ink);cursor:pointer">
+      <span style="font-size:34px">🏐</span>FOOTBALL
+      <small style="font:600 10px 'Sora';letter-spacing:.12em;color:var(--green-hi)">● LIVE — PLAY NOW</small>
+    </button>
+    <button onclick="codeChooser.close();toast('Championship 15 — Hurling is togging out. Coming soon! 🏑')" style="display:flex;flex-direction:column;gap:8px;align-items:center;background:rgba(255,255,255,.03);border:1px solid var(--card-bd);border-radius:16px;padding:24px 14px;font:700 15px 'Sora';color:var(--ink-dim);cursor:pointer">
+      <span style="font-size:34px">🏑</span>HURLING
+      <small style="font:600 10px 'Sora';letter-spacing:.12em;color:var(--amber)">COMING SOON</small>
+    </button>
+  </div>
+</dialog>
+
 <div class="toast" id="toast"></div>
 
 <footer>
@@ -1186,6 +1201,7 @@ function showBest(){
   if(b&&b.rec){ el.hidden=false; el.innerHTML=`🏅 Your best season: <b>${b.rec}</b> · ${b.label}`; }
 }
 showBest();
+codeChooser.showModal(); /* football or hurling? greet the player with the choice */
 
 /* ============================================================ CONFETTI */
 function confetti(big){
