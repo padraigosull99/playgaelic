@@ -6,7 +6,7 @@
       game stats under Reports → Engagement → Events.
 ============================================================ */
 window.PG_CONFIG = {
-  gaId: "G-M87JW6Y2GF"
+  gaId: "G-H9J6FZ2DH9"
 };
 
 (function(){
