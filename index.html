@@ -208,7 +208,7 @@ footer b{color:var(--ink-dim)}
   </div>
 
   <div class="cta-row">
-    <a class="btn-primary" href="championship15.html">Play Championship 15 →</a>
+    <button class="btn-primary" onclick="codeChooser.showModal()">Play Championship 15 →</button>
     <a class="btn-ghost" href="#games">Browse all games</a>
   </div>
 </section>
@@ -219,7 +219,7 @@ footer b{color:var(--ink-dim)}
     <p>One live now — the rest of the panel is togging out.</p>
   </div>
   <div class="games">
-    <a class="gcard live" href="championship15.html">
+    <a class="gcard live" href="#" onclick="event.preventDefault();codeChooser.showModal()">
       <span class="badge live">● Live</span>
       <div class="gicon">🏆</div>
       <h4>CHAMPIONSHIP 15</h4>
@@ -278,6 +278,22 @@ footer b{color:var(--ink-dim)}
   </div>
 </section>
 </main>
+
+<dialog id="codeChooser" style="border:1px solid var(--card-bd);border-radius:22px;background:#0e2117;color:var(--ink);max-width:480px;width:92vw;padding:30px;text-align:center">
+  <h3 style="font-family:'Bebas Neue';font-size:34px;letter-spacing:.05em;color:var(--gold)">CHAMPIONSHIP 15</h3>
+  <p style="color:var(--ink-dim);font-size:13px;margin-top:4px">Pick your code.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px">
+    <a href="championship15.html" style="display:flex;flex-direction:column;gap:8px;align-items:center;text-decoration:none;color:var(--ink);background:linear-gradient(150deg,rgba(46,163,107,.2),rgba(46,163,107,.05));border:1px solid var(--green);border-radius:16px;padding:24px 14px;font:700 15px 'Sora'">
+      <span style="font-size:34px">🏐</span>FOOTBALL
+      <small style="font:600 10px 'Sora';letter-spacing:.12em;color:var(--green-hi)">● LIVE — PLAY NOW</small>
+    </a>
+    <a href="hurling15.html" style="display:flex;flex-direction:column;gap:8px;align-items:center;text-decoration:none;color:var(--ink);background:linear-gradient(150deg,rgba(255,140,0,.2),rgba(255,140,0,.05));border:1px solid var(--amber);border-radius:16px;padding:24px 14px;font:700 15px 'Sora'">
+      <span style="font-size:34px">🏑</span>HURLING
+      <small style="font:600 10px 'Sora';letter-spacing:.12em;color:var(--amber)">● LIVE — PLAY NOW</small>
+    </a>
+  </div>
+  <button onclick="codeChooser.close()" style="margin-top:18px;background:none;border:none;color:var(--ink-faint);font:600 12px 'Sora';cursor:pointer">Close</button>
+</dialog>
 
 <div class="toast" id="toast"></div>
 
