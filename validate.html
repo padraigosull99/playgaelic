@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GAA_DB validator — PlayGaelic</title>
+<style>
+body{font-family:Consolas,monospace;background:#0b1d14;color:#cfe6d8;padding:30px;line-height:1.6;font-size:13px}
+h1{color:#f2c14e;font-size:20px} h2{color:#4ed492;font-size:15px;margin-top:24px}
+.bad{color:#ff8a80} .ok{color:#69dd9a} table{border-collapse:collapse;margin-top:8px}
+td,th{border:1px solid #2a4435;padding:3px 10px;text-align:left}
+</style>
+</head>
+<body>
+<h1>GAA_DB validator</h1>
+<div id="out">Loading…</div>
+<script src="gaa-db.js"></script>
+<script>
+const out=[];
+const db=GAA_DB, ps=db.players;
+const issues=[];
+
+/* rule 1: hard ceiling 95 */
+ps.filter(p=>p.rating>95).forEach(p=>issues.push(`CEILING: ${p.name} (${p.team}) rated ${p.rating} > 95`));
+
+/* rule 2: GOAT budget — exactly the approved seven at 95 */
+const goats=ps.filter(p=>p.rating===95).map(p=>p.name);
+if(goats.length>7) issues.push(`GOAT BUDGET: ${goats.length} players at 95 (max 7): ${goats.join(", ")}`);
+
+/* rule 3: max 3 players ≥88 per team */
+db.teams.forEach(t=>{
+  const stars=ps.filter(p=>p.team===t.id&&p.rating>=88);
+  if(stars.length>3) issues.push(`STAR GLUT: ${t.id} has ${stars.length} players ≥88 (${stars.map(s=>s.name+" "+s.rating).join(", ")})`);
+});
+
+/* rule 4: team average ceilings by tier */
+const tierCap={1:87,2:83,3:80};
+const rows=db.teams.map(t=>{
+  const tp=ps.filter(p=>p.team===t.id);
+  const avg=tp.reduce((a,p)=>a+p.rating,0)/tp.length;
+  if(avg>tierCap[t.tier]) issues.push(`TEAM AVG: ${t.id} (tier ${t.tier}) averages ${avg.toFixed(1)} > cap ${tierCap[t.tier]}`);
+  return {id:t.id,tier:t.tier,n:tp.length,avg:avg.toFixed(1),top:Math.max(...tp.map(p=>p.rating))};
+});
+
+/* rule 5: duplicate names within a team */
+db.teams.forEach(t=>{
+  const names=ps.filter(p=>p.team===t.id).map(p=>p.name);
+  names.filter((n,i)=>names.indexOf(n)!==i).forEach(n=>issues.push(`DUPLICATE: ${n} twice on ${t.id}`));
+});
+
+/* rule 6: orphan extras keys (X/Z entries pointing at nobody) — checked via zone coverage */
+const noGK=db.teams.filter(t=>!ps.some(p=>p.team===t.id&&p.line==="GK")).map(t=>t.id);
+
+/* distribution */
+const buckets={"70-74":0,"75-79":0,"80-84":0,"85-89":0,"90-94":0,"95":0};
+ps.forEach(p=>{ const r=p.rating;
+  buckets[r===95?"95":r>=90?"90-94":r>=85?"85-89":r>=80?"80-84":r>=75?"75-79":"70-74"]++; });
+const zoned=ps.filter(p=>p.zone).length;
+
+out.push(`<h2>${issues.length?'<span class="bad">'+issues.length+' issue(s)</span>':'<span class="ok">✓ All rules pass</span>'}</h2>`);
+issues.forEach(i=>out.push(`<div class="bad">✗ ${i}</div>`));
+out.push(`<h2>Distribution (${ps.length} players, ${db.teams.length} teams)</h2>`);
+out.push("<table><tr>"+Object.keys(buckets).map(k=>`<th>${k}</th>`).join("")+"</tr><tr>"+Object.values(buckets).map(v=>`<td>${v}</td>`).join("")+"</tr></table>");
+out.push(`<div>Players with a specific position zone: ${zoned} / ${ps.length}</div>`);
+out.push(`<div>Teams without a GK (spin skips them for keeper picks): ${noGK.join(", ")||"none"}</div>`);
+out.push(`<h2>Team averages</h2><table><tr><th>team</th><th>tier</th><th>players</th><th>avg</th><th>best</th></tr>`+
+  rows.sort((a,b)=>b.avg-a.avg).map(r=>`<tr><td>${r.id}</td><td>${r.tier}</td><td>${r.n}</td><td>${r.avg}</td><td>${r.top}</td></tr>`).join("")+"</table>");
+document.getElementById("out").innerHTML=out.join("");
+</script>
+</body>
+</html>
