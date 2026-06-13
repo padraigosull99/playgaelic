@@ -65,6 +65,7 @@ const HURLING_DB = {
     {id:"clare-13",    county:"Clare",    name:"The Young Banner",        years:"2013",      dec:10, tier:2}, /* 2013 final core */
     {id:"clare-24",    county:"Clare",    name:"The Banner's Return",     years:"2024",      dec:20, tier:1}, /* [V] 2024 final */
     {id:"antrim-89",   county:"Antrim",   name:"Sambo's Saffrons",        years:"1989",      dec:80, tier:3}, /* [V] 1989 final */
+    {id:"antrim-20",   county:"Antrim",   name:"McManus's Saffrons",      years:"2020–2022", dec:20, tier:3}, /* [V] 2020 Joe McDonagh final */
     {id:"kerry-hurlers",county:"Kerry",   name:"The Kingdom Hurlers",     years:"2015–2023", dec:10, tier:3}
   ],
 
@@ -496,6 +497,23 @@ const HURLING_DB = {
     ["offaly-81","Pat Carroll","FWD",83,"Coolderry",1,1],
     ["offaly-81","Pádraig Horan","FWD",84,"St Rynagh's",2,1],
     ["offaly-81","Johnny Flaherty","FWD",83,"Kinnitty",1,1],
+
+    /* ===== ANTRIM — McManus's Saffrons [V 2020 Joe McDonagh final] ===== */
+    ["antrim-20","Ryan Elliott","GK",77,"Loughgiel Shamrocks",null,null],
+    ["antrim-20","Phelim Duffin","DEF",76,null,null,null],
+    ["antrim-20","Matthew Donnelly","DEF",77,null,null,null],
+    ["antrim-20","Stephen Rooney","DEF",76,null,null,null],
+    ["antrim-20","Joe Maskey","DEF",78,"Rossa",null,null],
+    ["antrim-20","Paddy Burke","DEF",78,"Cushendall Ruairí Óg",null,null],
+    ["antrim-20","Gerard Walsh","DEF",77,"St John's",null,null],
+    ["antrim-20","Eoghan Campbell","MID",79,"Cushendall Ruairí Óg",null,null],
+    ["antrim-20","Keelan Molloy","MID",78,"Dunloy Cúchullainn's",null,null],
+    ["antrim-20","Niall McKenna","FWD",78,"Dunloy Cúchullainn's",null,null],
+    ["antrim-20","James McNaughton","FWD",79,"Cushendall Ruairí Óg",null,null],
+    ["antrim-20","Conor McCann","FWD",80,"St John's",null,null],
+    ["antrim-20","Ciaran Clarke","FWD",81,"Ballycastle McQuillans",null,null],
+    ["antrim-20","Neil McManus","FWD",82,"Cushendall Ruairí Óg",null,1],
+    ["antrim-20","Daniel McCloskey","FWD",77,"Dunloy Cúchullainn's",null,null],
   ],
 
   extras: {
@@ -534,6 +552,10 @@ const HURLING_DB = {
     "offaly-81|Pádraig Horan":{captain:true,note:"Captain of Offaly's first All-Ireland in 1981"},
     "offaly-81|Johnny Flaherty":{note:"Scored the famous handpassed goal that won the 1981 final"},
     "offaly-81|Liam Currams":{dual:"also won an All-Ireland football medal with Offaly in 1982"},
+    "antrim-20|Neil McManus":{note:"Antrim's long-serving talisman; was an injured sub on the 2020 final day but the heart of the team for over a decade"},
+    "antrim-20|Conor McCann":{captain:true,note:"Captained Antrim to the 2020 Joe McDonagh Cup"},
+    "antrim-20|Ciaran Clarke":{note:"Scored 0-11 in the 2020 Joe McDonagh final"},
+    "antrim-20|James McNaughton":{family:"son of Sambo McNaughton of the 1989 team"},
     "kilkenny-08|Henry Shefflin":{born:1979,poty:1,nickname:"King Henry",note:"11 All-Stars — a record; 10 All-Ireland medals"},
     "kilkenny-08|James 'Cha' Fitzpatrick":{captain:true},
     "kilkenny-08|Tommy Walsh":{note:"9 All-Stars in a row"},
