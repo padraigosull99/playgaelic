@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Championship 15 — Can You Go 13-0-0 — Hurling Edition?</title>
-<meta name="description" content="Draft a fantasy hurling 15, survive the league, win your province and Sam Maguire — without losing a single game. Can you go 13-0-0?">
-<meta property="og:title" content="Championship 15 — can you go 13-0-0?">
-<meta property="og:description" content="Draft a fantasy fifteen from legendary county teams and chase the perfect season. A PlayGaelic game.">
+<title>Championship 15 Hurling — Can You Go 13-0-0?</title>
+<meta name="description" content="Draft a fantasy hurling 15, survive the league, win your province and the Liam MacCarthy — without losing a single game. Can you go 13-0-0?">
+<meta property="og:title" content="Championship 15 Hurling — can you go 13-0-0?">
+<meta property="og:description" content="Draft a fantasy fifteen from legendary hurling teams and chase the perfect season. A PlayGaelic game.">
 <meta property="og:image" content="og-card.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b1d14">
-<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="%232ea36b"/><text x="50" y="72" font-size="60" text-anchor="middle">🏐</text></svg>'>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="%232ea36b"/><text x="50" y="72" font-size="60" text-anchor="middle">🏑</text></svg>'>
 <script src="analytics.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -335,10 +335,10 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
 
 <header>
   <div class="brand" onclick="goHome()">
-    <div class="crest">🏐</div>
+    <div class="crest">🏑</div>
     <div>
       <h1>CHAMPIONSHIP <b>15</b></h1>
-      <small>Can you go 13-0-0?</small>
+      <small>Hurling · Can you go 13-0-0?</small>
     </div>
   </div>
   <div class="hdr-right">
@@ -354,7 +354,7 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
   <div class="hero">
     <span class="kick">⚡ The Perfect Season Challenge</span>
     <h2>BUILD THE PERFECT 15.<br><span class="gold">GO 13-0-0.</span></h2>
-    <p>Draft a fantasy fifteen from sixty years of county teams. Then survive a full season: <b>7 league games</b>, the <b>League Final</b>, your <b>provincial semi-final and final</b>, and the <b>All-Ireland series</b>. You can lose along the way and still lift Sam — but only a perfect <b>13 wins, 0 draws, 0 losses</b> makes you immortal.</p>
+    <p>Draft a fantasy fifteen from the great hurling teams. Then survive a full season: <b>7 league games</b>, the <b>League Final</b>, your <b>provincial semi-final and final</b>, and the <b>All-Ireland series</b>. You can lose along the way and still lift the <b>Liam MacCarthy</b> — but only a perfect <b>13 wins, 0 draws, 0 losses</b> makes you immortal.</p>
     <div class="best-run" id="bestRun" hidden></div>
   </div>
 
@@ -363,10 +363,8 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
       <h3>Province</h3>
       <div class="sub">Your championship route.</div>
       <div class="seg" id="segProv">
-        <button data-v="munster" class="on"><span>Munster</span><small>the southern route</small></button>
-        <button data-v="leinster"><span>Leinster</span><small>the eastern route</small></button>
-        <button data-v="ulster"><span>Ulster</span><small>the northern route</small></button>
-        <button data-v="connacht"><span>Connacht</span><small>the western route</small></button>
+        <button data-v="munster" class="on"><span>Munster</span><small>the cauldron — Limerick, Cork, Clare, Tipp</small></button>
+        <button data-v="leinster"><span>Leinster</span><small>Kilkenny, Galway, Wexford</small></button>
       </div>
     </div>
     <div class="cfg-card">
@@ -403,7 +401,7 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
     <div class="rules-strip">
       <span><i>🎰</i> Draft your fifteen</span>
       <span><i>📅</i> Survive the league</span>
-      <span><i>🏟️</i> Win province &amp; Sam</span>
+      <span><i>🏟️</i> Win province &amp; Liam</span>
       <span><i>💎</i> 13-0-0 = immortal</span>
     </div>
   </div>
@@ -444,7 +442,7 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
           <span>Squad: <b id="fillCount">0</b>/15</span>
           <span id="ratingPeek"></span>
         </div>
-        <button class="btn-primary sm run-btn" id="runBtn" onclick="startSeason()">🏐 Throw In the Ball</button>
+        <button class="btn-primary sm run-btn" id="runBtn" onclick="startSeason()">🏑 Throw In the Sliotar</button>
       </div>
     </div>
   </div>
@@ -479,15 +477,15 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
 
 <dialog id="howto">
   <h3>How to Play</h3>
-  <p><b style="color:var(--ink)">Championship 15</b>: draft a fantasy fifteen, then take them through a full hurling season. The perfect season is <b style="color:var(--ink)">13-0-0</b> — wins, draws, losses.</p>
+  <p><b style="color:var(--ink)">Championship 15 Hurling</b>: draft a fantasy fifteen, then take them through a full hurling season. The perfect season is <b style="color:var(--ink)">13-0-0</b> — wins, draws, losses.</p>
   <h4>1 · The Draft</h4>
   <p>The reel lands on a county team and era — legends or underdogs. Pick one player; he can only play in his real position line. You get one county swap, one era swap, and difficulty-based re-spins.</p>
   <h4>2 · The League</h4>
-  <p>7 group games against Division 1's finest — Dublin, Kerry, Armagh, Donegal and co. Win = 2pts, draw = 1. Finish top 2 to reach the <b style="color:var(--ink)">League Final</b>. League slip-ups don't end your season — but they end perfection.</p>
+  <p>7 group games against Division 1's finest — Limerick, Kilkenny, Cork, Clare and co. Win = 2pts, draw = 1. Finish top 2 to reach the <b style="color:var(--ink)">League Final</b>. League slip-ups don't end your season — but they end perfection.</p>
   <h4>3 · The Championship</h4>
   <p>Provincial semi-final and final on your chosen route, then the All-Ireland quarter-final, semi-final and final. Knockout games can't be drawn — extra time decides them. Lose in your province and you fight on through the All-Ireland series; lose an All-Ireland knockout and the season is over.</p>
   <h4>4 · The Prize</h4>
-  <p>Three trophies: the <b style="color:var(--ink)">National League</b>, your <b style="color:var(--ink)">province</b>, and <b style="color:var(--ink)">Sam Maguire</b>. You can win Sam with losses on your record. You can win the treble imperfectly. But 13-0-0? That's immortality.</p>
+  <p>Three trophies: the <b style="color:var(--ink)">National League</b>, your <b style="color:var(--ink)">province</b>, and the <b style="color:var(--ink)">Liam MacCarthy</b>. You can win Liam with losses on your record. You can win the treble imperfectly. But 13-0-0? That's immortality.</p>
   <button class="btn-ghost close" onclick="howto.close()">Got it</button>
 </dialog>
 
@@ -498,23 +496,23 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
     <li><b style="color:var(--ink)">Balance beats glamour.</b> Your weakest line drags the whole rating down. Six forwards can't save four corner-backs from Laois.</li>
     <li><b style="color:var(--ink)">Chemistry counts.</b> Stacking players from one county or one era nudges your rating up.</li>
     <li><b style="color:var(--ink)">The league is a minefield.</b> Seven games against Division 1 opposition — even great teams drop points. A draw kills 13-0-0 but not your season.</li>
-    <li><b style="color:var(--ink)">Take the keeper when he comes.</b> One slot, few elite keepers. If Cluxton appears, you take him.</li>
-    <li><b style="color:var(--ink)">13-0-0 is meant to be near-impossible.</b> Even an elite fifteen goes perfect roughly once in fifty seasons. Winning Sam is the job; perfection is the legend.</li>
+    <li><b style="color:var(--ink)">Take the keeper when he comes.</b> One slot, few elite keepers. If a Cummins or a Quaid appears, you take him.</li>
+    <li><b style="color:var(--ink)">13-0-0 is meant to be near-impossible.</b> Even an elite fifteen goes perfect roughly once in fifty seasons. Winning Liam is the job; perfection is the legend.</li>
   </ul>
   <button class="btn-ghost close" onclick="tips.close()">Got it</button>
 </dialog>
 
 <dialog id="codeChooser" style="border:1px solid var(--card-bd);border-radius:22px;background:#0e2117;color:var(--ink);max-width:480px;width:92vw;padding:30px;text-align:center">
-  <h3 style="font-family:'Bebas Neue';font-size:34px;letter-spacing:.05em;color:var(--gold)">CHAMPIONSHIP 15 — HURLING</h3>
+  <h3 style="font-family:'Bebas Neue';font-size:34px;letter-spacing:.05em;color:var(--gold)">CHAMPIONSHIP 15</h3>
   <p style="color:var(--ink-dim);font-size:13px;margin-top:4px">Pick your code.</p>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px">
-    <button onclick="codeChooser.close()" style="display:flex;flex-direction:column;gap:8px;align-items:center;background:linear-gradient(150deg,rgba(46,163,107,.2),rgba(46,163,107,.05));border:1px solid var(--green);border-radius:16px;padding:24px 14px;font:700 15px 'Sora';color:var(--ink);cursor:pointer">
+    <a href="championship15.html" style="display:flex;flex-direction:column;gap:8px;align-items:center;background:rgba(255,255,255,.03);border:1px solid var(--card-bd);border-radius:16px;padding:24px 14px;font:700 15px 'Sora';color:var(--ink);cursor:pointer;text-decoration:none">
       <span style="font-size:34px">🏐</span>FOOTBALL
-      <small style="font:600 10px 'Sora';letter-spacing:.12em;color:var(--green-hi)">● LIVE — PLAY NOW</small>
-    </button>
-    <button onclick="codeChooser.close();toast('Championship 15 — Hurling is togging out. Coming soon! 🏑')" style="display:flex;flex-direction:column;gap:8px;align-items:center;background:rgba(255,255,255,.03);border:1px solid var(--card-bd);border-radius:16px;padding:24px 14px;font:700 15px 'Sora';color:var(--ink-dim);cursor:pointer">
+      <small style="font:600 10px 'Sora';letter-spacing:.12em;color:var(--green-hi)">● PLAY</small>
+    </a>
+    <button onclick="codeChooser.close()" style="display:flex;flex-direction:column;gap:8px;align-items:center;background:linear-gradient(150deg,rgba(46,163,107,.2),rgba(46,163,107,.05));border:1px solid var(--green);border-radius:16px;padding:24px 14px;font:700 15px 'Sora';color:var(--ink);cursor:pointer">
       <span style="font-size:34px">🏑</span>HURLING
-      <small style="font:600 10px 'Sora';letter-spacing:.12em;color:var(--amber)">COMING SOON</small>
+      <small style="font:600 10px 'Sora';letter-spacing:.12em;color:var(--green-hi)">● YOU'RE HERE</small>
     </button>
   </div>
 </dialog>
@@ -522,7 +520,7 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
 <div class="toast" id="toast"></div>
 
 <footer>
-  Championship 15 is an unofficial fan project. Player names are used in a historical, editorial context.<br>
+  Championship 15 Hurling is an unofficial fan project. Player names are used in a historical, editorial context.<br>
   Not affiliated with the GAA or any county board. Inspired by the 38-0 challenge.<br>
   <a href="https://solosports.store" target="_blank" rel="noopener" onclick="if(window.pgTrack)pgTrack('solo_click',{src:'game'})" style="display:inline-block;margin-top:10px;font:700 11px 'Sora';letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none">Powered by <b style="color:var(--gold)">SOLO SPORTS</b> · Teamwear</a>
 </footer>
@@ -530,6 +528,7 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
 <script src="hurling-db.js"></script>
 <script>
 /* ============================================================ DATA */
+const GAA_DB = HURLING_DB;
 const DATA = GAA_DB.teams.map(t=>{
   const c = GAA_DB.counties[t.county];
   return {
@@ -560,22 +559,20 @@ const SLOT_DEF=[
 const PITCH_LINES=[["RCF","FF","LCF"],["RHF","CHF","LHF"],["MF1","MF2"],["RHB","CHB","LHB"],["RCB","FB","LCB"],["GK"]];
 
 /* ============================================================ SEASON CONSTANTS */
-const PLAY_LINK="https://playgaelic.ie/championship15.html";
-const LEAGUE_8=[["Dublin",94],["Kerry",94],["Armagh",92],["Donegal",91],["Galway",90],["Mayo",89],["Monaghan",86],["Roscommon",84]];
-const OPP_R={Dublin:94,Kerry:94,Armagh:92,Donegal:91,Galway:90,Mayo:89,Tyrone:89,Derry:87,Cork:87,Monaghan:86,Meath:84,Roscommon:84,Down:82,Cavan:81,Kildare:81,Louth:80,Clare:80,Tipperary:79,Westmeath:79,Fermanagh:78,Laois:78,Limerick:78,Offaly:77,Sligo:77,Wexford:76,Antrim:76,Leitrim:75,Carlow:75,Longford:74,Wicklow:74,Waterford:74,London:72,"New York":71};
+const PLAY_LINK="https://playgaelic.ie/hurling15.html";
+const LEAGUE_8=[["Limerick",94],["Kilkenny",93],["Clare",92],["Cork",91],["Galway",90],["Tipperary",90],["Waterford",88],["Wexford",87]];
+const OPP_R={Limerick:94,Kilkenny:93,Clare:92,Cork:91,Galway:90,Tipperary:90,Waterford:88,Wexford:87,Dublin:83,Offaly:80,Antrim:78,Laois:78,Westmeath:77,Carlow:77,Kerry:76,Kildare:76,Down:75,Meath:74,London:73};
 const PROVINCES={
- munster:{name:"Munster",counties:["Kerry","Cork","Clare","Limerick","Tipperary","Waterford"],big:["Kerry","Cork"]},
- leinster:{name:"Leinster",counties:["Dublin","Meath","Kildare","Louth","Westmeath","Laois","Offaly","Longford","Wicklow","Wexford","Carlow"],big:["Dublin","Meath"]},
- connacht:{name:"Connacht",counties:["Mayo","Galway","Roscommon","Sligo","Leitrim","London","New York"],big:["Galway","Mayo"]},
- ulster:{name:"Ulster",counties:["Armagh","Donegal","Tyrone","Derry","Monaghan","Down","Cavan","Fermanagh","Antrim"],big:["Armagh","Donegal","Tyrone"]}
+ munster:{name:"Munster",counties:["Limerick","Cork","Clare","Tipperary","Waterford","Kerry"],big:["Limerick","Cork","Clare","Tipperary"]},
+ leinster:{name:"Leinster",counties:["Kilkenny","Galway","Wexford","Dublin","Offaly","Laois","Antrim","Carlow","Westmeath","Kildare","Down","Meath"],big:["Kilkenny","Galway","Wexford"]}
 };
 /* tuning knobs — see RATINGS.md; verified by Monte Carlo */
-const TUNE=6;            // form/“peak for the big day” bonus on the user's rating
+const TUNE=4;            // hurling drafts run ~4pts hotter than football, so the form bonus is trimmed to keep 13-0-0 rare
 const DIV_LG=5;          // league randomness (bigger = more upsets)
 const DIV_KO=12;         // knockout randomness — anyone can be got on the day
 const SURNAMES=["Murphy","O'Brien","Walsh","Kelly","Ryan","O'Connor","McCarthy","Lynch","Brennan","Daly","Maguire","Hughes","Doyle","Sweeney","Quinn","Boyle","Duffy","Gallagher","Kennedy","Burke","Moran","Reilly","Flanagan","Smith","Nolan","Casey"];
-const PT_VERBS=["splits the posts","curls a beauty over","points from play","fists it over the bar","nails it off the outside of the boot","sweeps one over from 40 metres","points under pressure","floats it over off his left","arrows one over from the wing"];
-const GL_VERBS=["buries it in the bottom corner","palms it to the net","smashes it past the keeper","finishes low to the net","flicks it home at the near post","drills it under the diving keeper"];
+const PT_VERBS=["splits the posts","curls a beauty over","points from play","lifts and strikes over","lands a monster from the 65","sweeps one over off the left","points under pressure","arcs it over off the hurl","scores a sideline cut"];
+const GL_VERBS=["buries it in the bottom corner","pulls first-time to the net","rattles the rigging","finds the bottom corner","whips it to the net","flicks it past the keeper","blasts it to the roof of the net"];
 const TIER_LABEL={1:"★★★ All-time greats",2:"★★ Contenders",3:"★ Underdogs"};
 
 /* ============================================================ STATE */
@@ -853,7 +850,7 @@ function nextFixture(){
   }
   if(S.phase==="provsf"){
     const P=PROVINCES[cfg.prov];
-    const pool=P.counties.filter(c=>OPP_R[c]<=84);
+    const pool=P.counties.filter(c=>OPP_R[c]<=85);
     const opp=rnd(pool);
     return {comp:P.name.toUpperCase()+" CHAMPIONSHIP",round:P.name+" Semi-Final",oppName:opp,opp:OPP_R[opp],
       venue:GAA_DB.counties[opp]?.ground||"Croke Park, Dublin",type:"ko",stage:"provsf"};
@@ -869,8 +866,8 @@ function nextFixture(){
     const pool=Object.keys(OPP_R).filter(c=>OPP_R[c]>=lo&&OPP_R[c]<=hi&&!played.has(c));
     return rnd(pool.length?pool:Object.keys(OPP_R).filter(c=>OPP_R[c]>=lo));
   };
-  if(S.phase==="aiqf"){ const o=aiOpp(84,89); return {comp:"ALL-IRELAND SERIES",round:"All-Ireland Quarter-Final",oppName:o,opp:OPP_R[o],venue:"Croke Park, Dublin",type:"ko",stage:"aiqf"}; }
-  if(S.phase==="aisf"){ const o=aiOpp(89,92); return {comp:"ALL-IRELAND SERIES",round:"All-Ireland Semi-Final",oppName:o,opp:OPP_R[o],venue:"Croke Park, Dublin",type:"ko",stage:"aisf"}; }
+  if(S.phase==="aiqf"){ const o=aiOpp(87,90); return {comp:"ALL-IRELAND SERIES",round:"All-Ireland Quarter-Final",oppName:o,opp:OPP_R[o],venue:"Croke Park, Dublin",type:"ko",stage:"aiqf"}; }
+  if(S.phase==="aisf"){ const o=aiOpp(90,92); return {comp:"ALL-IRELAND SERIES",round:"All-Ireland Semi-Final",oppName:o,opp:OPP_R[o],venue:"Croke Park, Dublin",type:"ko",stage:"aisf"}; }
   if(S.phase==="aif"){ const o=aiOpp(93,94); return {comp:"ALL-IRELAND SERIES",round:"All-Ireland Final",oppName:o,opp:OPP_R[o],venue:"Croke Park, Dublin",type:"ko",stage:"aif"}; }
   return null;
 }
@@ -902,7 +899,7 @@ function genMatch(fx){
   }
   let margin = res==="D" ? 0 : Math.max(1,Math.min(14,Math.round(Math.abs(pw0-Math.random())*20)+1));
   if(et) margin=Math.min(margin,3);
-  const loTot=11+Math.floor(Math.random()*8);
+  const loTot=17+Math.floor(Math.random()*9);
   const hiTot=loTot+margin;
   const myTot = res==="L" ? loTot : hiTot;
   const thTot = res==="L" ? hiTot : loTot;
@@ -938,7 +935,7 @@ function playNextFixture(){
   const match=genMatch(fx);
   M={match, i:0, my:{g:0,p:0}, th:{g:0,p:0}, skip:false, timer:null, htShown:false};
   $("simComp").textContent=fx.comp;
-  $("simRound").textContent=fx.round.toUpperCase()+" — CHAMPIONSHIP 15 — HURLING v "+fx.oppName.toUpperCase();
+  $("simRound").textContent=fx.round.toUpperCase()+" — CHAMPIONSHIP 15 v "+fx.oppName.toUpperCase();
   $("simVenue").textContent=fx.venue;
   $("recStrip").textContent=recStr();
   $("sbOppName").textContent=fx.oppName;
@@ -1085,7 +1082,7 @@ function seasonLabel(){
   if(perfect&&treble) return ["IMMORTAL SEASON","💎"];
   if(S.l===0&&S.d>0&&treble) return ["UNBEATEN TREBLE","🥇"];
   if(treble) return ["TREBLE WINNERS","🏆"];
-  if(S.trophies.sam) return ["SAM MAGUIRE WINNERS","🏆"];
+  if(S.trophies.sam) return ["LIAM MACCARTHY WINNERS","🏆"];
   if(S.ai.f==="L") return ["FINAL HEARTBREAK","💔"];
   if(S.trophies.league&&S.trophies.prov) return ["DOMESTIC DOMINANCE","🏅"];
   if(S.l>=3) return ["SEASON OF WHAT IFS","😮‍💨"];
@@ -1133,8 +1130,8 @@ function results(){
     : S.ai.qf==="L" ? "Out at the All-Ireland quarter-final" : "—";
 
   const story = perfect
-    ? `Thirteen games. Thirteen wins. The league, ${P.name} and Sam Maguire without a single slip. They'll name pitches after this team.`
-    : S.trophies.sam ? `Sam Maguire is coming home — but the record reads ${recStr()}, so the perfect season stays out there. Again next year?`
+    ? `Thirteen games. Thirteen wins. The league, ${P.name} and the Liam MacCarthy without a single slip. They'll name pitches after this team.`
+    : S.trophies.sam ? `The Liam MacCarthy is coming home — but the record reads ${recStr()}, so the perfect season stays out there. Again next year?`
     : S.ai.f==="L" ? `So close. ${recStr()} and a final that got away. That one will sting all winter.`
     : `The season ends ${recStr()}. ${S.trophies.league||S.trophies.prov?"Silverware in the cabinet, but the big one got away.":"Back to the drawing board."}`;
 
@@ -1147,7 +1144,7 @@ function results(){
     <div class="vsec"><h5>Trophies</h5>
       <div class="srow"><b>National League</b><span class="tot">${S.trophies.league?"✅":"—"}</span></div>
       <div class="srow"><b>${P.name} Championship</b><span class="tot">${S.trophies.prov?"✅":"—"}</span></div>
-      <div class="srow"><b>Sam Maguire</b><span class="tot">${S.trophies.sam?"✅":"—"}</span></div>
+      <div class="srow"><b>Liam MacCarthy</b><span class="tot">${S.trophies.sam?"✅":"—"}</span></div>
     </div>
     <div class="vsec"><h5>Season summary</h5>
       <div class="srow"><b>League</b><span>${lgSummary}</span></div>
@@ -1178,7 +1175,7 @@ function results(){
 function shareResult(label,top,poty,P,perfect){
   const t=S.trophies;
   const txt=`I went ${recStr()} in Championship 15.\n${label} ${perfect?"💎":t.sam?"🏆":""}\n`+
-    `${t.league?"League ✅\n":""}${t.prov?P.name+" ✅\n":""}${t.sam?"Sam Maguire ✅\n":""}`+
+    `${t.league?"League ✅\n":""}${t.prov?P.name+" ✅\n":""}${t.sam?"Liam MacCarthy ✅\n":""}`+
     `Top scorer: ${top.name} ${top.g}-${String(top.p).padStart(2,"0")}\nPlayer of the Year: ${poty.name}\n`+
     `${perfect?"Can you beat me?":"Can you go 13-0-0?"}\nPlay here: ${PLAY_LINK}`;
   if(window.pgTrack) pgTrack("share_result",{perfect});
@@ -1242,16 +1239,16 @@ window.__simSeason=function(rating,n=2000){
       else l++;
     }
     /* approximate rivals' points: each plays 7 games vs avg-90 field */
-    others.forEach(o=>{ for(let g=0;g<7;g++){ const r2=Math.random(); const pd=0.14; if(r2<pd)o.pts++; else if(Math.random()<baseWin(o.r,89.5,DIV_LG))o.pts+=2; } });
+    others.forEach(o=>{ for(let g=0;g<7;g++){ const r2=Math.random(); const pd=0.14; if(r2<pd)o.pts++; else if(Math.random()<baseWin(o.r,91,DIV_LG))o.pts+=2; } });
     const better=others.filter(o=>o.pts>pts).length;
     let lg=false;
     if(better<2){ const fOpp=Math.max(...others.map(o=>o.r)); if(Math.random()<baseWin(u,fOpp,DIV_KO)){w++;lg=true;}else l++; }
     let prov=false;
-    if(Math.random()<baseWin(u,80,DIV_KO)){ w++; if(Math.random()<baseWin(u,92,DIV_KO)){w++;prov=true;}else l++; } else l++;
+    if(Math.random()<baseWin(u,82,DIV_KO)){ w++; if(Math.random()<baseWin(u,93,DIV_KO)){w++;prov=true;}else l++; } else l++;
     let samWin=false;
-    if(Math.random()<baseWin(u,87,DIV_KO)){ w++;
-      if(Math.random()<baseWin(u,90.5,DIV_KO)){ w++;
-        if(Math.random()<baseWin(u,93.5,DIV_KO)){ w++; samWin=true; }
+    if(Math.random()<baseWin(u,89,DIV_KO)){ w++;
+      if(Math.random()<baseWin(u,91.5,DIV_KO)){ w++;
+        if(Math.random()<baseWin(u,94,DIV_KO)){ w++; samWin=true; }
         else l++;
       } else l++;
     } else l++;

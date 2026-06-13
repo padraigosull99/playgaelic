@@ -27,6 +27,19 @@ Order-preserving: `old ≤ 84 → old − 3`, then a compressed top:
 94→89 · 95→89 · 96→90 · 97→90 · 98→91 · 99→92, with GOAT (95) and
 generational (90–91) overrides hand-applied after.
 
+## Hurling (`hurling-db.js`) — same scale, separate anchors
+
+Identical bands and 95 ceiling. Hurling anchors:
+
+- Henry Shefflin **95** (the lone hurling GOAT — hurling's Clifford)
+- Generational **90–94**: Joe Canning 91 · TJ Reid 91 · Cian Lynch 90 · Aaron Gillane 90 · Tony Kelly 90
+- Elite **85–89**: Brian Whelahan 89 · Tommy Walsh / JJ Delaney 88 · Eoin Kelly (Tipp) 88 · Brian Corcoran 87 · Joe Deane 87 · John Mullane 87 · Daithí Burke 87
+- Dynasty team average (Kilkenny, Limerick) ≈ 85–86; one-AI team ≈ 82; weaker county (Antrim, Kerry) ≈ 77–78
+
+**Every hurling team is built from a verified All-Ireland final team sheet** (`[V]` in the file).
+Clubs are only filled where confirmed — never guessed. When adding a team, pull the
+real starting 15 from the Wikipedia final page first, then rate on the rubric.
+
 ## Maintaining it
 
 1. **Adding a player/team**: rate on the rubric above, then compare with two
