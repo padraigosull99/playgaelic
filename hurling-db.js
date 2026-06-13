@@ -52,6 +52,7 @@ const HURLING_DB = {
     {id:"wexford-96",  county:"Wexford",  name:"Griffin's Miracle",       years:"1996",      dec:90, tier:2}, /* [V] 1996 final */
     {id:"waterford-08",county:"Waterford",name:"Mullane's Déise",         years:"2004–2010", dec:0,  tier:2}, /* [V] 2008 final */
     {id:"clare-13",    county:"Clare",    name:"The Young Banner",        years:"2013",      dec:10, tier:2}, /* 2013 final core */
+    {id:"clare-24",    county:"Clare",    name:"The Banner's Return",     years:"2024",      dec:20, tier:1}, /* [V] 2024 final */
     {id:"antrim-89",   county:"Antrim",   name:"Sambo's Saffrons",        years:"1989",      dec:80, tier:3}, /* [V] 1989 final */
     {id:"kerry-hurlers",county:"Kerry",   name:"The Kingdom Hurlers",     years:"2015–2023", dec:10, tier:3}
   ],
@@ -247,6 +248,23 @@ const HURLING_DB = {
     ["clare-13","Shane O'Donnell","FWD",84,"Éire Óg Ennis",1,null],
     ["clare-13","Colin Ryan","FWD",82,"Newmarket-on-Fergus",1,1],
 
+    /* ===== CLARE — The Banner's Return [V 2024 final] ===== */
+    ["clare-24","Eibhear Quilligan","GK",81,"Feakle",1,null],
+    ["clare-24","Adam Hogan","DEF",82,"Feakle",1,1],
+    ["clare-24","Conor Cleary","DEF",83,"St Joseph's Miltown Malbay",1,null],
+    ["clare-24","Conor Leen","DEF",81,null,1,null],
+    ["clare-24","Diarmuid Ryan","DEF",83,"Cratloe",1,null],
+    ["clare-24","John Conlon","DEF",85,"Clonlara",2,1],
+    ["clare-24","David McInerney","DEF",84,"Tulla",2,1],
+    ["clare-24","David Fitzgerald","MID",82,"Inagh-Kilnamona",1,null],
+    ["clare-24","Cathal Malone","MID",82,"Sixmilebridge",1,null],
+    ["clare-24","Tony Kelly","FWD",90,"Ballyea",2,3],
+    ["clare-24","Mark Rodgers","FWD",84,"Scariff",1,1],
+    ["clare-24","Peter Duggan","FWD",84,"Clooney-Quin",1,null],
+    ["clare-24","Aidan McCarthy","FWD",83,"Inagh-Kilnamona",1,null],
+    ["clare-24","Shane O'Donnell","FWD",88,"Éire Óg Ennis",2,1],
+    ["clare-24","David Reidy","FWD",83,"Éire Óg Ennis",1,null],
+
     /* ===== ANTRIM — Sambo's Saffrons [V 1989 final] ===== */
     ["antrim-89","Niall Patterson","GK",78,"Ballycastle McQuillans",null,null],
     ["antrim-89","Gary O'Kane","DEF",76,"Dunloy",null,null],
@@ -317,6 +335,9 @@ const HURLING_DB = {
     "waterford-08|Michael 'Brick' Walsh":{captain:true,note:"GAA record for most championship appearances"},
     "clare-13|Tony Kelly":{born:1993,poty:1,note:"Hurler of the Year 2013 in his debut season"},
     "clare-13|Shane O'Donnell":{note:"Scored 3-3 from play in the 2013 final replay aged 19"},
+    "clare-24|Tony Kelly":{captain:true,born:1993,note:"Talisman of Clare's 2024 All-Ireland win"},
+    "clare-24|Shane O'Donnell":{note:"Man of the Match in the 2024 final after extra time"},
+    "clare-24|Mark Rodgers":{note:"Breakout star of 2024; Young Hurler of the Year nominee"},
     "antrim-89|Terence 'Sambo' McNaughton":{captain:true,note:"Antrim's most iconic hurler; reached the 1989 final"},
     "antrim-89|Ciaran Barr":{note:"First Ulster hurler to win an All-Star (1988)"},
     "kerry-hurlers|Shane Conway":{note:"Kerry's all-time leading scorer; multiple Joe McDonagh Cup honours"},
