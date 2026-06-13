@@ -66,6 +66,11 @@ const HURLING_DB = {
     {id:"clare-24",    county:"Clare",    name:"The Banner's Return",     years:"2024",      dec:20, tier:1}, /* [V] 2024 final */
     {id:"antrim-89",   county:"Antrim",   name:"Sambo's Saffrons",        years:"1989",      dec:80, tier:3}, /* [V] 1989 final */
     {id:"antrim-20",   county:"Antrim",   name:"McManus's Saffrons",      years:"2020–2022", dec:20, tier:3}, /* [V] 2020 Joe McDonagh final */
+    {id:"laois-19",    county:"Laois",    name:"The Dublin Shockers",     years:"2019",      dec:10, tier:3}, /* [R] 2019 Joe McDonagh winners; beat Dublin in the prelim QF */
+    {id:"carlow-18",   county:"Carlow",   name:"Bonnar's Barrowsiders",   years:"2017–2019", dec:10, tier:3}, /* [R] 2018 Joe McDonagh winners */
+    {id:"down-90s",    county:"Down",     name:"The Mourne Men",          years:"1992–1997", dec:90, tier:3}, /* [R] Ulster titles 1992/95/97 */
+    {id:"westmeath",   county:"Westmeath",name:"The Lake County's Best",  years:"2015–2023", dec:20, tier:3}, /* [R] Christy Ring / Joe McDonagh era */
+    {id:"kildare",     county:"Kildare",  name:"The Lilywhites' Ring",    years:"2014–2022", dec:10, tier:3}, /* [R] Christy Ring Cup winners */
     {id:"kerry-hurlers",county:"Kerry",   name:"The Kingdom Hurlers",     years:"2015–2023", dec:10, tier:3}
   ],
 
@@ -514,6 +519,91 @@ const HURLING_DB = {
     ["antrim-20","Ciaran Clarke","FWD",81,"Ballycastle McQuillans",null,null],
     ["antrim-20","Neil McManus","FWD",82,"Cushendall Ruairí Óg",null,1],
     ["antrim-20","Daniel McCloskey","FWD",77,"Dunloy Cúchullainn's",null,null],
+
+    /* ===== LAOIS — The Dublin Shockers [R] 2019 Joe McDonagh squad ===== */
+    ["laois-19","Enda Rowland","GK",78,"Borris-Kilcotton",null,null],
+    ["laois-19","Lee Cleere","DEF",76,null,null,null],
+    ["laois-19","Joe Phelan","DEF",77,null,null,null],
+    ["laois-19","Matthew Whelan","DEF",77,null,null,null],
+    ["laois-19","Ryan Mullaney","DEF",78,"Rathdowney-Errill",null,null],
+    ["laois-19","Jack Kelly","DEF",78,"Rathdowney-Errill",null,null],
+    ["laois-19","Donnchadh Hartnett","DEF",75,null,null,null],
+    ["laois-19","Paddy Purcell","MID",79,"Rathdowney-Errill",null,null],
+    ["laois-19","John Lennon","MID",76,null,null,null],
+    ["laois-19","Aaron Dunphy","FWD",80,"Borris-Kilcotton",null,null],
+    ["laois-19","Ross King","FWD",81,"Rathdowney-Errill",null,null],
+    ["laois-19","Willie Dunphy","FWD",80,"Clough-Ballacolla",null,null],
+    ["laois-19","Charles 'Cha' Dwyer","FWD",78,null,null,null],
+    ["laois-19","Stephen Maher","FWD",78,"Ballinakill",null,null],
+    ["laois-19","PJ Scully","FWD",77,null,null,null],
+
+    /* ===== CARLOW — Bonnar's Barrowsiders [R] 2018 Joe McDonagh squad ===== */
+    ["carlow-18","Brian Tracey","GK",77,null,null,null],
+    ["carlow-18","Michael Doyle","DEF",76,null,null,null],
+    ["carlow-18","Alan Corcoran","DEF",77,null,null,null],
+    ["carlow-18","David English","DEF",77,null,null,null],
+    ["carlow-18","Diarmuid Byrne","DEF",76,null,null,null],
+    ["carlow-18","Richard Coady","DEF",77,null,null,null],
+    ["carlow-18","Paul Doyle","DEF",77,null,null,null],
+    ["carlow-18","Eoin Nolan","MID",77,null,null,null],
+    ["carlow-18","John Michael Nolan","MID",77,null,null,null],
+    ["carlow-18","Ted Joyce","FWD",76,null,null,null],
+    ["carlow-18","Séamus Murphy","FWD",77,null,null,null],
+    ["carlow-18","Jack Kavanagh","FWD",77,null,null,null],
+    ["carlow-18","Marty Kavanagh","FWD",81,"St Mullin's",null,null],
+    ["carlow-18","Chris Nolan","FWD",80,"Mount Leinster Rangers",null,null],
+    ["carlow-18","Denis Murphy","FWD",78,null,null,null],
+
+    /* ===== DOWN — The Mourne Men [R] 1990s Ulster champions ===== */
+    ["down-90s","Graham Clarke","GK",77,"Ballycran",null,null],
+    ["down-90s","Paul Coleman","DEF",77,null,null,null],
+    ["down-90s","Gary Savage","DEF",78,null,null,null],
+    ["down-90s","John McGrattan","DEF",77,"Portaferry",null,null],
+    ["down-90s","Marty Mallon","DEF",77,null,null,null],
+    ["down-90s","Conor Arthurs","DEF",76,null,null,null],
+    ["down-90s","Dermot Woods","DEF",75,null,null,null],
+    ["down-90s","Danny Hughes","MID",79,null,null,null],
+    ["down-90s","Noel Keith","MID",78,null,null,null],
+    ["down-90s","Gerard McGrattan","FWD",82,"Portaferry",null,1],
+    ["down-90s","Noel Sands","FWD",82,"Ballycran",null,null],
+    ["down-90s","Hugh Gilmore","FWD",78,null,null,null],
+    ["down-90s","Paul Branniff","FWD",78,null,null,null],
+    ["down-90s","Michael Blaney","FWD",77,null,null,null],
+    ["down-90s","Gareth Johnson","FWD",76,null,null,null],
+
+    /* ===== WESTMEATH — The Lake County's Best [R] Christy Ring / Joe McDonagh era ===== */
+    ["westmeath","Allan Devine","GK",77,null,null,null],
+    ["westmeath","Tommy Doyle","DEF",78,null,null,null],
+    ["westmeath","Cory Whelan","DEF",77,null,null,null],
+    ["westmeath","Darragh Egerton","DEF",77,null,null,null],
+    ["westmeath","Tommy Gallagher","DEF",76,null,null,null],
+    ["westmeath","Aaron Craig","DEF",75,null,null,null],
+    ["westmeath","John Gilligan","DEF",76,null,null,null],
+    ["westmeath","Aonghus Clarke","MID",79,"Castlepollard",null,null],
+    ["westmeath","Robbie Greville","MID",78,null,null,null],
+    ["westmeath","Niall O'Brien","FWD",80,null,null,null],
+    ["westmeath","Killian Doyle","FWD",80,"Raharney",null,null],
+    ["westmeath","Brendan Murtagh","FWD",80,"Clonkill",null,null],
+    ["westmeath","Derek McNicholas","FWD",78,null,null,null],
+    ["westmeath","Eoin Price","FWD",76,null,null,null],
+    ["westmeath","Conor Jordan","FWD",76,null,null,null],
+
+    /* ===== KILDARE — The Lilywhites' Ring [R] Christy Ring Cup winners ===== */
+    ["kildare","Paul Dolan","GK",76,null,null,null],
+    ["kildare","David Slattery","DEF",76,null,null,null],
+    ["kildare","Gerry Keegan","DEF",77,null,null,null],
+    ["kildare","Mark Moloney","DEF",76,null,null,null],
+    ["kildare","Cathal McCabe","DEF",75,null,null,null],
+    ["kildare","Conan Boran","DEF",75,null,null,null],
+    ["kildare","Simon Leacy","DEF",75,null,null,null],
+    ["kildare","Niall Ó Muineacháin","MID",77,null,null,null],
+    ["kildare","James Burke","MID",76,null,null,null],
+    ["kildare","Paul Divilly","FWD",80,null,null,null],
+    ["kildare","Jack Sheridan","FWD",80,"Naas",null,null],
+    ["kildare","Brian Byrne","FWD",78,null,null,null],
+    ["kildare","Martin Fitzgerald","FWD",76,null,null,null],
+    ["kildare","Gerald Dempsey","FWD",75,null,null,null],
+    ["kildare","Mark Grace","FWD",75,null,null,null],
   ],
 
   extras: {
@@ -556,6 +646,16 @@ const HURLING_DB = {
     "antrim-20|Conor McCann":{captain:true,note:"Captained Antrim to the 2020 Joe McDonagh Cup"},
     "antrim-20|Ciaran Clarke":{note:"Scored 0-11 in the 2020 Joe McDonagh final"},
     "antrim-20|James McNaughton":{family:"son of Sambo McNaughton of the 1989 team"},
+    "laois-19|Ross King":{note:"Sharpshooter of Laois's 2019 Joe McDonagh win and famous defeat of Dublin"},
+    "laois-19|Paddy Purcell":{captain:true},
+    "carlow-18|Marty Kavanagh":{note:"Carlow's talisman free-taker; key to the 2018 Joe McDonagh title"},
+    "carlow-18|Chris Nolan":{note:"Skilful Mount Leinster Rangers forward"},
+    "down-90s|Gerard McGrattan":{note:"Down's only ever hurling All-Star (1992)"},
+    "down-90s|Noel Sands":{note:"Down's favourite son; five-time All-Star nominee"},
+    "westmeath|Brendan Murtagh":{note:"Long regarded as one of Westmeath's greatest hurlers"},
+    "westmeath|Killian Doyle":{note:"Prolific free-taker for the Lake County"},
+    "kildare|Paul Divilly":{note:"Christy Ring Cup top scorer; Kildare stalwart"},
+    "kildare|Jack Sheridan":{note:"Modern Kildare sharpshooter"},
     "kilkenny-08|Henry Shefflin":{born:1979,poty:1,nickname:"King Henry",note:"11 All-Stars — a record; 10 All-Ireland medals"},
     "kilkenny-08|James 'Cha' Fitzpatrick":{captain:true},
     "kilkenny-08|Tommy Walsh":{note:"9 All-Stars in a row"},
