@@ -1248,40 +1248,64 @@ function toast(msg){
   setTimeout(()=>t.classList.remove("show"),2600);
 }
 
-/* ============================================================ LEADERBOARD (device-local) */
+/* ============================================================ LEADERBOARD (shared via Supabase; localStorage fallback) */
+const SB_URL="https://lbqgonvqibffzydrqejl.supabase.co";
+const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxicWdvbnZxaWJmZnp5ZHJxZWpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzNjU3NDAsImV4cCI6MjA5Njk0MTc0MH0.RvXwerCpcjR2WEb0TsFpKj_SNrI48VZLkRAHXam-H-U";
+const GAME="hurling";
 const LB_KEY="c15h_leaderboard";
+let LB_CACHE=[];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function loadLB(){ try{ return JSON.parse(localStorage.getItem(LB_KEY)||"[]"); }catch(e){ return []; } }
 function saveLB(a){ try{ localStorage.setItem(LB_KEY, JSON.stringify(a.slice(-200))); }catch(e){} }
-function addToLeaderboard(){
+const sbHeaders={ "apikey":SB_KEY, "Authorization":"Bearer "+SB_KEY, "Content-Type":"application/json" };
+async function sbFetch(){
+  const url=`${SB_URL}/rest/v1/leaderboard?game=eq.${GAME}&order=score.desc,rating.desc,created_at.asc&limit=100`;
+  const r=await fetch(url,{headers:sbHeaders});
+  if(!r.ok) throw new Error("fetch "+r.status);
+  return (await r.json()).map(x=>({ id:x.id, name:x.name, rating:Number(x.rating), rec:x.record, label:x.label, sam:x.sam, prov:x.prov, league:x.league, score:Number(x.score), team:x.team||[] }));
+}
+async function sbInsert(p){
+  const r=await fetch(`${SB_URL}/rest/v1/leaderboard`,{ method:"POST", headers:{...sbHeaders,"Prefer":"return=representation"}, body:JSON.stringify(p) });
+  if(!r.ok) throw new Error("insert "+r.status);
+  return (await r.json())[0];
+}
+async function addToLeaderboard(){
   if(!LAST) return;
   const nm=($("lbName").value||"").trim().slice(0,20);
   if(!nm){ $("lbName").focus(); toast("Add your name first"); return; }
-  const lb=loadLB();
-  const entry={ id:Date.now().toString(36)+Math.random().toString(36).slice(2,6), name:nm, ...LAST, ts:Date.now() };
-  lb.push(entry); saveLB(lb);
+  const btn=$("lbAdd")&&$("lbAdd").querySelector("button"); if(btn){ btn.disabled=true; btn.textContent="Adding…"; }
+  const local={ id:"local-"+Date.now().toString(36), name:nm, ...LAST, ts:Date.now() };
+  const lb=loadLB(); lb.push(local); saveLB(lb); /* keep a device copy as fallback */
+  let newId=local.id;
+  try{
+    const row=await sbInsert({ game:GAME, name:nm, rating:LAST.rating, record:LAST.rec, label:LAST.label, sam:!!LAST.sam, prov:!!LAST.prov, league:!!LAST.league, province:LAST.province, score:LAST.score, team:LAST.team });
+    if(row&&row.id) newId=row.id;
+  }catch(e){ toast("Saved on this device (couldn't reach the global board)"); }
   $("lbAdd").outerHTML=`<div class="lb-added">✅ Added — you're on the board, ${esc(nm)}!</div>`;
-  renderLeaderboard(entry.id);
-  if(window.pgTrack) pgTrack("leaderboard_add",{code:"hurling",rating:Math.round(LAST.rating),rec:LAST.rec,label:LAST.label});
+  renderLeaderboard(newId);
+  if(window.pgTrack) pgTrack("leaderboard_add",{game:GAME,rating:Math.round(LAST.rating),rec:LAST.rec,label:LAST.label});
 }
-function renderLeaderboard(highlightId){
+async function renderLeaderboard(highlightId){
   const list=$("lbList"); if(!list) return;
-  const lb=loadLB().sort((a,b)=>(b.score-a.score)||(b.rating-a.rating)||(a.ts-b.ts));
-  if(!lb.length){ list.innerHTML=`<div class="lb-empty">No seasons logged yet — be the first to make the board.</div>`; return; }
-  list.innerHTML=lb.slice(0,50).map((e,i)=>{
+  list.innerHTML=`<div class="lb-empty">Loading the global board…</div>`;
+  let rows, online=true;
+  try{ rows=await sbFetch(); }
+  catch(e){ online=false; rows=loadLB().slice().sort((a,b)=>(b.score-a.score)||(b.rating-a.rating)||(a.ts-b.ts)); }
+  LB_CACHE=rows;
+  if(!rows.length){ list.innerHTML=`<div class="lb-empty">No seasons logged yet — be the first to make the board.</div>`; return; }
+  list.innerHTML=rows.slice(0,50).map((e,i)=>{
     const medal = i===0?"🥇":i===1?"🥈":i===2?"🥉":(i+1);
     const trophy = e.sam?" 🏆":"";
-    return `<div class="lb-row ${e.id===highlightId?'me':''}">
+    return `<div class="lb-row ${String(e.id)===String(highlightId)?'me':''}">
       <span class="rk ${i<3?'top':''}">${medal}</span>
       <span class="who"><b>${esc(e.name)}</b><small>${esc(e.label)}${trophy}</small></span>
       <span class="res">${e.rec}</span>
       <button class="rtg" onclick="viewTeam('${e.id}')">${e.rating} ▸</button>
     </div>`;
-  }).join("") + `<button class="lb-clear" onclick="clearLB()">clear this device's board</button>`;
+  }).join("") + `<div class="lb-empty" style="margin-top:8px">${online?"🌐 Global leaderboard · live":"⚠️ Offline — showing this device only"}</div>`;
 }
-function clearLB(){ if(confirm("Clear the leaderboard on this device? This can't be undone.")){ localStorage.removeItem(LB_KEY); renderLeaderboard(); } }
 function viewTeam(id){
-  const e=loadLB().find(x=>x.id===id); if(!e||!e.team) return;
+  const e=LB_CACHE.find(x=>String(x.id)===String(id)) || loadLB().find(x=>String(x.id)===String(id)); if(!e||!e.team) return;
   $("tmName").textContent=e.name+"'s XV";
   $("tmCrest").style.cssText="width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:18px;background:linear-gradient(140deg,var(--gold-hi),var(--gold))";
   $("tmCrest").textContent="🏑";
