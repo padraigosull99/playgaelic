@@ -45,9 +45,12 @@ const HURLING_DB = {
     {id:"kilkenny-10s",county:"Kilkenny", name:"Cody's Last Dynasty",     years:"2011–2016", dec:10, tier:1},
     {id:"limerick-20", county:"Limerick", name:"The Green Machine",       years:"2020–2023", dec:20, tier:1},
     {id:"cork-99",     county:"Cork",     name:"The Blood & Bandage",     years:"1999",      dec:90, tier:1}, /* [V] 1999 final */
+    {id:"cork-05",     county:"Cork",     name:"The Rebels' Double",      years:"2004–2006", dec:0,  tier:1}, /* [V] 2005 final */
     {id:"clare-95",    county:"Clare",    name:"Loughnane's Banner",      years:"1995",      dec:90, tier:1}, /* [V] 1995 final */
     {id:"tipperary-01",county:"Tipperary",name:"The Premier Return",      years:"2001",      dec:0,  tier:1}, /* [V] 2001 final */
+    {id:"tipperary-10",county:"Tipperary",name:"Stopping the Five",       years:"2009–2011", dec:10, tier:1}, /* [V] 2010 final */
     {id:"galway-17",   county:"Galway",   name:"Ending the Famine",       years:"2015–2018", dec:10, tier:1},
+    {id:"galway-88",   county:"Galway",   name:"Keady's Tribesmen",       years:"1987–1990", dec:80, tier:1}, /* [V] 1988 final */
     {id:"offaly-94",   county:"Offaly",   name:"The Faithful's Last Gold",years:"1994–1998", dec:90, tier:2}, /* 1994 scorers confirmed */
     {id:"wexford-96",  county:"Wexford",  name:"Griffin's Miracle",       years:"1996",      dec:90, tier:2}, /* [V] 1996 final */
     {id:"waterford-08",county:"Waterford",name:"Mullane's Déise",         years:"2004–2010", dec:0,  tier:2}, /* [V] 2008 final */
@@ -297,10 +300,72 @@ const HURLING_DB = {
     ["kerry-hurlers","Shane Conway","FWD",84,"Lixnaw",null,null],
     ["kerry-hurlers","Maurice O'Connor","FWD",77,"Kilmoyley",null,null],
     ["kerry-hurlers","Ronan Walsh","FWD",56,"Kilmoyley",null,null],
-    ["kerry-hurlers","Daniel Collins","FWD",78,"Kilmoyley",null,null]
+    ["kerry-hurlers","Daniel Collins","FWD",78,"Kilmoyley",null,null],
+
+    /* ===== CORK — The Rebels' Double [V 2005 final] ===== */
+    ["cork-05","Donal Óg Cusack","GK",85,"Cloyne",3,3],
+    ["cork-05","Brian Murphy","DEF",81,"Bride Rovers",2,null],
+    ["cork-05","Diarmuid O'Sullivan","DEF",84,"Cloyne",3,3],
+    ["cork-05","Pat Mulcahy","DEF",81,"Newtownshandrum",2,null],
+    ["cork-05","John Gardiner","DEF",85,"Na Piarsaigh",2,3],
+    ["cork-05","Ronan Curran","DEF",85,"St Finbarr's",2,2],
+    ["cork-05","Seán Óg Ó hAilpín","DEF",87,"Na Piarsaigh",3,3],
+    ["cork-05","Tom Kenny","MID",83,"Grenagh",2,1],
+    ["cork-05","Jerry O'Connor","MID",85,"Newtownshandrum",2,2],
+    ["cork-05","Kieran Murphy","FWD",81,"Sarsfields",2,null],
+    ["cork-05","Niall McCarthy","FWD",83,"Carrigtwohill",2,1],
+    ["cork-05","Timmy McCarthy","FWD",82,"Castlelyons",3,null],
+    ["cork-05","Ben O'Connor","FWD",85,"Newtownshandrum",3,3],
+    ["cork-05","Brian Corcoran","FWD",86,"Erin's Own",2,4],
+    ["cork-05","Joe Deane","FWD",87,"Killeagh",3,3],
+
+    /* ===== TIPPERARY — Stopping the Five [V 2010 final] ===== */
+    ["tipperary-10","Brendan Cummins","GK",86,"Ardfinnan",2,5],
+    ["tipperary-10","Paddy Stapleton","DEF",82,"Borris-Ileigh",1,1],
+    ["tipperary-10","Paul Curran","DEF",83,"Mullinahone",1,1],
+    ["tipperary-10","Michael Cahill","DEF",81,"Thurles Sarsfields",1,null],
+    ["tipperary-10","Declan Fanning","DEF",83,"Killenaule",1,1],
+    ["tipperary-10","Conor O'Mahony","DEF",83,"Newport",1,1],
+    ["tipperary-10","Pádraic Maher","DEF",87,"Thurles Sarsfields",1,5],
+    ["tipperary-10","Brendan Maher","MID",85,"Borris-Ileigh",1,2],
+    ["tipperary-10","Shane McGrath","MID",83,"Ballinahinch",1,1],
+    ["tipperary-10","Gearóid Ryan","FWD",82,"Templederry Kenyons",1,null],
+    ["tipperary-10","Patrick 'Bonner' Maher","FWD",83,"Lorrha-Dorrha",1,1],
+    ["tipperary-10","John O'Brien","FWD",82,"Toomevara",1,null],
+    ["tipperary-10","Noel McGrath","FWD",86,"Loughmore-Castleiney",1,3],
+    ["tipperary-10","Eoin Kelly","FWD",88,"Mullinahone",1,5],
+    ["tipperary-10","Lar Corbett","FWD",88,"Thurles Sarsfields",2,2],
+
+    /* ===== GALWAY — Keady's Tribesmen [V 1988 final] ===== */
+    ["galway-88","John Commins","GK",82,"Gort",2,1],
+    ["galway-88","Sylvie Linnane","DEF",84,"Gort",2,2],
+    ["galway-88","Conor Hayes","DEF",85,"Kiltormer",3,3],
+    ["galway-88","Ollie Kilkenny","DEF",82,"Kiltormer",2,1],
+    ["galway-88","Pete Finnerty","DEF",86,"Mullagh",2,4],
+    ["galway-88","Tony Keady","DEF",87,"Killimordaly",2,2],
+    ["galway-88","Gerry McInerney","DEF",84,"Kinvara",2,2],
+    ["galway-88","Michael Coleman","MID",83,"Abbeyknockmoy",1,1],
+    ["galway-88","Pat Malone","MID",82,"Oranmore-Maree",2,null],
+    ["galway-88","Anthony Cunningham","FWD",83,"St Thomas'",2,null],
+    ["galway-88","Joe Cooney","FWD",87,"Sarsfields",2,3],
+    ["galway-88","Martin Naughton","FWD",84,"Turloughmore",2,2],
+    ["galway-88","Michael McGrath","FWD",83,"Sarsfields",2,1],
+    ["galway-88","Brendan Lynskey","FWD",83,"Meelick-Eyrecourt",2,null],
+    ["galway-88","Éanna Ryan","FWD",84,"Killimordaly",2,2],
   ],
 
   extras: {
+    "cork-05|Seán Óg Ó hAilpín":{captain:true,poty:1,note:"Hurler of the Year 2004; iconic 2005 acceptance speech"},
+    "cork-05|Brian Corcoran":{note:"Came out of retirement; full-forward on the 2004–05 double team"},
+    "cork-05|Ronan Curran":{note:"All-Star centre-back, the spine of the double"},
+    "tipperary-10|Lar Corbett":{poty:1,note:"Scored 3-0 and Man of the Match in the 2010 final"},
+    "tipperary-10|Eoin Kelly":{captain:true,note:"Captain who lifted Liam MacCarthy in 2010"},
+    "tipperary-10|Pádraic Maher":{note:"5 All-Stars; one of the great modern defenders"},
+    "tipperary-10|Noel McGrath":{note:"Playmaker; brother of John & Brian McGrath"},
+    "galway-88|Tony Keady":{poty:1,note:"Hurler of the Year 1988; legendary centre-back"},
+    "galway-88|Joe Cooney":{note:"Sublime forward of the 1987–88 back-to-back team"},
+    "galway-88|Pete Finnerty":{note:"Regarded among the greatest wing-backs of all time"},
+    "galway-88|Conor Hayes":{captain:true,note:"Lifted Liam MacCarthy in 1987 and 1988"},
     "kilkenny-08|Henry Shefflin":{born:1979,poty:1,nickname:"King Henry",note:"11 All-Stars — a record; 10 All-Ireland medals"},
     "kilkenny-08|James 'Cha' Fitzpatrick":{captain:true},
     "kilkenny-08|Tommy Walsh":{note:"9 All-Stars in a row"},
