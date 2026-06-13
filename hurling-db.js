@@ -47,16 +47,21 @@ const HURLING_DB = {
     {id:"limerick-20", county:"Limerick", name:"The Green Machine",       years:"2020–2023", dec:20, tier:1},
     {id:"cork-99",     county:"Cork",     name:"The Blood & Bandage",     years:"1999",      dec:90, tier:1}, /* [V] 1999 final */
     {id:"cork-05",     county:"Cork",     name:"The Rebels' Double",      years:"2004–2006", dec:0,  tier:1}, /* [V] 2005 final */
+    {id:"cork-78",     county:"Cork",     name:"Barry-Murphy's Three",    years:"1976–1978", dec:70, tier:1}, /* [V] 1978 final */
+    {id:"cork-24",     county:"Cork",     name:"Horgan's Nearly Men",      years:"2024–2025", dec:20, tier:2}, /* [V] 2024 final */
     {id:"clare-95",    county:"Clare",    name:"Loughnane's Banner",      years:"1995",      dec:90, tier:1}, /* [V] 1995 final */
     {id:"tipperary-01",county:"Tipperary",name:"The Premier Return",      years:"2001",      dec:0,  tier:1}, /* [V] 2001 final */
     {id:"tipperary-10",county:"Tipperary",name:"Stopping the Five",       years:"2009–2011", dec:10, tier:1}, /* [V] 2010 final */
+    {id:"tipperary-91",county:"Tipperary",name:"English's Premier",       years:"1989–1991", dec:90, tier:1}, /* [V] 1991 final */
     {id:"galway-17",   county:"Galway",   name:"Ending the Famine",       years:"2015–2018", dec:10, tier:1},
     {id:"galway-88",   county:"Galway",   name:"Keady's Tribesmen",       years:"1987–1990", dec:80, tier:1}, /* [V] 1988 final */
+    {id:"offaly-81",   county:"Offaly",   name:"The First Faithful",      years:"1981–1985", dec:80, tier:2}, /* [V] 1981 final */
     {id:"offaly-94",   county:"Offaly",   name:"The Faithful's Last Gold",years:"1994–1998", dec:90, tier:2}, /* 1994 scorers confirmed */
     {id:"wexford-96",  county:"Wexford",  name:"Griffin's Miracle",       years:"1996",      dec:90, tier:2}, /* [V] 1996 final */
     {id:"wexford-19",  county:"Wexford",  name:"Davy's Model County",     years:"2019",      dec:10, tier:2}, /* [V] 2019 Leinster final */
     {id:"dublin-13",   county:"Dublin",   name:"Daly's Dubs",             years:"2013",      dec:10, tier:2}, /* [V] 2013 Leinster final */
     {id:"waterford-08",county:"Waterford",name:"Mullane's Déise",         years:"2004–2010", dec:0,  tier:2}, /* [V] 2008 final */
+    {id:"waterford-17",county:"Waterford",name:"Gleeson's Déise",         years:"2015–2020", dec:10, tier:2}, /* [V] 2017 final */
     {id:"clare-13",    county:"Clare",    name:"The Young Banner",        years:"2013",      dec:10, tier:2}, /* 2013 final core */
     {id:"clare-24",    county:"Clare",    name:"The Banner's Return",     years:"2024",      dec:20, tier:1}, /* [V] 2024 final */
     {id:"antrim-89",   county:"Antrim",   name:"Sambo's Saffrons",        years:"1989",      dec:80, tier:3}, /* [V] 1989 final */
@@ -406,6 +411,91 @@ const HURLING_DB = {
     ["dublin-13","David 'Dotsy' O'Callaghan","FWD",82,"St Brigid's",null,null],
     ["dublin-13","David Treacy","FWD",81,"Cuala",null,null],
     ["dublin-13","Paul Ryan","FWD",82,"Ballyboden St Enda's",null,1],
+
+    /* ===== CORK — Barry-Murphy's Three [V 1978 final] ===== */
+    ["cork-78","Martin Coleman","GK",83,"Ballinhassig",3,1],
+    ["cork-78","Brian Murphy","DEF",83,"Nemo Rangers",3,2],
+    ["cork-78","Martin O'Doherty","DEF",83,"Glen Rovers",3,1],
+    ["cork-78","John Horgan","DEF",84,"Blackrock",3,3],
+    ["cork-78","Dermot McCurtain","DEF",83,"Blackrock",3,2],
+    ["cork-78","Johnny Crowley","DEF",84,"Bishopstown",3,1],
+    ["cork-78","Denis Coughlan","DEF",84,"Glen Rovers",3,1],
+    ["cork-78","Tom Cashman","MID",85,"Blackrock",3,2],
+    ["cork-78","Pat Moylan","MID",82,"Blackrock",3,1],
+    ["cork-78","Jimmy Barry-Murphy","FWD",90,"St Finbarr's",5,4],
+    ["cork-78","Gerald McCarthy","FWD",85,"St Finbarr's",5,2],
+    ["cork-78","Tim Crowley","FWD",82,"Newcestown",3,1],
+    ["cork-78","Charlie McCarthy","FWD",85,"St Finbarr's",4,3],
+    ["cork-78","Ray Cummins","FWD",87,"Blackrock",4,3],
+    ["cork-78","Seánie O'Leary","FWD",84,"Youghal",4,1],
+
+    /* ===== CORK — Horgan's Nearly Men [V 2024 final] ===== */
+    ["cork-24","Patrick Collins","GK",83,"Ballinhassig",null,1],
+    ["cork-24","Niall O'Leary","DEF",81,"Castlelyons",null,null],
+    ["cork-24","Eoin Downey","DEF",81,"Glen Rovers",null,null],
+    ["cork-24","Seán O'Donoghue","DEF",82,"Inniscarra",null,1],
+    ["cork-24","Ciarán Joyce","DEF",83,"Castlemartyr",null,1],
+    ["cork-24","Robert Downey","DEF",82,"Glen Rovers",null,null],
+    ["cork-24","Mark Coleman","DEF",84,"Blarney",null,2],
+    ["cork-24","Tim O'Mahony","MID",82,"Newtownshandrum",null,null],
+    ["cork-24","Darragh Fitzgibbon","MID",84,"Charleville",null,1],
+    ["cork-24","Declan Dalton","FWD",81,"Fr O'Neill's",null,null],
+    ["cork-24","Shane Barrett","FWD",83,"Blarney",null,1],
+    ["cork-24","Séamus Harnedy","FWD",83,"St Ita's",null,2],
+    ["cork-24","Patrick Horgan","FWD",86,"Glen Rovers",null,2],
+    ["cork-24","Alan Connolly","FWD",83,"Blackrock",null,null],
+    ["cork-24","Brian Hayes","FWD",84,"St Finbarr's",null,1],
+
+    /* ===== TIPPERARY — English's Premier [V 1991 final] ===== */
+    ["tipperary-91","Ken Hogan","GK",83,"Lorrha",2,1],
+    ["tipperary-91","Paul Delaney","DEF",83,"Roscrea",2,2],
+    ["tipperary-91","Noel Sheehy","DEF",82,"Silvermines",2,null],
+    ["tipperary-91","Michael Ryan","DEF",82,"Upperchurch-Drombane",2,1],
+    ["tipperary-91","Colm Bonnar","DEF",83,"Cashel King Cormacs",2,1],
+    ["tipperary-91","Bobby Ryan","DEF",84,"Borris-Ileigh",2,1],
+    ["tipperary-91","Conal Bonnar","DEF",83,"Cashel King Cormacs",2,1],
+    ["tipperary-91","Declan Carr","MID",84,"Holycross-Ballycahill",2,1],
+    ["tipperary-91","Aidan Ryan","MID",82,"Borris-Ileigh",2,null],
+    ["tipperary-91","Michael Cleary","FWD",85,"Éire Óg Nenagh",2,2],
+    ["tipperary-91","Declan Ryan","FWD",86,"Clonoulty-Rossmore",3,2],
+    ["tipperary-91","John Leahy","FWD",85,"Mullinahone",2,1],
+    ["tipperary-91","Pat Fox","FWD",87,"Éire Óg Annacarty",2,3],
+    ["tipperary-91","Cormac Bonnar","FWD",84,"Cashel King Cormacs",2,2],
+    ["tipperary-91","Nicky English","FWD",88,"Lattin-Cullen",2,4],
+
+    /* ===== WATERFORD — Gleeson's Déise [V 2017 final] ===== */
+    ["waterford-17","Stephen O'Keeffe","GK",82,"Ballygunner",null,1],
+    ["waterford-17","Shane Fives","DEF",80,"Tourin",null,null],
+    ["waterford-17","Barry Coughlan","DEF",80,"Ballygunner",null,null],
+    ["waterford-17","Noel Connors","DEF",82,"Passage",null,2],
+    ["waterford-17","Tadhg de Búrca","DEF",85,"Clashmore-Kinsalebeg",null,2],
+    ["waterford-17","Austin Gleeson","DEF",87,"Mount Sion",null,2],
+    ["waterford-17","Philip Mahony","DEF",81,"Ballygunner",null,null],
+    ["waterford-17","Jamie Barron","MID",84,"Fourmilewater",null,1],
+    ["waterford-17","Darragh Lyons","MID",79,"Dungarvan",null,null],
+    ["waterford-17","Kevin Moran","FWD",83,"De La Salle",null,1],
+    ["waterford-17","Pauric Mahony","FWD",84,"Ballygunner",null,1],
+    ["waterford-17","Jake Dillon","FWD",79,"De La Salle",null,null],
+    ["waterford-17","Shane Bennett","FWD",81,"Ballysaggart",null,null],
+    ["waterford-17","Michael 'Brick' Walsh","FWD",82,"Stradbally",null,1],
+    ["waterford-17","Darragh Fives","FWD",79,"Tourin",null,null],
+
+    /* ===== OFFALY — The First Faithful [V 1981 final] ===== */
+    ["offaly-81","Damien Martin","GK",84,"St Rynagh's",1,1],
+    ["offaly-81","Tom Donoghue","DEF",80,"St Rynagh's",1,null],
+    ["offaly-81","Eugene Coughlan","DEF",83,"Seir Kieran",2,1],
+    ["offaly-81","Pat Fleury","DEF",82,"Drumcullen",2,1],
+    ["offaly-81","Aidan Fogarty","DEF",81,"Kinnitty",1,1],
+    ["offaly-81","Pat Delaney","DEF",83,"Kinnitty",2,1],
+    ["offaly-81","Ger Coughlan","DEF",82,"Kinnitty",2,1],
+    ["offaly-81","Joachim Kelly","MID",82,"Lusmagh",2,1],
+    ["offaly-81","Liam Currams","MID",82,"Kilcormac-Killoughey",1,1],
+    ["offaly-81","Paddy Kirwan","FWD",80,"Seir Kieran",1,null],
+    ["offaly-81","Brendan Bermingham","FWD",80,"St Rynagh's",1,null],
+    ["offaly-81","Mark Corrigan","FWD",83,"Coolderry",1,1],
+    ["offaly-81","Pat Carroll","FWD",83,"Coolderry",1,1],
+    ["offaly-81","Pádraig Horan","FWD",84,"St Rynagh's",2,1],
+    ["offaly-81","Johnny Flaherty","FWD",83,"Kinnitty",1,1],
   ],
 
   extras: {
@@ -428,6 +518,22 @@ const HURLING_DB = {
     "dublin-13|Liam Rushe":{note:"All-Star; spine of Dublin's 2013 Leinster title"},
     "dublin-13|Johnny McCaffrey":{captain:true,note:"First Dublin captain to lift the Bob O'Keeffe Cup in 52 years"},
     "dublin-13|Conal Keaney":{note:"Dual star who returned to hurling; also a Dublin footballer",dual:"Dublin football"},
+    "cork-78|Jimmy Barry-Murphy":{note:"All-time great; dual All-Ireland winner (hurling & football)",dual:"Cork football"},
+    "cork-78|Ray Cummins":{note:"Legendary dual star; full-forward on the three-in-a-row",dual:"Cork football"},
+    "cork-78|Charlie McCarthy":{captain:true},
+    "tipperary-91|Nicky English":{poty:1,note:"One of hurling's greatest forwards; 2-12 in the 1989 final"},
+    "tipperary-91|Pat Fox":{note:"Man of the Match in the 1991 final"},
+    "tipperary-91|Declan Carr":{captain:true},
+    "tipperary-91|Cormac Bonnar":{family:"brother of Colm & Conal Bonnar",nickname:"The Viking"},
+    "waterford-17|Austin Gleeson":{poty:1,born:1995,note:"Hurler of the Year 2016"},
+    "waterford-17|Kevin Moran":{captain:true},
+    "cork-24|Patrick Horgan":{nickname:"Hoggy",note:"All-time top scorer in senior hurling championship history"},
+    "cork-24|Seán O'Donoghue":{captain:true},
+    "cork-24|Mark Coleman":{note:"Two-time All-Star half-back"},
+    "offaly-81|Damien Martin":{note:"Won the first-ever All-Star (1971); iconic goalkeeper"},
+    "offaly-81|Pádraig Horan":{captain:true,note:"Captain of Offaly's first All-Ireland in 1981"},
+    "offaly-81|Johnny Flaherty":{note:"Scored the famous handpassed goal that won the 1981 final"},
+    "offaly-81|Liam Currams":{dual:"also won an All-Ireland football medal with Offaly in 1982"},
     "kilkenny-08|Henry Shefflin":{born:1979,poty:1,nickname:"King Henry",note:"11 All-Stars — a record; 10 All-Ireland medals"},
     "kilkenny-08|James 'Cha' Fitzpatrick":{captain:true},
     "kilkenny-08|Tommy Walsh":{note:"9 All-Stars in a row"},
