@@ -1255,6 +1255,8 @@ const GAME="hurling";
 const LB_KEY="c15h_leaderboard";
 let LB_CACHE=[];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const BANNED=["fuck","shit","cunt","bitch","bastard","faggot","nigger","nigga","retard","wanker","wank","bollocks","bollox","pussy","slut","whore","rape","rapist","nazi","hitler","paki","spastic","molest","pedo","paedo","dickhead","arsehole","asshole","kkk"];
+function cleanName(n){ const s=n.toLowerCase().replace(/[^a-z]/g,""); return !BANNED.some(b=>s.includes(b)); }
 function loadLB(){ try{ return JSON.parse(localStorage.getItem(LB_KEY)||"[]"); }catch(e){ return []; } }
 function saveLB(a){ try{ localStorage.setItem(LB_KEY, JSON.stringify(a.slice(-200))); }catch(e){} }
 const sbHeaders={ "apikey":SB_KEY, "Authorization":"Bearer "+SB_KEY, "Content-Type":"application/json" };
@@ -1273,6 +1275,7 @@ async function addToLeaderboard(){
   if(!LAST) return;
   const nm=($("lbName").value||"").trim().slice(0,20);
   if(!nm){ $("lbName").focus(); toast("Add your name first"); return; }
+  if(!cleanName(nm)){ $("lbName").select(); toast("Keep it clean — pick another name 🙂"); return; }
   const btn=$("lbAdd")&&$("lbAdd").querySelector("button"); if(btn){ btn.disabled=true; btn.textContent="Adding…"; }
   const local={ id:"local-"+Date.now().toString(36), name:nm, ...LAST, ts:Date.now() };
   const lb=loadLB(); lb.push(local); saveLB(lb); /* keep a device copy as fallback */
