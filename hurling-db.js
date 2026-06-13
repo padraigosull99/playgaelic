@@ -43,6 +43,7 @@ const HURLING_DB = {
   teams: [
     {id:"kilkenny-08", county:"Kilkenny", name:"The Drive for Four",      years:"2006–2009", dec:0,  tier:1}, /* [V] 2008 final */
     {id:"kilkenny-10s",county:"Kilkenny", name:"Cody's Last Dynasty",     years:"2011–2016", dec:10, tier:1},
+    {id:"kilkenny-03", county:"Kilkenny", name:"DJ's Cats",               years:"2002–2003", dec:0,  tier:1}, /* [V] 2003 final */
     {id:"limerick-20", county:"Limerick", name:"The Green Machine",       years:"2020–2023", dec:20, tier:1},
     {id:"cork-99",     county:"Cork",     name:"The Blood & Bandage",     years:"1999",      dec:90, tier:1}, /* [V] 1999 final */
     {id:"cork-05",     county:"Cork",     name:"The Rebels' Double",      years:"2004–2006", dec:0,  tier:1}, /* [V] 2005 final */
@@ -53,6 +54,8 @@ const HURLING_DB = {
     {id:"galway-88",   county:"Galway",   name:"Keady's Tribesmen",       years:"1987–1990", dec:80, tier:1}, /* [V] 1988 final */
     {id:"offaly-94",   county:"Offaly",   name:"The Faithful's Last Gold",years:"1994–1998", dec:90, tier:2}, /* 1994 scorers confirmed */
     {id:"wexford-96",  county:"Wexford",  name:"Griffin's Miracle",       years:"1996",      dec:90, tier:2}, /* [V] 1996 final */
+    {id:"wexford-19",  county:"Wexford",  name:"Davy's Model County",     years:"2019",      dec:10, tier:2}, /* [V] 2019 Leinster final */
+    {id:"dublin-13",   county:"Dublin",   name:"Daly's Dubs",             years:"2013",      dec:10, tier:2}, /* [V] 2013 Leinster final */
     {id:"waterford-08",county:"Waterford",name:"Mullane's Déise",         years:"2004–2010", dec:0,  tier:2}, /* [V] 2008 final */
     {id:"clare-13",    county:"Clare",    name:"The Young Banner",        years:"2013",      dec:10, tier:2}, /* 2013 final core */
     {id:"clare-24",    county:"Clare",    name:"The Banner's Return",     years:"2024",      dec:20, tier:1}, /* [V] 2024 final */
@@ -352,6 +355,57 @@ const HURLING_DB = {
     ["galway-88","Michael McGrath","FWD",83,"Sarsfields",2,1],
     ["galway-88","Brendan Lynskey","FWD",83,"Meelick-Eyrecourt",2,null],
     ["galway-88","Éanna Ryan","FWD",84,"Killimordaly",2,2],
+
+    /* ===== KILKENNY — DJ's Cats [V 2003 final] ===== */
+    ["kilkenny-03","James McGarry","GK",82,"Danesfort",3,null],
+    ["kilkenny-03","Michael Kavanagh","DEF",84,"St Lachtain's",10,4],
+    ["kilkenny-03","Noel Hickey","DEF",86,"Dunnamaggin",10,5],
+    ["kilkenny-03","James Ryall","DEF",81,"Graigue-Ballycallan",2,null],
+    ["kilkenny-03","Seán Dowling","DEF",82,"Carrickshock",2,null],
+    ["kilkenny-03","Peter Barry","DEF",84,"James Stephens",4,2],
+    ["kilkenny-03","JJ Delaney","DEF",87,"Fenians",9,5],
+    ["kilkenny-03","Derek Lyng","MID",83,"Emeralds",7,2],
+    ["kilkenny-03","Paddy Mullally","MID",80,"Glenmore",1,null],
+    ["kilkenny-03","Henry Shefflin","FWD",92,"Ballyhale Shamrocks",10,11],
+    ["kilkenny-03","John Hoyne","FWD",82,"Graigue-Ballycallan",3,null],
+    ["kilkenny-03","Tommy Walsh","FWD",86,"Tullaroan",9,9],
+    ["kilkenny-03","DJ Carey","FWD",92,"Young Irelands",5,9],
+    ["kilkenny-03","Martin Comerford","FWD",85,"O'Loughlin Gaels",7,3],
+    ["kilkenny-03","Eddie Brennan","FWD",85,"Graigue-Ballycallan",8,4],
+
+    /* ===== WEXFORD — Davy's Model County [V 2019 Leinster final] ===== */
+    ["wexford-19","Mark Fanning","GK",82,"Glynn-Barntown",null,null],
+    ["wexford-19","Shane Reck","DEF",80,"Oylegate-Glenbrien",null,null],
+    ["wexford-19","Liam Ryan","DEF",82,"Rapparees",null,1],
+    ["wexford-19","Simon Donohoe","DEF",80,"Shelmaliers",null,null],
+    ["wexford-19","Paudie Foley","DEF",81,"Crossabeg-Ballymurn",null,null],
+    ["wexford-19","Matthew O'Hanlon","DEF",82,"St James'",null,null],
+    ["wexford-19","Shaun Murphy","DEF",81,"Oulart-the-Ballagh",null,null],
+    ["wexford-19","Kevin Foley","MID",82,"Rapparees",null,null],
+    ["wexford-19","Diarmuid O'Keeffe","MID",83,"St Anne's",null,null],
+    ["wexford-19","Liam Óg McGovern","FWD",81,"St Anne's",null,null],
+    ["wexford-19","Lee Chin","FWD",86,"Faythe Harriers",null,1],
+    ["wexford-19","Conor McDonald","FWD",84,"Naomh Éanna",null,null],
+    ["wexford-19","Jack O'Connor","FWD",82,"St Martin's",null,null],
+    ["wexford-19","Rory O'Connor","FWD",83,"St Martin's",null,null],
+    ["wexford-19","Paul Morris","FWD",81,"Ferns St Aidan's",null,null],
+
+    /* ===== DUBLIN — Daly's Dubs [V 2013 Leinster final] ===== */
+    ["dublin-13","Gary Maguire","GK",81,"Ballyboden St Enda's",null,null],
+    ["dublin-13","Niall Corcoran","DEF",80,"Kilmacud Crokes",null,null],
+    ["dublin-13","Peter Kelly","DEF",81,"Lucan Sarsfields",null,1],
+    ["dublin-13","Paul Schutte","DEF",80,"Cuala",null,null],
+    ["dublin-13","Stephen Hiney","DEF",81,"Ballyboden St Enda's",null,1],
+    ["dublin-13","Liam Rushe","DEF",84,"St Patrick's Palmerstown",null,1],
+    ["dublin-13","Michael Carton","DEF",80,"O'Toole's",null,null],
+    ["dublin-13","Johnny McCaffrey","MID",81,"Lucan Sarsfields",null,null],
+    ["dublin-13","Joey Boland","MID",80,"Na Fianna",null,null],
+    ["dublin-13","Conal Keaney","FWD",83,"Ballyboden St Enda's",null,1],
+    ["dublin-13","Ryan O'Dwyer","FWD",82,"Kilmacud Crokes",null,1],
+    ["dublin-13","Danny Sutcliffe","FWD",83,"St Jude's",null,1],
+    ["dublin-13","David 'Dotsy' O'Callaghan","FWD",82,"St Brigid's",null,null],
+    ["dublin-13","David Treacy","FWD",81,"Cuala",null,null],
+    ["dublin-13","Paul Ryan","FWD",82,"Ballyboden St Enda's",null,1],
   ],
 
   extras: {
@@ -366,6 +420,14 @@ const HURLING_DB = {
     "galway-88|Joe Cooney":{note:"Sublime forward of the 1987–88 back-to-back team"},
     "galway-88|Pete Finnerty":{note:"Regarded among the greatest wing-backs of all time"},
     "galway-88|Conor Hayes":{captain:true,note:"Lifted Liam MacCarthy in 1987 and 1988"},
+    "kilkenny-03|DJ Carey":{captain:true,nickname:"The Dodger",note:"5 All-Irelands, 9 All-Stars; one of the all-time greats"},
+    "kilkenny-03|Henry Shefflin":{note:"Already a two-time champion in 2003, on his way to 10"},
+    "wexford-19|Lee Chin":{captain:true,note:"Talisman of Davy Fitzgerald's Wexford; scored 9 in the 2019 Leinster final"},
+    "wexford-19|Rory O'Connor":{note:"Man of the Match in the 2019 Leinster final"},
+    "wexford-19|Matthew O'Hanlon":{captain:true,note:"Joint-captain of the 2019 Leinster champions"},
+    "dublin-13|Liam Rushe":{note:"All-Star; spine of Dublin's 2013 Leinster title"},
+    "dublin-13|Johnny McCaffrey":{captain:true,note:"First Dublin captain to lift the Bob O'Keeffe Cup in 52 years"},
+    "dublin-13|Conal Keaney":{note:"Dual star who returned to hurling; also a Dublin footballer",dual:"Dublin football"},
     "kilkenny-08|Henry Shefflin":{born:1979,poty:1,nickname:"King Henry",note:"11 All-Stars — a record; 10 All-Ireland medals"},
     "kilkenny-08|James 'Cha' Fitzpatrick":{captain:true},
     "kilkenny-08|Tommy Walsh":{note:"9 All-Stars in a row"},
