@@ -326,6 +326,43 @@ dialog .close{margin-top:22px;width:100%}
   padding:12px 22px;border-radius:999px;transition:.35s;opacity:0;
 }
 .toast.show{transform:translate(-50%,0);opacity:1}
+/* ===== leaderboard ===== */
+.lb-add{display:flex;gap:8px;margin:4px 0 14px}
+.lb-add input{
+  flex:1;min-width:0;background:rgba(0,0,0,.28);border:1px solid var(--card-bd);color:var(--ink);
+  border-radius:10px;padding:11px 13px;font:600 13px 'Sora';outline:none;
+}
+.lb-add input:focus{border-color:var(--gold)}
+.lb-add .btn-primary.sm{padding:11px 18px;white-space:nowrap}
+.lb-added{text-align:center;font:600 12.5px 'Sora';color:var(--green-hi);padding:6px 0 12px}
+.lb-list{display:flex;flex-direction:column;gap:5px}
+.lb-row{
+  display:grid;grid-template-columns:26px 1fr auto auto;gap:9px;align-items:center;
+  background:rgba(255,255,255,.03);border:1px solid transparent;border-radius:10px;padding:8px 11px;font-size:13px;
+}
+.lb-row.me{border-color:var(--gold);background:rgba(242,193,78,.08)}
+.lb-row .rk{font:800 12px 'Sora';color:var(--ink-faint);text-align:center}
+.lb-row .rk.top{color:var(--gold)}
+.lb-row .who{min-width:0}
+.lb-row .who b{display:block;color:var(--ink);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-row .who small{color:var(--ink-faint);font-size:10.5px;letter-spacing:.04em}
+.lb-row .res{font:800 13px 'Sora';font-variant-numeric:tabular-nums;color:var(--ink-dim)}
+.lb-row .rtg{
+  font:800 13px 'Sora';color:var(--gold-hi);background:rgba(242,193,78,.1);border:1px solid rgba(242,193,78,.25);
+  border-radius:8px;padding:4px 9px;cursor:pointer;transition:.15s;white-space:nowrap;
+}
+.lb-row .rtg:hover{background:rgba(242,193,78,.22)}
+.lb-empty{color:var(--ink-faint);font-size:12.5px;text-align:center;padding:8px 0}
+.lb-clear{display:block;margin:10px auto 0;background:none;border:none;color:var(--ink-faint);font:600 11px 'Sora';cursor:pointer;text-decoration:underline}
+#teamModal .tm-head{display:flex;align-items:center;gap:11px;margin-bottom:6px}
+#teamModal .tm-crest{width:34px;height:34px;border-radius:50%;flex:none}
+#teamModal .tm-sub{font:600 12px 'Sora';color:var(--ink-dim);margin-bottom:14px}
+#teamModal .tm-grp{font:800 10px 'Sora';letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:12px 0 6px}
+#teamModal .tm-p{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--ink-dim);padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+#teamModal .tm-p b{color:var(--ink);font-weight:600}
+#teamModal .tm-p .tp-meta{display:flex;align-items:center;gap:7px}
+#teamModal .tm-p .tp-rt{font:800 13px 'Sora';color:var(--gold-hi);font-variant-numeric:tabular-nums}
+#teamModal .tm-dot{width:11px;height:11px;border-radius:50%;border:1px solid rgba(255,255,255,.5)}
 footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16px 40px;line-height:1.8}
 </style>
 </head>
@@ -489,6 +526,16 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;padding:30px 16
   <button class="btn-ghost close" onclick="howto.close()">Got it</button>
 </dialog>
 
+<dialog id="teamModal">
+  <div class="tm-head">
+    <div class="tm-crest" id="tmCrest"></div>
+    <h3 id="tmName" style="margin:0">Team</h3>
+  </div>
+  <div class="tm-sub" id="tmSub"></div>
+  <div id="tmBody"></div>
+  <button class="btn-ghost close" onclick="teamModal.close()">Close</button>
+</dialog>
+
 <dialog id="tips">
   <h3>Drafting Tips</h3>
   <ul>
@@ -578,7 +625,7 @@ const TIER_LABEL={1:"★★★ All-time greats",2:"★★ Contenders",3:"★ Und
 /* ============================================================ STATE */
 const cfg={diff:"normal", era:"all", prov:"munster"};
 const DIFF={easy:3, normal:1, hard:0};
-let D=null, S=null, M=null;
+let D=null, S=null, M=null, LAST=null;
 const $=id=>document.getElementById(id);
 const rnd=a=>a[Math.floor(Math.random()*a.length)];
 
@@ -1164,8 +1211,21 @@ function results(){
       <button class="btn-ghost" id="shareBtn">Share Result</button>
       <button class="btn-ghost" onclick="goHome()">Home</button>
     </div>
+    <div class="vsec" id="lbSec"><h5>🏆 Leaderboard — tap a rating to see the team</h5>
+      <div class="lb-add" id="lbAdd">
+        <input id="lbName" maxlength="20" placeholder="Enter your name" autocomplete="off">
+        <button class="btn-primary sm" onclick="addToLeaderboard()">Add</button>
+      </div>
+      <div class="lb-list" id="lbList"></div>
+    </div>
     <a href="https://solosports.store" target="_blank" rel="noopener" onclick="if(window.pgTrack)pgTrack('solo_click',{src:'results'})" style="display:inline-block;margin-top:22px;font:700 10px 'Sora';letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none">Season review powered by <b style="color:var(--gold)">SOLO SPORTS</b> · Teamwear</a>`;
   $("shareBtn").onclick=()=>shareResult(label,top,poty,P,perfect);
+  LAST={ rec:recStr(), label, rating:S.rating,
+    sam:S.trophies.sam, prov:S.trophies.prov, league:S.trophies.league, province:P.name,
+    score:(perfect?1000:0)+(S.trophies.sam?300:0)+(S.trophies.prov?80:0)+(S.trophies.league?60:0)+S.w*10+S.d*3-S.l*5+Math.round(S.rating*10)/10,
+    team: D.slots.filter(s=>s.player).map(s=>({pos:s.label,line:s.line,name:s.player.name,rt:s.player.rt,abbr:s.county.abbr,c1:s.county.c1,c2:s.county.c2})) };
+  renderLeaderboard();
+  $("lbName").addEventListener("keydown",e=>{ if(e.key==="Enter"){e.preventDefault();addToLeaderboard();} });
   if(S.trophies.sam||perfect){ v.classList.add("gold"); confetti(perfect); }
   requestAnimationFrame(()=>v.classList.add("in"));
   saveBest(label);
@@ -1186,6 +1246,55 @@ function shareResult(label,top,poty,P,perfect){
 function toast(msg){
   const t=$("toast"); t.textContent=msg; t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"),2600);
+}
+
+/* ============================================================ LEADERBOARD (device-local) */
+const LB_KEY="c15h_leaderboard";
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function loadLB(){ try{ return JSON.parse(localStorage.getItem(LB_KEY)||"[]"); }catch(e){ return []; } }
+function saveLB(a){ try{ localStorage.setItem(LB_KEY, JSON.stringify(a.slice(-200))); }catch(e){} }
+function addToLeaderboard(){
+  if(!LAST) return;
+  const nm=($("lbName").value||"").trim().slice(0,20);
+  if(!nm){ $("lbName").focus(); toast("Add your name first"); return; }
+  const lb=loadLB();
+  const entry={ id:Date.now().toString(36)+Math.random().toString(36).slice(2,6), name:nm, ...LAST, ts:Date.now() };
+  lb.push(entry); saveLB(lb);
+  $("lbAdd").outerHTML=`<div class="lb-added">✅ Added — you're on the board, ${esc(nm)}!</div>`;
+  renderLeaderboard(entry.id);
+  if(window.pgTrack) pgTrack("leaderboard_add",{code:"hurling",rating:Math.round(LAST.rating),rec:LAST.rec,label:LAST.label});
+}
+function renderLeaderboard(highlightId){
+  const list=$("lbList"); if(!list) return;
+  const lb=loadLB().sort((a,b)=>(b.score-a.score)||(b.rating-a.rating)||(a.ts-b.ts));
+  if(!lb.length){ list.innerHTML=`<div class="lb-empty">No seasons logged yet — be the first to make the board.</div>`; return; }
+  list.innerHTML=lb.slice(0,50).map((e,i)=>{
+    const medal = i===0?"🥇":i===1?"🥈":i===2?"🥉":(i+1);
+    const trophy = e.sam?" 🏆":"";
+    return `<div class="lb-row ${e.id===highlightId?'me':''}">
+      <span class="rk ${i<3?'top':''}">${medal}</span>
+      <span class="who"><b>${esc(e.name)}</b><small>${esc(e.label)}${trophy}</small></span>
+      <span class="res">${e.rec}</span>
+      <button class="rtg" onclick="viewTeam('${e.id}')">${e.rating} ▸</button>
+    </div>`;
+  }).join("") + `<button class="lb-clear" onclick="clearLB()">clear this device's board</button>`;
+}
+function clearLB(){ if(confirm("Clear the leaderboard on this device? This can't be undone.")){ localStorage.removeItem(LB_KEY); renderLeaderboard(); } }
+function viewTeam(id){
+  const e=loadLB().find(x=>x.id===id); if(!e||!e.team) return;
+  $("tmName").textContent=e.name+"'s XV";
+  $("tmCrest").style.cssText="width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:18px;background:linear-gradient(140deg,var(--gold-hi),var(--gold))";
+  $("tmCrest").textContent="🏑";
+  $("tmSub").innerHTML=`Team rating <b style="color:var(--gold-hi)">${e.rating}</b> · ${e.rec} · ${esc(e.label)}`;
+  const groups=[["Goalkeeper",["GK"]],["Backs",["DEF"]],["Midfield",["MID"]],["Forwards",["FWD"]]];
+  $("tmBody").innerHTML=groups.map(([h,lines])=>{
+    const ps=e.team.filter(p=>lines.includes(p.line));
+    if(!ps.length) return "";
+    return `<div class="tm-grp">${h}</div>`+ps.map(p=>
+      `<div class="tm-p"><b>${esc(p.name)}</b><span class="tp-meta"><span class="tm-dot" style="background:linear-gradient(135deg,${p.c1} 50%,${p.c2} 50%)"></span>${esc(p.abbr)}<span class="tp-rt">${p.rt}</span></span></div>`
+    ).join("");
+  }).join("");
+  teamModal.showModal();
 }
 function saveBest(label){
   const cur=JSON.parse(localStorage.getItem("c15best2")||"null");
