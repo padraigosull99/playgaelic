@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Championship 15 — Promo Carousel Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
+<style>
+:root{
+  --bg0:#060f0b; --bg1:#0b1d14;
+  --gold:#f2c14e; --gold-hi:#ffd97a; --green:#2ea36b; --green-hi:#4ed492;
+  --ink:#eef5f0; --ink-dim:#9db5a8; --ink-faint:#5f7a6c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora',system-ui,sans-serif;background:#0a0f0c;color:var(--ink);padding:36px 16px 90px}
+.intro{max-width:780px;margin:0 auto 26px;text-align:center}
+.intro h1{font-family:'Bebas Neue';font-size:36px;letter-spacing:.04em;color:var(--gold)}
+.intro p{color:var(--ink-dim);font-size:14px;line-height:1.7;margin-top:10px}
+.intro p b{color:var(--gold-hi)}
+.bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.bar button{background:linear-gradient(140deg,var(--gold-hi),var(--gold) 55%,#d8a02e);border:none;color:#13230b;font:800 13px 'Sora';padding:12px 22px;border-radius:12px;cursor:pointer}
+.bar button.alt{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid rgba(255,255,255,.15)}
+.stage{display:flex;flex-direction:column;align-items:center;gap:46px}
+.wrap{width:432px;height:540px;position:relative;border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6);cursor:zoom-in}
+.wrap .slide{transform:scale(.4);transform-origin:top left}
+.label{font:700 12px 'Sora';color:var(--ink-faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.tools{display:flex;gap:8px;justify-content:center;margin-bottom:-34px;position:relative;z-index:5}
+.tbtn{background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.25);color:#fff;font:700 11px 'Sora';padding:7px 12px;border-radius:9px;cursor:pointer}
+.tbtn input{display:none}
+
+/* ============ THE SLIDE — true Instagram size 1080×1350 ============ */
+.slide{
+  width:1080px;height:1350px;position:relative;overflow:hidden;
+  background:
+    radial-gradient(1100px 650px at 78% -8%, rgba(46,163,107,.28), transparent 60%),
+    radial-gradient(900px 560px at -12% 26%, rgba(242,193,78,.12), transparent 55%),
+    radial-gradient(800px 800px at 50% 118%, rgba(46,163,107,.18), transparent 60%),
+    linear-gradient(168deg, var(--bg1), var(--bg0) 56%, #08130d);
+  color:var(--ink);
+}
+.slide .grid{position:absolute;inset:0;opacity:.04;
+  background-image:repeating-linear-gradient(0deg,transparent 0 92px,#fff 92px 94px),repeating-linear-gradient(90deg,transparent 0 92px,#fff 92px 94px);}
+.slide .pad{position:absolute;inset:0;padding:74px 80px;display:flex;flex-direction:column}
+
+.brand{display:flex;align-items:center;gap:20px}
+.brand .crest{width:80px;height:80px;border-radius:22px;display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(140deg,var(--green),#176141);box-shadow:0 10px 28px rgba(46,163,107,.4), inset 0 2px 0 rgba(255,255,255,.25)}
+.brand .bt h1{font-family:'Bebas Neue';font-size:44px;letter-spacing:.06em;line-height:.9}
+.brand .bt h1 b{color:var(--gold)}
+.brand .bt small{display:block;font:700 16px 'Sora';letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);margin-top:3px}
+
+.kick{display:inline-flex;align-self:flex-start;font:800 22px 'Sora';letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+  background:rgba(242,193,78,.1);border:2px solid rgba(242,193,78,.3);padding:14px 28px;border-radius:999px}
+.mid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px;min-height:0}
+h2.big{font-family:'Bebas Neue';letter-spacing:.01em;line-height:.9;font-size:118px;
+  background:linear-gradient(180deg,#fff 28%,#cfe6d8 62%,#8fb8a2);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2.big .gold{background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,#c98e1f);-webkit-background-clip:text;background-clip:text;color:transparent}
+p.sub{font-size:36px;line-height:1.4;color:var(--ink-dim)}
+p.sub b{color:#fff;font-weight:700}
+.foot{display:flex;align-items:center;justify-content:space-between;border-top:2px solid rgba(255,255,255,.1);padding-top:26px}
+.foot .url{font:800 30px 'Sora';color:var(--ink)}
+.foot .url b{color:var(--gold)}
+.foot .solo{font:700 18px 'Sora';letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);text-align:right}
+.foot .solo b{color:var(--gold)}
+
+/* phone-frame holding the real screenshot */
+.shot{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.frame{position:relative;height:100%;aspect-ratio:9/16;max-width:100%;border-radius:38px;overflow:hidden;
+  background:#05100a;border:6px solid rgba(255,255,255,.16);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.frame .empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--ink-faint);font:700 26px 'Sora';text-align:center;padding:30px}
+.frame .empty span{font-size:64px}
+.swipe{position:absolute;bottom:104px;right:80px;font:800 26px 'Sora';color:var(--gold);opacity:.9}
+</style>
+</head>
+<body>
+<div class="intro">
+  <h1>Championship 15 — Carousel Builder</h1>
+  <p>Tap <b>＋ Load screenshot</b> on slides 2–6 to drop in your real game screenshots (they're saved in your browser so they stick).
+  <br>Then: <b>on a phone</b> tap any slide to enlarge it &amp; screenshot · <b>on a computer</b> hit Download for 1080×1350 PNGs.
+  <br>Post the set as an Instagram carousel or a TikTok photo post.</p>
+  <div class="bar">
+    <button onclick="downloadAll()">⬇ Download all 7 slides</button>
+    <button class="alt" onclick="clearShots()">Reset screenshots</button>
+  </div>
+</div>
+
+<div class="stage" id="stage">
+
+  <!-- SLIDE 1 — HOOK (text) -->
+  <div>
+    <div class="label">Slide 1 · The hook</div>
+    <div class="wrap" data-i="0">
+    <div class="slide" id="s0"><div class="grid"></div><div class="pad">
+      <div class="brand"><div class="crest">🏐</div><div class="bt"><h1>CHAMPIONSHIP <b>15</b></h1><small>A PlayGaelic Game</small></div></div>
+      <div class="mid">
+        <span class="kick">⚡ Fantasy GAA · Free to play</span>
+        <h2 class="big" style="font-size:150px">CAN YOU<br>GO <span class="gold">13-0-0?</span></h2>
+        <p class="sub">Draft a fantasy fifteen from <b>60 years of legends</b> and win every game of the season. Nobody has done it yet.</p>
+      </div>
+      <div class="foot"><div class="url">play<b>gaelic</b>.ie</div><div class="solo">Powered by<br><b>SOLO SPORTS</b></div></div>
+    </div><div class="swipe">SWIPE →</div></div></div>
+  </div>
+
+  <!-- SLIDE 2 — SPIN (screenshot) -->
+  <div>
+    <div class="label">Slide 2 · Spin the counties — use your DRAFT / SPIN screenshot</div>
+    <div class="tools"><label class="tbtn">＋ Load screenshot<input type="file" accept="image/*" onchange="loadShot(this,'shot2')"></label></div>
+    <div class="wrap" data-i="1">
+    <div class="slide" id="s1"><div class="grid"></div><div class="pad">
+      <div class="brand"><div class="crest">🏐</div><div class="bt"><h1>CHAMPIONSHIP <b>15</b></h1><small>Step 1 — The Draft</small></div></div>
+      <h2 class="big" style="margin:18px 0 6px">SPIN THE <span class="gold">COUNTIES</span></h2>
+      <div class="shot"><div class="frame"><img id="shot2" style="display:none"><div class="empty"><span>🎰</span>Your draft screenshot</div></div></div>
+      <p class="sub" style="margin-top:18px">Spin a county &amp; era — <b>Kerry's Golden Years</b> to <b>Clifford's Kingdom</b> — then pick your player.</p>
+      <div class="foot" style="margin-top:18px"><div class="url">play<b>gaelic</b>.ie</div><div class="solo">Powered by<br><b>SOLO SPORTS</b></div></div>
+    </div></div></div>
+  </div>
+
+  <!-- SLIDE 3 — BUILD (screenshot) -->
+  <div>
+    <div class="label">Slide 3 · Build your fifteen — use your PITCH / TEAM screenshot</div>
+    <div class="tools"><label class="tbtn">＋ Load screenshot<input type="file" accept="image/*" onchange="loadShot(this,'shot3')"></label></div>
+    <div class="wrap" data-i="2">
+    <div class="slide" id="s2"><div class="grid"></div><div class="pad">
+      <div class="brand"><div class="crest">🏐</div><div class="bt"><h1>CHAMPIONSHIP <b>15</b></h1><small>Step 2 — Be Tactical</small></div></div>
+      <h2 class="big" style="margin:18px 0 6px">BUILD YOUR <span class="gold">FIFTEEN</span></h2>
+      <div class="shot"><div class="frame"><img id="shot3" style="display:none"><div class="empty"><span>🛡️</span>Your team / pitch screenshot</div></div></div>
+      <p class="sub" style="margin-top:18px">Fill every line and <b>mind the spine</b> — your weakest line drags the whole team down.</p>
+      <div class="foot" style="margin-top:18px"><div class="url">play<b>gaelic</b>.ie</div><div class="solo">Powered by<br><b>SOLO SPORTS</b></div></div>
+    </div></div></div>
+  </div>
+
+  <!-- SLIDE 4 — THROW IN (screenshot) -->
+  <div>
+    <div class="label">Slide 4 · Throw in the ball — use your MATCH / SCOREBOARD screenshot</div>
+    <div class="tools"><label class="tbtn">＋ Load screenshot<input type="file" accept="image/*" onchange="loadShot(this,'shot4')"></label></div>
+    <div class="wrap" data-i="3">
+    <div class="slide" id="s3"><div class="grid"></div><div class="pad">
+      <div class="brand"><div class="crest">🏐</div><div class="bt"><h1>CHAMPIONSHIP <b>15</b></h1><small>Step 3 — Match Day</small></div></div>
+      <h2 class="big" style="margin:18px 0 6px">THROW IN <span class="gold">THE BALL</span></h2>
+      <div class="shot"><div class="frame"><img id="shot4" style="display:none"><div class="empty"><span>🏟️</span>Your match screenshot</div></div></div>
+      <p class="sub" style="margin-top:18px">Every match <b>simulated live</b>, score by score — see who's on fire and who's gone missing.</p>
+      <div class="foot" style="margin-top:18px"><div class="url">play<b>gaelic</b>.ie</div><div class="solo">Powered by<br><b>SOLO SPORTS</b></div></div>
+    </div></div></div>
+  </div>
+
+  <!-- SLIDE 5 — WIN THE LOT (screenshot) -->
+  <div>
+    <div class="label">Slide 5 · Win the lot — use your RESULTS / TROPHIES screenshot</div>
+    <div class="tools"><label class="tbtn">＋ Load screenshot<input type="file" accept="image/*" onchange="loadShot(this,'shot5')"></label></div>
+    <div class="wrap" data-i="4">
+    <div class="slide" id="s4"><div class="grid"></div><div class="pad">
+      <div class="brand"><div class="crest">🏐</div><div class="bt"><h1>CHAMPIONSHIP <b>15</b></h1><small>The Prize</small></div></div>
+      <h2 class="big" style="margin:18px 0 6px">WIN THE <span class="gold">LOT</span></h2>
+      <div class="shot"><div class="frame"><img id="shot5" style="display:none"><div class="empty"><span>🏆</span>Your results screenshot</div></div></div>
+      <p class="sub" style="margin-top:18px">League. Province. <b>Sam Maguire.</b> Win all three for the treble.</p>
+      <div class="foot" style="margin-top:18px"><div class="url">play<b>gaelic</b>.ie</div><div class="solo">Powered by<br><b>SOLO SPORTS</b></div></div>
+    </div></div></div>
+  </div>
+
+  <!-- SLIDE 6 — 13-0-0 (screenshot: leaderboard) -->
+  <div>
+    <div class="label">Slide 6 · Go 13-0-0 — use your LEADERBOARD screenshot</div>
+    <div class="tools"><label class="tbtn">＋ Load screenshot<input type="file" accept="image/*" onchange="loadShot(this,'shot6')"></label></div>
+    <div class="wrap" data-i="5">
+    <div class="slide" id="s5"><div class="grid"></div><div class="pad">
+      <div class="brand"><div class="crest">🏐</div><div class="bt"><h1>CHAMPIONSHIP <b>15</b></h1><small>Immortality</small></div></div>
+      <h2 class="big" style="margin:18px 0 6px">GO <span class="gold">13-0-0</span></h2>
+      <div class="shot"><div class="frame"><img id="shot6" style="display:none"><div class="empty"><span>📋</span>Your leaderboard screenshot</div></div></div>
+      <p class="sub" style="margin-top:18px">13 wins, 0 draws, 0 losses. <b>Nobody's done it yet.</b> Top the global leaderboard.</p>
+      <div class="foot" style="margin-top:18px"><div class="url">play<b>gaelic</b>.ie</div><div class="solo">Powered by<br><b>SOLO SPORTS</b></div></div>
+    </div></div></div>
+  </div>
+
+  <!-- SLIDE 7 — CTA (text) -->
+  <div>
+    <div class="label">Slide 7 · Play now</div>
+    <div class="wrap" data-i="6">
+    <div class="slide" id="s6"><div class="grid"></div><div class="pad" style="align-items:center;text-align:center">
+      <div class="brand" style="flex-direction:column;gap:22px;margin-top:46px">
+        <div class="crest" style="width:150px;height:150px;border-radius:38px;font-size:84px">🏐</div>
+        <div class="bt"><h1 style="font-size:70px">CHAMPIONSHIP <b>15</b></h1><small style="font-size:21px">Football &amp; Hurling</small></div>
+      </div>
+      <div class="mid" style="gap:34px">
+        <h2 class="big" style="font-size:120px">PLAY<br><span class="gold">FREE NOW</span></h2>
+        <div style="font:800 56px 'Sora';color:#fff">play<span style="color:var(--gold)">gaelic</span>.ie</div>
+        <p class="sub" style="margin:0 auto">Draft your dream fifteen and chase the perfect season. <b>Can you go 13-0-0?</b></p>
+      </div>
+      <div class="solo" style="font:700 22px 'Sora';letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:18px">Powered by <b style="color:var(--gold)">SOLO SPORTS</b> · Teamwear</div>
+    </div></div></div>
+  </div>
+
+</div>
+
+<script>
+const TITLES=["1-hook","2-spin","3-build","4-throwin","5-winthelot","6-go13","7-play"];
+
+/* ---- load + persist screenshots (saved in localStorage so they survive a refresh) ---- */
+function setShot(id,dataUrl){
+  const img=document.getElementById(id); if(!img) return;
+  img.src=dataUrl; img.style.display="block";
+  const empty=img.parentElement.querySelector(".empty"); if(empty) empty.style.display="none";
+}
+function loadShot(input,id){
+  const f=input.files&&input.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ setShot(id,r.result); try{ localStorage.setItem("c15shot_"+id, r.result); }catch(e){ alert("That image is a bit big to save — it'll still work for this session."); } };
+  r.readAsDataURL(f);
+}
+function restoreShots(){ ["shot2","shot3","shot4","shot5","shot6"].forEach(id=>{ const v=localStorage.getItem("c15shot_"+id); if(v) setShot(id,v); }); }
+function clearShots(){ if(!confirm("Remove all loaded screenshots?"))return; ["shot2","shot3","shot4","shot5","shot6"].forEach(id=>{ localStorage.removeItem("c15shot_"+id); const img=document.getElementById(id); img.removeAttribute("src"); img.style.display="none"; const e=img.parentElement.querySelector(".empty"); if(e)e.style.display="flex"; }); }
+restoreShots();
+
+/* ---- enlarge to screenshot (works everywhere, no export needed) ---- */
+const viewer=document.createElement("div");
+viewer.style.cssText="display:none;position:fixed;inset:0;z-index:999;background:#050806ee;backdrop-filter:blur(6px);align-items:center;justify-content:center;flex-direction:column;gap:12px";
+viewer.onclick=()=>viewer.style.display="none";
+viewer.innerHTML='<div id="vbox"></div><div style="font:700 13px Sora;color:#cfe6d8">📸 Screenshot this slide · tap anywhere to close</div>';
+document.body.appendChild(viewer);
+function enlarge(i){
+  const scale=Math.min((innerWidth-24)/1080,(innerHeight-80)/1350);
+  const clone=document.getElementById("s"+i).cloneNode(true);
+  const box=document.getElementById("vbox");
+  box.style.cssText="width:"+Math.round(1080*scale)+"px;height:"+Math.round(1350*scale)+"px;position:relative;overflow:hidden;border-radius:14px;box-shadow:0 20px 60px #000";
+  clone.style.transform="scale("+scale+")"; clone.style.transformOrigin="top left"; clone.style.position="absolute"; clone.style.top="0"; clone.style.left="0";
+  box.innerHTML=""; box.appendChild(clone);
+  viewer.style.display="flex";
+}
+document.querySelectorAll(".wrap").forEach(w=>{ w.addEventListener("click",()=>enlarge(+w.dataset.i)); });
+
+/* ---- PNG download (never hangs — 20s timeout fallback) ---- */
+async function nodeToPng(i){
+  const node=document.getElementById("s"+i);
+  const job=htmlToImage.toPng(node,{width:1080,height:1350,pixelRatio:1,cacheBust:true});
+  return await Promise.race([job,new Promise((_,x)=>setTimeout(()=>x(new Error("timeout")),20000))]);
+}
+async function dl(i){
+  try{ const url=await nodeToPng(i); const a=document.createElement("a"); a.download="championship15-"+TITLES[i]+".png"; a.href=url; a.click(); return true; }
+  catch(e){ return false; }
+}
+async function downloadAll(){
+  let fails=0;
+  for(let i=0;i<TITLES.length;i++){ if(!await dl(i)) fails++; await new Promise(r=>setTimeout(r,500)); }
+  if(fails) alert("Couldn't auto-download "+fails+" slide(s) here. Easiest fix: tap a slide to enlarge it, then screenshot — works every time, especially on a phone.");
+}
+document.fonts&&document.fonts.ready.then(()=>{});
+</script>
+</body>
+</html>
