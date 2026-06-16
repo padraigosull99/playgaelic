@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Championship 15 Hurling — Promo Carousel (saveable images)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#f2c14e;--gold-hi:#ffd97a;--green:#2ea36b;--ink:#eef5f0;--ink-dim:#9db5a8;--ink-faint:#5f7a6c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora',system-ui,sans-serif;background:#0a0f0c;color:var(--ink);padding:36px 16px 90px}
+.intro{max-width:720px;margin:0 auto 22px;text-align:center}
+.intro h1{font-family:'Bebas Neue';font-size:36px;letter-spacing:.04em;color:var(--gold)}
+.intro p{color:var(--ink-dim);font-size:14.5px;line-height:1.7;margin-top:10px}
+.intro p b{color:var(--gold-hi)}
+.bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.bar a,.bar button{background:linear-gradient(140deg,var(--gold-hi),var(--gold) 55%,#d8a02e);border:none;color:#13230b;font:800 13px 'Sora';padding:12px 22px;border-radius:12px;cursor:pointer;text-decoration:none}
+#status{margin:10px auto 0;color:var(--ink-faint);font:600 13px 'Sora'}
+.gallery{display:flex;flex-direction:column;align-items:center;gap:40px;margin-top:30px}
+.card{display:flex;flex-direction:column;align-items:center;gap:10px}
+.card .lab{font:700 12px 'Sora';color:var(--ink-faint);letter-spacing:.14em;text-transform:uppercase}
+.card img{width:min(420px,92vw);height:auto;border-radius:16px;box-shadow:0 22px 56px rgba(0,0,0,.6);display:block}
+.card a{font:700 12px 'Sora';color:var(--gold-hi);text-decoration:none;border:1px solid rgba(242,193,78,.35);padding:8px 16px;border-radius:999px}
+.hint{font:600 11.5px 'Sora';color:var(--ink-faint);text-align:center;max-width:420px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="intro">
+  <h1>Championship 15 Hurling — Carousel Images</h1>
+  <p>Seven ready-made 1080×1350 images for an Instagram carousel or TikTok photo post.
+  <br><b>Phone:</b> press and hold an image → <b>Save to Photos</b>. <b>Computer:</b> right-click → <b>Save image</b> (or use the Download button under each).</p>
+  <div class="bar"><a href="#" id="zipBtn" onclick="return downloadAll(event)">⬇ Download all 7</a></div>
+  <div id="status">Rendering images…</div>
+</div>
+<div class="gallery" id="gallery"></div>
+
+<script>
+const W=1080,H=1350;
+const TITLES=["1-hook","2-spin","3-build","4-throwin","5-winthelot","6-go13","7-play"];
+const LABELS=["The hook","Spin the counties","Build your fifteen","Throw in the ball","Win the lot","Go 14-0-0","Play now"];
+const C={gold:"#f2c14e",goldHi:"#ffd97a",goldLo:"#c98e1f",ink:"#eef5f0",dim:"#9db5a8",faint:"#5f7a6c",green:"#2ea36b",greenHi:"#4ed492"};
+
+function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+function fillrr(x,y,w,h,r,fill,strokeC,strokeW){rr(x,y,w,h,r);if(fill){g.fillStyle=fill;g.fill();}if(strokeC){g.lineWidth=strokeW||2;g.strokeStyle=strokeC;g.stroke();}}
+function T(s,x,y,font,color,align,ls){g.font=font;g.fillStyle=color;g.textAlign=align||"left";g.textBaseline="alphabetic";if("letterSpacing" in g)g.letterSpacing=(ls||0)+"px";g.fillText(s,x,y);if("letterSpacing" in g)g.letterSpacing="0px";}
+function goldGrad(y,h){const gr=g.createLinearGradient(0,y,0,y+h);gr.addColorStop(0,C.goldHi);gr.addColorStop(.6,C.gold);gr.addColorStop(1,C.goldLo);return gr;}
+function whiteGrad(y,h){const gr=g.createLinearGradient(0,y,0,y+h);gr.addColorStop(.28,"#ffffff");gr.addColorStop(.62,"#cfe6d8");gr.addColorStop(1,"#8fb8a2");return gr;}
+function wrap(s,x,y,maxW,lh,font,color,align){g.font=font;const words=s.split(" ");let line="",yy=y;g.textAlign=align||"left";g.fillStyle=color;g.textBaseline="alphabetic";for(const w of words){const t=line?line+" "+w:w;if(g.measureText(t).width>maxW&&line){g.fillText(line,x,yy);line=w;yy+=lh;}else line=t;}g.fillText(line,x,yy);return yy;}
+
+function bg(){
+  let gr=g.createLinearGradient(0,0,W*0.4,H);gr.addColorStop(0,"#0b1d14");gr.addColorStop(.56,"#060f0b");gr.addColorStop(1,"#08130d");g.fillStyle=gr;g.fillRect(0,0,W,H);
+  let r1=g.createRadialGradient(W*0.78,-70,0,W*0.78,-70,760);r1.addColorStop(0,"rgba(46,163,107,.30)");r1.addColorStop(1,"rgba(46,163,107,0)");g.fillStyle=r1;g.fillRect(0,0,W,H);
+  let r2=g.createRadialGradient(-120,360,0,-120,360,640);r2.addColorStop(0,"rgba(242,193,78,.12)");r2.addColorStop(1,"rgba(242,193,78,0)");g.fillStyle=r2;g.fillRect(0,0,W,H);
+  let r3=g.createRadialGradient(W*0.5,H*1.1,0,W*0.5,H*1.1,820);r3.addColorStop(0,"rgba(46,163,107,.18)");r3.addColorStop(1,"rgba(46,163,107,0)");g.fillStyle=r3;g.fillRect(0,0,W,H);
+}
+function brand(sub){
+  let gr=g.createLinearGradient(80,74,160,154);gr.addColorStop(0,"#2ea36b");gr.addColorStop(1,"#176141");
+  fillrr(80,74,80,80,22,gr);T("🏑",120,132,"44px 'Sora'","#fff","center");
+  T("CHAMPIONSHIP",180,116,"46px 'Bebas Neue'",C.ink,"left",1);
+  const cw=g.measureText("CHAMPIONSHIP ").width;T("15",180+cw,116,"46px 'Bebas Neue'",C.gold,"left",1);
+  T(sub,182,144,"700 16px 'Sora'",C.dim,"left",3);
+}
+function foot(){
+  g.strokeStyle="rgba(255,255,255,.12)";g.lineWidth=2;g.beginPath();g.moveTo(80,1262);g.lineTo(1000,1262);g.stroke();
+  T("play",80,1306,"800 30px 'Sora'",C.ink);const pw=g.measureText("play").width;
+  T("gaelic",80+pw,1306,"800 30px 'Sora'",C.gold);const gw=g.measureText("gaelic").width;
+  T(".ie",80+pw+gw,1306,"800 30px 'Sora'",C.ink);
+  T("POWERED BY",1000,1290,"700 16px 'Sora'",C.faint,"right",2);
+  T("SOLO SPORTS",1000,1312,"800 18px 'Sora'",C.gold,"right",2);
+}
+function bigHead(lines,y,size){ // lines: [{t,gold}]
+  g.textAlign="left";let yy=y;
+  for(const ln of lines){g.font=size+"px 'Bebas Neue'";if("letterSpacing" in g)g.letterSpacing="1px";g.fillStyle=ln.gold?goldGrad(yy-size*0.8,size):whiteGrad(yy-size*0.8,size);g.textBaseline="alphabetic";g.fillText(ln.t,80,yy);yy+=size*0.92;}
+  if("letterSpacing" in g)g.letterSpacing="0px";return yy;
+}
+function panel(x,y,w,h,r){fillrr(x,y,w,h,r,"rgba(255,255,255,.05)","rgba(255,255,255,.12)",2);}
+function chip(cx,cy,label,pos,gk){const w=150,h=86;fillrr(cx-w/2,cy-h/2,w,h,14,"rgba(0,0,0,.34)",gk?"rgba(127,208,255,.6)":"rgba(242,193,78,.6)",2);T(label,cx,cy-2,"800 26px 'Sora'","#fff","center");T(pos,cx,cy+28,"800 17px 'Sora'",gk?"#9fd8ff":C.gold,"center",1);}
+
+const draw=[
+/* 1 HOOK */ ()=>{bg();brand("A PlayGaelic Game");
+  fillrr(80,250,560,66,33,"rgba(242,193,78,.1)","rgba(242,193,78,.32)",2);T("⚡ FANTASY GAA · FREE TO PLAY",112,294,"800 24px 'Sora'",C.gold,"left",2);
+  bigHead([{t:"CAN YOU"},{t:"GO ",gold:false}],470,150);
+  // second line mixing white+gold: draw "GO 14-0-0?"
+  g.font="150px 'Bebas Neue'";if("letterSpacing" in g)g.letterSpacing="1px";g.textAlign="left";g.fillStyle=whiteGrad(470,150);g.fillText("GO ",80,608);const gw=g.measureText("GO ").width;g.fillStyle=goldGrad(470,150);g.fillText("14-0-0?",80+gw,608);if("letterSpacing" in g)g.letterSpacing="0px";
+  wrap("Draft a fantasy fifteen from the greatest hurling teams ever — and win every game of the season.",80,720,900,52,"36px 'Sora'",C.dim);
+  T("Nobody has done it yet.",80,720+52*2+6,"800 36px 'Sora'","#fff");
+  foot();},
+/* 2 SPIN */ ()=>{bg();brand("Step 1 — The Draft");
+  bigHead([{t:"SPIN THE"},{t:"COUNTIES",gold:true}],300,120);
+  const px=80,py=470,pw=920,ph=470;panel(px,py,pw,ph,28);
+  // reel badge — Kilkenny amber/black
+  g.beginPath();g.arc(px+100,py+95,56,0,7);g.fillStyle="#f2c14e";g.fill();g.lineWidth=4;g.strokeStyle="rgba(0,0,0,.55)";g.stroke();T("KK",px+100,py+107,"800 34px 'Sora'","#0a0a0a","center");
+  T("Kilkenny",px+185,py+78,"800 46px 'Sora'",C.ink);
+  T("The Drive for Four",px+185,py+118,"700 26px 'Sora'",C.gold);
+  T("2006–2009 · ★★★ Dynasty",px+185,py+150,"600 21px 'Sora'",C.faint);
+  const rows=[["Henry Shefflin","Ballyhale Shamrocks","95","#ff9d8f","Forward"],["Tommy Walsh","Tullaroan","88","#ffd97a","Half-back"],["Eoin Murphy","Glenmore","88","#7fd0ff","Goalkeeper"]];
+  rows.forEach((r,i)=>{const ry=py+185+i*92;fillrr(px+30,ry,pw-60,78,16,"rgba(255,255,255,.04)","rgba(255,255,255,.1)",2);
+    T(r[0],px+54,ry+38,"800 30px 'Sora'",C.ink);T(r[1],px+54,ry+64,"600 18px 'Sora'",C.faint);
+    T(r[2],px+pw-54,ry+50,"800 40px 'Sora'",C.goldHi,"right");});
+  wrap("Spin a county & era, then pick your player. Spin again — fifteen times.",80,1020,900,50,"34px 'Sora'",C.dim);
+  foot();},
+/* 3 BUILD */ ()=>{bg();brand("Step 2 — Be Tactical");
+  bigHead([{t:"BUILD YOUR"},{t:"FIFTEEN",gold:true}],300,118);
+  const px=80,py=470,pw=920,ph=470;
+  let pg=g.createLinearGradient(0,py,0,py+ph);pg.addColorStop(0,"#13402a");pg.addColorStop(1,"#0b2719");fillrr(px,py,pw,ph,26,pg,"rgba(255,255,255,.18)",3);
+  const cxs5=[px+200,px+460,px+720],cxs2=[px+330,px+590],lines=[["Clifford","Cooper","Sheehy"],["Spillane","O'Shea","Galvin"]],poss=[["FF","CF","FF"],["HF","HF","HF"]];
+  let ly=py+70;
+  [["Clifford FF","Cooper CF","Sheehy FF"]].length;
+  const rowsData=[[["Shefflin","FF"],["Cooney","CF"],["Gillane","FF"]],[["Canning","HF"],["Reid","HF"],["Hegarty","HF"]],[["Lynch","MF"],["Fennelly","MF"]],[["T.Walsh","HB"],["Keady","CB"],["Hayes","HB"]],[["Lohan","CB"],["Hickey","FB"],["Daly","CB"]],[["Cusack","GK",1]]];
+  rowsData.forEach((row,ri)=>{const n=row.length;const gapw=pw/(n+1);row.forEach((c,ci)=>{chip(px+gapw*(ci+1),ly,c[0],c[1],c[2]);});ly+=72;});
+  wrap("Fill every line and mind the spine — your weakest line drags the team down.",80,1020,900,50,"34px 'Sora'",C.dim);
+  foot();},
+/* 4 THROWIN */ ()=>{bg();brand("Step 3 — Match Day");
+  bigHead([{t:"THROW IN"},{t:"THE SLIOTAR",gold:true}],300,98);
+  const px=80,py=460,pw=920;panel(px,py,pw,150,24);
+  T("YOUR 15",px+40,py+52,"800 24px 'Sora'",C.gold,"left",1);T("1-22",px+40,py+120,"800 70px 'Sora'","#fff");
+  fillrr(px+pw/2-58,py+48,116,54,12,"rgba(0,0,0,.4)","rgba(255,255,255,.14)",2);T("64'",px+pw/2,py+86,"800 30px 'Sora'","#fff","center");
+  T("KILKENNY",px+pw-40,py+52,"800 24px 'Sora'",C.dim,"right",1);T("0-20",px+pw-40,py+120,"800 70px 'Sora'","#fff","right");
+  const ev=[["63'","Henry Shefflin splits a monster free",1],["59'","TJ Reid points from play",0],["47'","GOAL! Gillane rattles the net",1],["38'","Canning lands one from the 65",0]];
+  ev.forEach((e,i)=>{const ey=py+178+i*84;fillrr(px,ey,pw,70,14,e[2]?"rgba(46,163,107,.14)":"rgba(255,255,255,.03)",e[2]?"rgba(46,163,107,.3)":null,2);
+    T(e[0],px+26,ey+44,"800 24px 'Sora'",C.greenHi);T(e[1],px+110,ey+44,"600 25px 'Sora'",C.ink);});
+  wrap("Every match simulated live — see who's on fire and who's gone missing.",80,1030,900,50,"34px 'Sora'",C.dim);
+  foot();},
+/* 5 WIN */ ()=>{bg();brand("The Prize");
+  bigHead([{t:"WIN THE"},{t:"LOT",gold:true}],300,130);
+  T("FINAL RECORD",540,560,"700 22px 'Sora'",C.faint,"center",3);
+  g.font="170px 'Bebas Neue'";if("letterSpacing" in g)g.letterSpacing="2px";g.textAlign="center";g.fillStyle=goldGrad(580,170);g.textBaseline="alphabetic";g.fillText("14-0-0",540,720);if("letterSpacing" in g)g.letterSpacing="0px";
+  T("IMMORTAL SEASON",540,770,"800 32px 'Sora'","#fff","center",2);
+  const tr=[["🥇","National League"],["🏵️","Munster"],["🏆","Liam MacCarthy"]];
+  tr.forEach((t,i)=>{const ty=820+i*86;fillrr(80,ty,920,72,16,"rgba(255,255,255,.05)","rgba(255,255,255,.1)",2);
+    T(t[0],112,ty+50,"38px 'Sora'","#fff");T(t[1],170,ty+48,"800 30px 'Sora'",C.ink);T("✓",968,ty+50,"800 38px 'Sora'",C.greenHi,"right");});
+  foot();},
+/* 6 GO13 */ ()=>{bg();brand("Immortality");
+  bigHead([{t:"GO "},{t:"14-0-0",gold:true}],300,124);
+  // actually draw GO 14-0-0 inline
+  g.clearRect(0,250,W,180);bg();brand("Immortality");
+  g.font="124px 'Bebas Neue'";if("letterSpacing" in g)g.letterSpacing="1px";g.textAlign="left";g.textBaseline="alphabetic";g.fillStyle=whiteGrad(300,124);g.fillText("GO ",80,400);const gw=g.measureText("GO ").width;g.fillStyle=goldGrad(300,124);g.fillText("14-0-0",80+gw,400);if("letterSpacing" in g)g.letterSpacing="0px";
+  const lb=[["🥇","Pádraig","Immortal Season 🏆","14-0-0","91",1],["🥈","Aoife","Liam MacCarthy Winners","12-1-0","89",0],["🥉","Seán Óg","Treble Winners","11-1-1","88",0],["4","Mick","Final Heartbreak","10-1-2","86",0]];
+  lb.forEach((r,i)=>{const ry=470+i*116;fillrr(80,ry,920,98,16,r[5]?"rgba(242,193,78,.1)":"rgba(255,255,255,.04)",r[5]?C.gold:"rgba(255,255,255,.0)",2);
+    T(r[0],128,ry+62,"800 40px 'Sora'",i<3?C.gold:C.faint,"center");
+    T(r[1],190,ry+50,"800 34px 'Sora'",C.ink);T(r[2],190,ry+82,"600 20px 'Sora'",C.faint);
+    T(r[3],720,ry+62,"800 34px 'Sora'",C.dim,"right");
+    fillrr(760,ry+28,110,46,10,"rgba(242,193,78,.12)","rgba(242,193,78,.3)",2);T(r[4],815,ry+60,"800 30px 'Sora'",C.goldHi,"center");});
+  wrap("14 wins, 0 draws, 0 losses. Nobody's done it yet — top the global board.",80,1030,900,50,"34px 'Sora'",C.dim);
+  foot();},
+/* 7 PLAY */ ()=>{bg();
+  let gr=g.createLinearGradient(465,300,615,450);gr.addColorStop(0,"#2ea36b");gr.addColorStop(1,"#176141");
+  fillrr(465,300,150,150,38,gr);T("🏑",540,400,"84px 'Sora'","#fff","center");
+  g.font="60px 'Bebas Neue'";if("letterSpacing" in g)g.letterSpacing="1px";g.textAlign="left";g.textBaseline="alphabetic";
+  const w1=g.measureText("CHAMPIONSHIP ").width,w2=g.measureText("15").width,sxc=540-(w1+w2)/2;
+  g.fillStyle=C.ink;g.fillText("CHAMPIONSHIP ",sxc,512);g.fillStyle=C.gold;g.fillText("15",sxc+w1,512);if("letterSpacing" in g)g.letterSpacing="0px";
+  T("Football & Hurling",540,548,"700 21px 'Sora'",C.dim,"center",2);
+  g.font="120px 'Bebas Neue'";if("letterSpacing" in g)g.letterSpacing="1px";g.textAlign="center";g.textBaseline="alphabetic";g.fillStyle=whiteGrad(640,120);g.fillText("PLAY",540,740);g.fillStyle=goldGrad(760,120);g.fillText("FREE NOW",540,850);if("letterSpacing" in g)g.letterSpacing="0px";
+  g.font="800 56px 'Sora'";g.textAlign="left";g.textBaseline="alphabetic";
+  const q1=g.measureText("play").width,q2=g.measureText("gaelic").width,q3=g.measureText(".ie").width,sxp=540-(q1+q2+q3)/2;
+  g.fillStyle="#fff";g.fillText("play",sxp,945);g.fillStyle=C.gold;g.fillText("gaelic",sxp+q1,945);g.fillStyle="#fff";g.fillText(".ie",sxp+q1+q2,945);
+  wrap("Draft your dream fifteen and chase the perfect season. Can you go 14-0-0?",540,1020,820,48,"33px 'Sora'",C.dim,"center");
+  T("POWERED BY SOLO SPORTS · TEAMWEAR",540,1300,"700 20px 'Sora'",C.faint,"center",2);}
+];
+
+let g;
+async function render(){
+  await document.fonts.ready;
+  const gallery=document.getElementById("gallery");
+  for(let i=0;i<draw.length;i++){
+    const cv=document.createElement("canvas");cv.width=W;cv.height=H;g=cv.getContext("2d");
+    try{ draw[i](); }catch(e){ console.log("slide",i,e); }
+    const url=cv.toDataURL("image/png");
+    const card=document.createElement("div");card.className="card";
+    card.innerHTML='<div class="lab">Slide '+(i+1)+' · '+LABELS[i]+'</div>';
+    const img=new Image();img.src=url;card.appendChild(img);
+    const a=document.createElement("a");a.href=url;a.download="championship15-hurling-"+TITLES[i]+".png";a.textContent="⬇ Download slide "+(i+1);card.appendChild(a);
+    gallery.appendChild(card);
+    window.__urls=window.__urls||[];window.__urls[i]=url;
+  }
+  const hint=document.createElement("div");hint.className="hint";hint.textContent="On a phone, press and hold any image and choose Save to Photos. On a computer, right-click → Save image, or use the Download buttons.";
+  gallery.appendChild(hint);
+  document.getElementById("status").textContent="✅ 7 images ready — long-press (phone) or right-click (computer) to save.";
+}
+function downloadAll(e){ if(e)e.preventDefault(); (window.__urls||[]).forEach((u,i)=>{ const a=document.createElement("a");a.href=u;a.download="championship15-hurling-"+TITLES[i]+".png";a.click(); }); return false; }
+render();
+</script>
+</body>
+</html>
