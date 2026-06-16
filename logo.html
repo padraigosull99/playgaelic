@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlayGaelic — Logo Pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#f2c14e;--gold-hi:#ffd97a;--green:#2ea36b;--ink:#eef5f0;--dim:#9db5a8;--faint:#5f7a6c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora',system-ui,sans-serif;background:#0a0f0c;color:var(--ink);padding:36px 16px 90px}
+.intro{max-width:720px;margin:0 auto 24px;text-align:center}
+.intro h1{font-family:'Bebas Neue';font-size:36px;letter-spacing:.04em;color:var(--gold)}
+.intro p{color:var(--dim);font-size:14px;line-height:1.7;margin-top:10px}
+.intro p b{color:var(--gold-hi)}
+#status{margin-top:8px;color:var(--faint);font:600 13px 'Sora'}
+.gallery{display:flex;flex-direction:column;align-items:center;gap:40px;margin-top:28px}
+.card{display:flex;flex-direction:column;align-items:center;gap:10px}
+.card .lab{font:700 12px 'Sora';color:var(--faint);letter-spacing:.14em;text-transform:uppercase}
+.card img{border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.55);background:#000}
+.card img.sq{width:min(360px,80vw)}
+.card img.ban{width:min(560px,92vw)}
+.card a{font:700 12px 'Sora';color:var(--gold-hi);text-decoration:none;border:1px solid rgba(242,193,78,.35);padding:8px 16px;border-radius:999px}
+.hint{font:600 11.5px 'Sora';color:var(--faint);text-align:center;max-width:440px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="intro">
+  <h1>PlayGaelic — Logo Pack</h1>
+  <p>Four ready-made logos. <b>Phone:</b> press &amp; hold → Save to Photos. <b>Computer:</b> right-click → Save image (or the Download button under each). The square <b>Profile</b> one is your Instagram/TikTok profile picture; the <b>Banner</b> is for headers/X/YouTube.</p>
+  <div id="status">Drawing logos…</div>
+</div>
+<div class="gallery" id="gallery"></div>
+
+<script>
+const C={gold:"#f2c14e",goldHi:"#ffd97a",goldLo:"#c98e1f",green:"#2ea36b",ink:"#eef5f0",dim:"#9db5a8",faint:"#5f7a6c",bgA:"#0b2418",bgB:"#06100b"};
+let g;
+function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+function bg(W,H,round){
+  if(round){rr(0,0,W,H,W*0.22);g.save();g.clip();}
+  let lg=g.createLinearGradient(0,0,W*0.4,H);lg.addColorStop(0,"#0c2a1b");lg.addColorStop(.55,"#08160e");lg.addColorStop(1,"#060f0b");g.fillStyle=lg;g.fillRect(0,0,W,H);
+  let r1=g.createRadialGradient(W*0.8,-H*0.1,0,W*0.8,-H*0.1,W*0.8);r1.addColorStop(0,"rgba(46,163,107,.34)");r1.addColorStop(1,"rgba(46,163,107,0)");g.fillStyle=r1;g.fillRect(0,0,W,H);
+  let r2=g.createRadialGradient(W*0.5,H*1.15,0,W*0.5,H*1.15,W*0.7);r2.addColorStop(0,"rgba(242,193,78,.10)");r2.addColorStop(1,"rgba(242,193,78,0)");g.fillStyle=r2;g.fillRect(0,0,W,H);
+  if(round)g.restore();
+}
+function goldStroke(y,h){const gr=g.createLinearGradient(0,y,0,y+h);gr.addColorStop(0,C.goldHi);gr.addColorStop(1,C.goldLo);return gr;}
+/* GAA mark: two uprights, crossbar, sliotar/ball sailing over the bar, with a dotted flight arc */
+function mark(cx,cy,s){
+  const col=goldStroke(cy-260*s,420*s);
+  const gap=86*s, top=cy-250*s, bot=cy+150*s, bar=cy-20*s;
+  g.lineCap="round";g.strokeStyle=col;
+  // flight arc (dotted) sweeping up to the ball
+  g.save();g.setLineDash([4*s,16*s]);g.lineWidth=8*s;g.globalAlpha=.55;
+  g.beginPath();g.moveTo(cx-235*s,cy+170*s);g.quadraticCurveTo(cx-150*s,cy-330*s,cx,top-58*s);g.stroke();g.restore();
+  // uprights
+  g.lineWidth=26*s;
+  g.beginPath();g.moveTo(cx-gap,bot);g.lineTo(cx-gap,top);g.moveTo(cx+gap,bot);g.lineTo(cx+gap,top);g.stroke();
+  // crossbar
+  g.lineWidth=24*s;g.beginPath();g.moveTo(cx-gap-20*s,bar);g.lineTo(cx+gap+20*s,bar);g.stroke();
+  // sliotar over the bar
+  g.beginPath();g.arc(cx,top-58*s,34*s,0,7);g.fillStyle=col;g.fill();
+  // seam line on ball
+  g.lineWidth=4*s;g.strokeStyle="rgba(8,20,12,.55)";g.beginPath();g.arc(cx,top-58*s,34*s,-0.7,0.7);g.stroke();
+}
+function wordmark(cx,y,size,align){
+  g.textAlign="left";g.font=size+"px 'Bebas Neue'";if("letterSpacing" in g)g.letterSpacing=(size*0.03)+"px";g.textBaseline="alphabetic";
+  const w1=g.measureText("PLAY").width,w2=g.measureText("GAELIC").width,tot=w1+w2;
+  let x=align==="center"?cx-tot/2:cx;
+  g.fillStyle=C.ink;g.fillText("PLAY",x,y);g.fillStyle=C.gold;g.fillText("GAELIC",x+w1,y);
+  if("letterSpacing" in g)g.letterSpacing="0px";
+}
+
+const DEFS=[
+ {id:"profile", w:1080,h:1080,cls:"sq", label:"Profile picture (square, circle-safe)", draw(W,H){ bg(W,H);
+    // thin gold ring that survives circle cropping
+    g.strokeStyle="rgba(242,193,78,.35)";g.lineWidth=10;g.beginPath();g.arc(W/2,H/2,W/2-46,0,7);g.stroke();
+    mark(W/2,H/2-40,1.18);
+    wordmark(W/2,H-150,86,"center");
+    g.textAlign="center";g.fillStyle=C.faint;g.font="700 26px 'Sora'";if("letterSpacing" in g)g.letterSpacing="6px";g.fillText("OVER THE BAR",W/2,H-104);if("letterSpacing" in g)g.letterSpacing="0px";
+ }},
+ {id:"icon", w:1080,h:1080,cls:"sq", label:"App icon (rounded square)", draw(W,H){ bg(W,H,true);
+    mark(W/2,H/2-70,1.15);
+    wordmark(W/2,H-176,96,"center");
+    g.textAlign="center";g.fillStyle=C.dim;g.font="700 26px 'Sora'";if("letterSpacing" in g)g.letterSpacing="5px";g.fillText("GAA GAMES & QUIZZES",W/2,H-128);if("letterSpacing" in g)g.letterSpacing="0px";
+ }},
+ {id:"banner", w:1500,h:500,cls:"ban", label:"Banner (X / YouTube / header)", draw(W,H){ bg(W,H);
+    mark(330,H/2,0.78);
+    // wordmark + tagline on the right
+    g.textAlign="left";g.font="150px 'Bebas Neue'";if("letterSpacing" in g)g.letterSpacing="4px";g.textBaseline="alphabetic";
+    const w1=g.measureText("PLAY").width;g.fillStyle=C.ink;g.fillText("PLAY",560,250);g.fillStyle=C.gold;g.fillText("GAELIC",560+w1,250);if("letterSpacing" in g)g.letterSpacing="0px";
+    g.fillStyle=C.dim;g.font="700 34px 'Sora'";if("letterSpacing" in g)g.letterSpacing="7px";g.fillText("GAA GAMES & QUIZZES",562,320);if("letterSpacing" in g)g.letterSpacing="0px";
+ }},
+ {id:"mark", w:1080,h:1080,cls:"sq", label:"Mark only (transparent-feel, for overlays)", draw(W,H){ bg(W,H);
+    mark(W/2,H/2,1.5);
+ }}
+];
+
+function render(){
+  const gallery=document.getElementById("gallery");
+  DEFS.forEach(d=>{
+    const cv=document.createElement("canvas");cv.width=d.w;cv.height=d.h;g=cv.getContext("2d");
+    try{ d.draw(d.w,d.h); }catch(e){ console.log(d.id,e); }
+    const url=cv.toDataURL("image/png");
+    const card=document.createElement("div");card.className="card";
+    card.innerHTML='<div class="lab">'+d.label+'</div>';
+    const img=new Image();img.src=url;img.className=d.cls;card.appendChild(img);
+    const a=document.createElement("a");a.href=url;a.download="playgaelic-"+d.id+".png";a.textContent="⬇ Download";card.appendChild(a);
+    gallery.appendChild(card);
+  });
+  const h=document.createElement("div");h.className="hint";h.textContent="Tip: use Profile for your IG/TikTok avatar and Banner for X/YouTube headers. All are PNG at full resolution.";
+  gallery.appendChild(h);
+  document.getElementById("status").textContent="✅ Logos ready — long-press (phone) or right-click (computer) to save.";
+}
+document.fonts ? document.fonts.ready.then(render) : render();
+</script>
+</body>
+</html>
