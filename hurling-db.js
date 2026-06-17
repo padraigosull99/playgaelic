@@ -52,6 +52,7 @@ const HURLING_DB = {
     {id:"clare-95",    county:"Clare",    name:"Loughnane's Banner",      years:"1995",      dec:90, tier:1}, /* [V] 1995 final */
     {id:"tipperary-01",county:"Tipperary",name:"The Premier Return",      years:"2001",      dec:0,  tier:1}, /* [V] 2001 final */
     {id:"tipperary-10",county:"Tipperary",name:"Stopping the Five",       years:"2009–2011", dec:10, tier:1}, /* [V] 2010 final */
+    {id:"tipperary-25",county:"Tipperary",name:"Cahill's Champions",       years:"2025",      dec:20, tier:1}, /* [V] 2025 final */
     {id:"tipperary-91",county:"Tipperary",name:"English's Premier",       years:"1989–1991", dec:90, tier:1}, /* [V] 1991 final */
     {id:"galway-17",   county:"Galway",   name:"Ending the Famine",       years:"2015–2018", dec:10, tier:1},
     {id:"galway-88",   county:"Galway",   name:"Keady's Tribesmen",       years:"1987–1990", dec:80, tier:1}, /* [V] 1988 final */
@@ -604,9 +605,30 @@ const HURLING_DB = {
     ["kildare","Martin Fitzgerald","FWD",76,null,null,null],
     ["kildare","Gerald Dempsey","FWD",75,null,null,null],
     ["kildare","Mark Grace","FWD",75,null,null,null],
+
+    /* ===== TIPPERARY — Cahill's Champions [V 2025 final] ===== */
+    ["tipperary-25","Rhys Shelly","GK",83,"Moycarkey-Borris",1,null],
+    ["tipperary-25","Robert Doyle","DEF",82,null,1,null],
+    ["tipperary-25","Eoghan Connolly","DEF",85,"Cashel King Cormacs",1,1],
+    ["tipperary-25","Michael Breen","DEF",83,"Ballina",3,null],
+    ["tipperary-25","Craig Morgan","DEF",83,"Kilruane MacDonaghs",1,null],
+    ["tipperary-25","Ronan Maher","DEF",86,"Thurles Sarsfields",3,3],
+    ["tipperary-25","Bryan O'Mara","DEF",83,"Holycross-Ballycahill",1,null],
+    ["tipperary-25","Willie Connors","MID",83,"Kiladangan",2,null],
+    ["tipperary-25","Conor Stakelum","MID",83,"Thurles Sarsfields",1,null],
+    ["tipperary-25","Jake Morris","FWD",87,"Nenagh Éire Óg",2,1],
+    ["tipperary-25","Andrew Ormond","FWD",84,"JK Brackens",1,null],
+    ["tipperary-25","Sam O'Farrell","FWD",83,"Nenagh Éire Óg",1,null],
+    ["tipperary-25","Darragh McCarthy","FWD",88,"Toomevara",1,1],
+    ["tipperary-25","John McGrath","FWD",88,"Loughmore-Castleiney",3,1],
+    ["tipperary-25","Jason Forde","FWD",84,"Silvermines",3,1],
   ],
 
   extras: {
+    "tipperary-25|Ronan Maher":{captain:true,note:"Captained Tipp to the 2025 All-Ireland"},
+    "tipperary-25|Darragh McCarthy":{note:"Sensational 2025 — 1-13 in the final; teenage Young Hurler of the Year"},
+    "tipperary-25|John McGrath":{note:"Two goals in the 2025 final; brother of Noel & Brian McGrath",family:"brother of Noel & Brian McGrath"},
+    "tipperary-25|Jake Morris":{note:"Pace and scores off the wing in the 2025 win"},
     "cork-05|Seán Óg Ó hAilpín":{captain:true,poty:1,note:"Hurler of the Year 2004; iconic 2005 acceptance speech"},
     "cork-05|Brian Corcoran":{note:"Came out of retirement; full-forward on the 2004–05 double team"},
     "cork-05|Ronan Curran":{note:"All-Star centre-back, the spine of the double"},
