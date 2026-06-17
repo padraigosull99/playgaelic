@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GaelGrid — GAA Tic-Tac-Toe | PlayGaelic</title>
+<meta name="description" content="GAA tic-tac-toe. Name a footballer who matches both clues to claim the square. Get three in a row. A PlayGaelic game.">
+<meta name="theme-color" content="#0b1d14">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="%232ea36b"/><text x="50" y="72" font-size="58" text-anchor="middle">▦</text></svg>'>
+<script src="pgtag.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg0:#060f0b;--bg1:#0b1d14;--card:rgba(255,255,255,.045);--card-bd:rgba(255,255,255,.09);
+  --gold:#f2c14e;--gold-hi:#ffd97a;--green:#2ea36b;--green-hi:#4ed492;--ink:#eef5f0;--ink-dim:#9db5a8;--ink-faint:#5f7a6c;--red:#e2574f;--shadow:0 18px 50px rgba(0,0,0,.5)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora',system-ui,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;
+  background:radial-gradient(1100px 600px at 75% -10%,rgba(46,163,107,.22),transparent 60%),radial-gradient(900px 500px at -10% 30%,rgba(242,193,78,.10),transparent 55%),linear-gradient(165deg,var(--bg1),var(--bg0) 60%,#08130d)}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px clamp(14px,4vw,40px)}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+.brand .crest{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:22px;background:linear-gradient(140deg,var(--green),#176141);box-shadow:0 6px 18px rgba(46,163,107,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+.brand h1{font-family:'Bebas Neue';font-size:26px;letter-spacing:.05em;line-height:1}
+.brand h1 b{color:var(--gold)}
+.brand small{display:block;font:700 10px 'Sora';letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim)}
+.hdr-right{display:flex;gap:8px}
+.linkbtn{background:none;border:1px solid var(--card-bd);color:var(--ink-dim);padding:8px 14px;border-radius:999px;font:600 12px 'Sora';cursor:pointer;text-decoration:none;transition:.2s}
+.linkbtn:hover{color:var(--ink);border-color:rgba(255,255,255,.25)}
+main{max-width:680px;margin:0 auto;padding:6px clamp(12px,3vw,24px) 70px;text-align:center}
+.tagline{color:var(--ink-dim);font-size:14px;margin:4px 0 14px;line-height:1.6}
+.modes{display:inline-flex;gap:6px;background:var(--card);border:1px solid var(--card-bd);border-radius:999px;padding:5px;margin-bottom:8px}
+.modes button{background:none;border:none;color:var(--ink-dim);font:700 12.5px 'Sora';padding:8px 16px;border-radius:999px;cursor:pointer;transition:.18s}
+.modes button.on{background:linear-gradient(140deg,var(--gold-hi),var(--gold));color:#13230b}
+.turnbar{display:flex;align-items:center;justify-content:center;gap:10px;font:800 15px 'Sora';margin:12px 0;min-height:26px}
+.turnbar .pill{padding:5px 14px;border-radius:999px;border:1px solid var(--card-bd)}
+.turnbar .pill.x{color:var(--gold);border-color:rgba(242,193,78,.5)}
+.turnbar .pill.o{color:var(--green-hi);border-color:rgba(46,163,107,.5)}
+.turnbar .pill.act{box-shadow:0 0 0 2px currentColor inset}
+
+.grid{display:grid;grid-template-columns:104px 1fr 1fr 1fr;gap:7px;margin:0 auto;max-width:560px}
+@media(max-width:560px){.grid{grid-template-columns:86px 1fr 1fr 1fr;gap:5px}}
+.hd{display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;padding:8px 6px;font:800 13px 'Sora';line-height:1.2;min-height:64px;
+  background:linear-gradient(140deg,rgba(242,193,78,.14),rgba(242,193,78,.04));border:1px solid rgba(242,193,78,.25);color:var(--gold-hi)}
+.hd.row{background:linear-gradient(140deg,rgba(46,163,107,.16),rgba(46,163,107,.04));border-color:rgba(46,163,107,.3);color:var(--green-hi)}
+.hd.corner{background:none;border:1px dashed var(--card-bd);color:var(--ink-faint);font-family:'Bebas Neue';font-size:18px;letter-spacing:.05em}
+.cell{aspect-ratio:1;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid var(--card-bd);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;transition:.16s;padding:5px;position:relative;overflow:hidden}
+.cell:hover:not(.taken){border-color:var(--gold);background:rgba(242,193,78,.08)}
+.cell.taken{cursor:default}
+.cell .mk{font-family:'Bebas Neue';font-size:40px;line-height:.8}
+.cell.x .mk{color:var(--gold)} .cell.o .mk{color:var(--green-hi)}
+.cell .ans{font:700 11px 'Sora';line-height:1.15;color:var(--ink)}
+.cell.x{background:rgba(242,193,78,.12);border-color:rgba(242,193,78,.5)}
+.cell.o{background:rgba(46,163,107,.12);border-color:rgba(46,163,107,.45)}
+.cell.win{box-shadow:0 0 0 2px var(--gold-hi), 0 0 22px rgba(242,193,78,.4)}
+.cell .plus{font:300 30px 'Sora';color:var(--ink-faint)}
+
+.guess{max-width:440px;margin:18px auto 0;background:var(--card);border:1px solid var(--card-bd);border-radius:16px;padding:18px;display:none}
+.guess.show{display:block;animation:rise .25s both}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:none;transform:none}}
+.guess .q{font:800 14px 'Sora';margin-bottom:4px}
+.guess .q b{color:var(--gold)}
+.guess .sub{font-size:12px;color:var(--ink-faint);margin-bottom:12px}
+.gin{position:relative}
+.gin input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--card-bd);color:var(--ink);border-radius:11px;padding:13px 14px;font:600 14px 'Sora';outline:none}
+.gin input:focus{border-color:var(--gold)}
+.ac{position:absolute;left:0;right:0;top:54px;background:#0e2117;border:1px solid var(--card-bd);border-radius:11px;overflow:hidden;z-index:20;max-height:230px;overflow-y:auto;text-align:left;display:none}
+.ac.show{display:block}
+.ac div{padding:11px 14px;font:600 13.5px 'Sora';cursor:pointer;border-bottom:1px solid rgba(255,255,255,.05)}
+.ac div:hover,.ac div.hl{background:rgba(242,193,78,.14)}
+.ac div small{color:var(--ink-faint);font-weight:400}
+.gbtns{display:flex;gap:8px;margin-top:12px}
+.gbtns button{flex:1;border:none;border-radius:11px;padding:12px;font:800 13px 'Sora';cursor:pointer}
+.gbtns .go{background:linear-gradient(140deg,var(--gold-hi),var(--gold) 55%,#d8a02e);color:#13230b}
+.gbtns .x{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--card-bd)}
+
+.banner{max-width:440px;margin:18px auto 0;border-radius:16px;padding:20px;background:var(--card);border:1px solid var(--card-bd);display:none}
+.banner.show{display:block}
+.banner.win{background:linear-gradient(160deg,rgba(242,193,78,.16),rgba(242,193,78,.04));border-color:rgba(242,193,78,.45)}
+.banner h2{font-family:'Bebas Neue';font-size:34px;letter-spacing:.04em}
+.banner p{color:var(--ink-dim);font-size:13.5px;margin-top:4px}
+.newbtn{margin-top:16px;border:none;border-radius:13px;padding:14px 30px;font:800 15px 'Sora';color:#13230b;cursor:pointer;background:linear-gradient(140deg,var(--gold-hi),var(--gold) 55%,#d8a02e)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,80px);z-index:60;background:#163826;border:1px solid var(--green);color:#fff;font:700 13px 'Sora';padding:12px 20px;border-radius:999px;transition:.35s;opacity:0}
+.toast.bad{background:#3a1a18;border-color:var(--red)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+dialog{border:1px solid var(--card-bd);border-radius:18px;background:#0e2117;color:var(--ink);max-width:480px;width:92vw;padding:26px;margin:auto;box-shadow:var(--shadow)}
+dialog::backdrop{background:rgba(3,8,5,.75);backdrop-filter:blur(4px)}
+dialog h3{font-family:'Bebas Neue';font-size:30px;letter-spacing:.05em;color:var(--gold);margin-bottom:10px}
+dialog p,dialog li{color:var(--ink-dim);font-size:13.5px;line-height:1.7} dialog ul{padding-left:18px}
+dialog .close{margin-top:18px;width:100%;background:rgba(255,255,255,.06);border:1px solid var(--card-bd);color:var(--ink);padding:12px;border-radius:11px;font:700 13px 'Sora';cursor:pointer}
+footer{text-align:center;color:var(--ink-faint);font-size:11px;padding:24px 16px 36px;line-height:1.7}
+footer a{color:var(--ink-dim);text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand" onclick="location.href='index.html'">
+    <div class="crest">▦</div>
+    <div><h1>GAEL<b>GRID</b></h1><small>GAA Tic-Tac-Toe</small></div>
+  </div>
+  <div class="hdr-right">
+    <a class="linkbtn" href="index.html">⌂ All games</a>
+    <button class="linkbtn" onclick="howto.showModal()">How to play</button>
+  </div>
+</header>
+
+<main>
+  <p class="tagline">Name a footballer who matches <b style="color:var(--ink)">both clues</b> for a square. Get <b style="color:var(--ink)">three in a row</b>. Each player can only be used once.</p>
+  <div class="modes">
+    <button id="mCpu" class="on" onclick="setMode('cpu')">🆚 vs Computer</button>
+    <button id="m2p" onclick="setMode('2p')">👥 Two players</button>
+  </div>
+  <div class="turnbar" id="turnbar"></div>
+  <div class="grid" id="grid"></div>
+  <div class="guess" id="guess">
+    <div class="q" id="gq"></div>
+    <div class="sub">Type a footballer's name — pick from the list.</div>
+    <div class="gin"><input id="gInput" autocomplete="off" placeholder="Search players…"><div class="ac" id="ac"></div></div>
+    <div class="gbtns"><button class="go" onclick="submitGuess()">Claim square</button><button class="x" onclick="closeGuess()">Cancel</button></div>
+  </div>
+  <div class="banner" id="banner"></div>
+</main>
+
+<dialog id="howto">
+  <h3>How to Play</h3>
+  <p><b style="color:var(--ink)">GaelGrid</b> is GAA noughts &amp; crosses. Every square sits where a <b style="color:var(--ink)">county</b> (down the side) meets a <b style="color:var(--ink)">trait</b> (across the top).</p>
+  <ul>
+    <li>On your turn, tap an empty square and name a footballer who fits <b style="color:var(--ink)">both</b> — e.g. a Kerry man who won an All-Star.</li>
+    <li>Right answer → the square is yours. Wrong answer → your turn ends and the square stays open.</li>
+    <li>Each player can only be used <b style="color:var(--ink)">once</b> in a grid.</li>
+    <li>First to <b style="color:var(--ink)">three in a row</b> — across, down or diagonally — wins. Board fills with no line? Most squares wins.</li>
+  </ul>
+  <p style="margin-top:10px">Players come from 60 years of Gaelic football legends. Play the computer or pass the phone to a mate.</p>
+  <button class="close" onclick="howto.close()">Got it</button>
+</dialog>
+
+<div class="toast" id="toast"></div>
+<footer>
+  GaelGrid is an unofficial fan project · player names used in a historical, editorial context.<br>
+  <a href="https://solosports.store" target="_blank" rel="noopener">Powered by <b style="color:var(--gold)">SOLO SPORTS</b> · Teamwear</a>
+</footer>
+
+<script src="gaa-db.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
+
+/* ---- build a deduped, enriched player pool from the football DB ---- */
+const TEAM_COUNTY={}; GAA_DB.teams.forEach(t=>TEAM_COUNTY[t.id]=t.county);
+const EX=GAA_DB.extras||{};
+const byName={};
+GAA_DB.players.forEach(p=>{
+  const ex=EX[p.team+"|"+p.name]||{};
+  let e=byName[p.name];
+  if(!e){ e=byName[p.name]={name:p.name, county:TEAM_COUNTY[p.team]||"?", lines:new Set(), ai:0, as:0, poty:false, captain:false, dual:false}; }
+  e.lines.add(p.line); e.ai=Math.max(e.ai,p.allIrelands||0); e.as=Math.max(e.as,p.allStars||0);
+  if(ex.poty)e.poty=true; if(ex.captain)e.captain=true; if(ex.dual)e.dual=true;
+});
+const PLAYERS=Object.values(byName);
+const countyCount={}; PLAYERS.forEach(p=>countyCount[p.county]=(countyCount[p.county]||0)+1);
+const COUNTIES=Object.keys(countyCount).filter(c=>countyCount[c]>=5);
+const ATTRS=[
+  {label:"All-Ireland winner",test:p=>p.ai>=1},
+  {label:"5+ All-Irelands",test:p=>p.ai>=5},
+  {label:"All-Star winner",test:p=>p.as>=1},
+  {label:"3+ All-Stars",test:p=>p.as>=3},
+  {label:"Footballer of the Year",test:p=>p.poty},
+  {label:"Goalkeeper",test:p=>p.lines.has("GK")},
+  {label:"Defender",test:p=>p.lines.has("DEF")},
+  {label:"Midfielder",test:p=>p.lines.has("MID")},
+  {label:"Forward",test:p=>p.lines.has("FWD")},
+  {label:"Captain",test:p=>p.captain},
+  {label:"Dual player",test:p=>p.dual},
+];
+function cellPlayers(county,attr){ return PLAYERS.filter(p=>p.county===county && attr.test(p)); }
+function genGrid(){
+  for(let tries=0;tries<400;tries++){
+    const rows=shuffle(COUNTIES.slice()).slice(0,3);
+    const cols=shuffle(ATTRS.slice()).slice(0,3);
+    let ok=true;
+    for(const r of rows) for(const c of cols) if(cellPlayers(r,c).length===0){ ok=false; break; }
+    if(ok) return {rows,cols};
+  }
+  /* fallback: forgiving attrs */
+  const safe=ATTRS.filter(a=>/winner|Forward|Defender/.test(a.label));
+  return {rows:shuffle(COUNTIES.slice()).slice(0,3), cols:shuffle(safe.slice()).slice(0,3)};
+}
+function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+
+/* ---- game state ---- */
+let G;
+function setMode(m){ $("mCpu").classList.toggle("on",m==="cpu"); $("m2p").classList.toggle("on",m==="2p"); newGame(m); }
+function newGame(mode){
+  mode = mode || (G?G.mode:"cpu");
+  G={ mode, grid:genGrid(), cells:Array(9).fill(null), used:new Set(), turn:"X", over:false, active:-1 };
+  $("banner").className="banner"; $("banner").innerHTML="";
+  closeGuess(); renderTurn(); renderGrid();
+  if(window.pgTrack) pgTrack("gaelgrid_start",{mode});
+}
+function renderTurn(){
+  if(G.over){ $("turnbar").innerHTML=""; return; }
+  const xName = "You (X)", oName = G.mode==="cpu" ? "Computer (O)" : "Player O";
+  $("turnbar").innerHTML = `<span class="pill x ${G.turn==='X'?'act':''}">${xName}</span><span style="color:var(--ink-faint)">vs</span><span class="pill o ${G.turn==='O'?'act':''}">${G.turn==='O'&&G.mode==='cpu'?'Computer (O)…':oName}</span>`;
+}
+function renderGrid(){
+  const g=G.grid, h=[`<div class="hd corner">GAELGRID</div>`];
+  g.cols.forEach(c=>h.push(`<div class="hd">${esc(c.label)}</div>`));
+  g.rows.forEach((r,ri)=>{
+    h.push(`<div class="hd row">${esc(r)}</div>`);
+    g.cols.forEach((c,ci)=>{
+      const idx=ri*3+ci, cell=G.cells[idx];
+      if(cell){ h.push(`<div class="cell ${cell.by.toLowerCase()} taken" data-i="${idx}"><span class="mk">${cell.by}</span><span class="ans">${esc(cell.name)}</span></div>`); }
+      else h.push(`<div class="cell" data-i="${idx}" onclick="openGuess(${idx})"><span class="plus">+</span></div>`);
+    });
+  });
+  $("grid").innerHTML=h.join("");
+}
+function openGuess(idx){
+  if(G.over||G.cells[idx]) return;
+  if(G.mode==="cpu" && G.turn==="O") return;
+  G.active=idx;
+  const ri=Math.floor(idx/3), ci=idx%3;
+  $("gq").innerHTML=`<b>${esc(G.grid.rows[ri])}</b> &nbsp;×&nbsp; <b>${esc(G.grid.cols[ci].label)}</b>`;
+  $("gInput").value=""; $("ac").classList.remove("show"); $("ac").innerHTML="";
+  $("guess").classList.add("show"); $("gInput").focus();
+}
+function closeGuess(){ $("guess").classList.remove("show"); G&&(G.active=-1); }
+/* autocomplete */
+let acItems=[], acHl=-1;
+$("gInput").addEventListener("input",()=>{
+  const q=norm($("gInput").value); const ac=$("ac");
+  if(q.length<2){ ac.classList.remove("show"); acItems=[]; return; }
+  acItems=PLAYERS.filter(p=>norm(p.name).includes(q) && !G.used.has(p.name)).slice(0,8);
+  acHl=-1;
+  if(!acItems.length){ ac.classList.remove("show"); return; }
+  ac.innerHTML=acItems.map((p,i)=>`<div data-i="${i}" onclick="pickAc(${i})"><b>${esc(p.name)}</b> <small>${esc(p.county)}</small></div>`).join("");
+  ac.classList.add("show");
+});
+$("gInput").addEventListener("keydown",e=>{
+  const ac=$("ac");
+  if(e.key==="ArrowDown"){e.preventDefault();acHl=Math.min(acHl+1,acItems.length-1);hlAc();}
+  else if(e.key==="ArrowUp"){e.preventDefault();acHl=Math.max(acHl-1,0);hlAc();}
+  else if(e.key==="Enter"){e.preventDefault(); if(acHl>=0)pickAc(acHl); else submitGuess();}
+});
+function hlAc(){ [...$("ac").children].forEach((d,i)=>d.classList.toggle("hl",i===acHl)); }
+function pickAc(i){ if(!acItems[i])return; $("gInput").value=acItems[i].name; $("ac").classList.remove("show"); submitGuess(); }
+function submitGuess(){
+  if(G.active<0) return;
+  const q=norm($("gInput").value);
+  let p=PLAYERS.find(x=>norm(x.name)===q);
+  if(!p){ const m=PLAYERS.filter(x=>norm(x.name).startsWith(q)); if(m.length===1)p=m[0]; }
+  if(!p){ toast("No player by that name in the pool",true); return; }
+  if(G.used.has(p.name)){ toast(p.name+" has already been used",true); return; }
+  const ri=Math.floor(G.active/3), ci=G.active%3;
+  const county=G.grid.rows[ri], attr=G.grid.cols[ci];
+  if(p.county===county && attr.test(p)){
+    claim(G.active,"X",p.name); closeGuess();
+    if(!G.over){ G.turn="O"; renderTurn(); if(G.mode==="cpu") setTimeout(cpuMove,750); }
+  } else {
+    toast(`${p.name} doesn't fit ${county} × ${attr.label} — turn over`,true);
+    closeGuess();
+    if(!G.over){ G.turn="O"; renderTurn(); if(G.mode==="cpu") setTimeout(cpuMove,750); }
+  }
+}
+function claim(idx,by,name){
+  G.cells[idx]={by,name}; G.used.add(name); renderGrid();
+  const line=winLine(by);
+  if(line){ endGame(by,line); }
+  else if(G.cells.every(c=>c)){ endGame(null); }
+}
+function winLine(by){
+  const L=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  for(const l of L) if(l.every(i=>G.cells[i]&&G.cells[i].by===by)) return l;
+  return null;
+}
+function endGame(winner,line){
+  G.over=true; renderTurn();
+  if(line) line.forEach(i=>$("grid").querySelector(`[data-i="${i}"]`)?.classList.add("win"));
+  const b=$("banner");
+  let title,msg;
+  if(winner==="X"){ title="YOU WIN! 🏆"; msg="Three in a row — a proper GAA brain."; b.classList.add("win"); }
+  else if(winner==="O"){ title=G.mode==="cpu"?"COMPUTER WINS":"PLAYER O WINS"; msg="Rematch?"; }
+  else { const x=G.cells.filter(c=>c.by==="X").length, o=9-x; title = x>o?"YOU WIN ON SQUARES":o>x?"O WINS ON SQUARES":"IT'S A DRAW"; msg="No three-in-a-row — counted on squares."; if(x>o)b.classList.add("win"); }
+  b.innerHTML=`<h2>${title}</h2><p>${msg}</p><button class="newbtn" onclick="newGame()">New grid</button>`;
+  b.classList.add("show");
+  if(window.pgTrack) pgTrack("gaelgrid_end",{mode:G.mode,winner:winner||"draw"});
+}
+/* ---- computer ---- */
+function cpuCanAnswer(idx){
+  const ri=Math.floor(idx/3),ci=idx%3;
+  return cellPlayers(G.grid.rows[ri],G.grid.cols[ci]).filter(p=>!G.used.has(p.name));
+}
+function cpuMove(){
+  if(G.over||G.turn!=="O") return;
+  const empty=G.cells.map((c,i)=>c?null:i).filter(i=>i!==null);
+  const answerable=empty.filter(i=>cpuCanAnswer(i).length);
+  if(!answerable.length){ G.turn="X"; renderTurn(); toast("Computer passed"); return; }
+  /* 78% "knowledge": sometimes the CPU draws a blank and passes */
+  if(Math.random()>0.78){ G.turn="X"; renderTurn(); toast("Computer couldn't think of one — your turn"); return; }
+  /* try to win, then block, else take centre/random */
+  let pick=findLineMove("O",answerable) || findLineMove("X",answerable) || (answerable.includes(4)?4:null) || answerable[Math.floor(Math.random()*answerable.length)];
+  const cands=cpuCanAnswer(pick); const p=cands[Math.floor(Math.random()*cands.length)];
+  claim(pick,"O",p.name);
+  if(!G.over){ G.turn="X"; renderTurn(); }
+}
+function findLineMove(by,answerable){
+  const L=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  for(const l of L){
+    const mine=l.filter(i=>G.cells[i]&&G.cells[i].by===by).length;
+    const empt=l.filter(i=>!G.cells[i]);
+    if(mine===2 && empt.length===1 && answerable.includes(empt[0])) return empt[0];
+  }
+  return null;
+}
+function toast(m,bad){ const t=$("toast"); t.textContent=m; t.className="toast "+(bad?"bad ":"")+"show"; clearTimeout(window.__tt); window.__tt=setTimeout(()=>t.classList.remove("show"),2600); }
+document.addEventListener("click",e=>{ if(!e.target.closest(".gin")) $("ac").classList.remove("show"); });
+newGame("cpu");
+</script>
+</body>
+</html>
