@@ -31,7 +31,11 @@ const TENABLE_DATA = {
 
     { q:"Counties to reach an All-Ireland hurling final since 1989",
       sub:"Winners and runners-up, 1989–present",
-      answers:["Kilkenny","Tipperary","Cork","Galway","Clare","Limerick","Offaly","Wexford","Waterford","Antrim"] }
+      answers:["Kilkenny","Tipperary","Cork","Galway","Clare","Limerick","Offaly","Wexford","Waterford","Antrim"] },
+
+    { q:"The 10 counties to win the National Hurling League",
+      sub:"Every NHL title winner in history",
+      answers:["Tipperary","Kilkenny","Cork","Limerick","Galway","Clare","Wexford","Waterford","Dublin","Offaly"] }
   ]
 };
 
