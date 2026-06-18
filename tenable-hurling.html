@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tenable Hurling — Name the Top 10 | PlayGaelic</title>
-<meta name="description" content="GAA Tenable hurling. Fill the list — name every county, every Liam MacCarthy winner, before your strikes run out. A PlayGaelic game.">
+<title>Tenable Hurling — Daily GAA List | PlayGaelic</title>
+<meta name="description" content="The daily GAA list game. One hurling list of 10 every day — name them all before three strikes. A PlayGaelic game.">
 <meta name="theme-color" content="#0b1d14">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="%232ea36b"/><text x="50" y="74" font-size="56" text-anchor="middle">🔟</text></svg>'>
 <script src="pgtag.js"></script>
@@ -31,9 +31,8 @@ main{max-width:620px;margin:0 auto;padding:6px clamp(12px,3vw,24px) 70px}
 .status .seg{display:flex;align-items:center;gap:7px}
 .chip{background:var(--card);border:1px solid var(--card-bd);border-radius:999px;padding:6px 13px;color:var(--ink-dim)}
 .chip b{color:var(--gold)}
+.chip.practice b{color:var(--green-hi)}
 .lives{letter-spacing:2px;font-size:16px}
-.timer{font-variant-numeric:tabular-nums}
-.timer.low{color:var(--red)}
 
 .qcard{background:var(--card);border:1px solid var(--card-bd);border-radius:18px;padding:20px 18px;text-align:center;box-shadow:var(--shadow)}
 .qcard .qno{font:800 11px 'Sora';letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
@@ -43,6 +42,7 @@ main{max-width:620px;margin:0 auto;padding:6px clamp(12px,3vw,24px) 70px}
 .gin{position:relative;margin:16px 0 14px}
 .gin input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--card-bd);color:var(--ink);border-radius:13px;padding:15px 16px;font:600 16px 'Sora';outline:none;text-align:center}
 .gin input:focus{border-color:var(--gold)}
+.gin input:disabled{opacity:.5}
 .gbtns{display:flex;gap:8px}
 .gbtns button{flex:1;border:none;border-radius:12px;padding:13px;font:800 13.5px 'Sora';cursor:pointer}
 .gbtns .go{flex:2;background:linear-gradient(140deg,var(--gold-hi),var(--gold) 55%,#d8a02e);color:#13230b}
@@ -51,7 +51,7 @@ main{max-width:620px;margin:0 auto;padding:6px clamp(12px,3vw,24px) 70px}
 .board{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
 @media(max-width:430px){.board{grid-template-columns:1fr}}
 .slot{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.035);border:1px solid var(--card-bd);border-radius:12px;padding:12px 14px;min-height:50px;transition:.2s}
-.slot .num{font-family:'Bebas Neue';font-size:18px;color:var(--ink-faint);min-width:20px}
+.slot .num{font-family:'Bebas Neue';font-size:18px;color:var(--ink-faint);min-width:22px}
 .slot .txt{font:700 14px 'Sora';color:var(--ink-faint)}
 .slot.got{background:linear-gradient(140deg,rgba(46,163,107,.18),rgba(46,163,107,.05));border-color:rgba(46,163,107,.5);animation:pop .3s both}
 .slot.got .num{color:var(--green-hi)}
@@ -63,8 +63,11 @@ main{max-width:620px;margin:0 auto;padding:6px clamp(12px,3vw,24px) 70px}
 .panel{background:var(--card);border:1px solid var(--card-bd);border-radius:18px;padding:26px 20px;text-align:center;box-shadow:var(--shadow)}
 .panel h2{font-family:'Bebas Neue';font-size:38px;letter-spacing:.03em;color:var(--gold)}
 .panel p{color:var(--ink-dim);font-size:13.5px;line-height:1.7;margin-top:6px}
-.panel .big{font-family:'Bebas Neue';font-size:64px;color:var(--gold-hi);line-height:1;margin:10px 0}
-.cta{margin-top:18px;border:none;border-radius:13px;padding:15px 30px;font:800 15px 'Sora';color:#13230b;cursor:pointer;background:linear-gradient(140deg,var(--gold-hi),var(--gold) 55%,#d8a02e)}
+.panel .big{font-family:'Bebas Neue';font-size:60px;color:var(--gold-hi);line-height:1;margin:8px 0}
+.cta{margin-top:16px;border:none;border-radius:13px;padding:15px 30px;font:800 15px 'Sora';color:#13230b;cursor:pointer;background:linear-gradient(140deg,var(--gold-hi),var(--gold) 55%,#d8a02e)}
+.ghost{margin-top:10px;display:inline-block;background:none;border:1px solid var(--card-bd);color:var(--ink-dim);border-radius:11px;padding:11px 20px;font:700 13px 'Sora';cursor:pointer}
+.ghost:hover{color:var(--ink);border-color:rgba(255,255,255,.25)}
+.sharebox{margin:14px auto 0;max-width:320px;background:rgba(0,0,0,.25);border:1px solid var(--card-bd);border-radius:12px;padding:12px;font:700 18px/1.5 'Sora';letter-spacing:3px}
 .hide{display:none}
 
 .toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,80px);z-index:60;background:#163826;border:1px solid var(--green);color:#fff;font:700 13px 'Sora';padding:12px 20px;border-radius:999px;transition:.35s;opacity:0;max-width:90vw;text-align:center}
@@ -93,41 +96,44 @@ footer a{color:var(--ink-dim);text-decoration:none}
 
 <main>
   <div id="startPanel" class="panel">
-    <h2>The List Game</h2>
-    <p id="startBlurb">One question, one list to fill. Name every answer you can before <b style="color:var(--ink)">3 strikes</b> end the round. <b style="color:var(--ink)">5 lists</b>, score as high as you can.</p>
-    <button class="cta" onclick="startGame()">Start playing</button>
+    <div class="qno" id="startDate"></div>
+    <h2>Today's List</h2>
+    <p>One list of <b style="color:var(--ink)">10</b>. Name as many as you can before <b style="color:var(--ink)">3 strikes</b> end it. A fresh hurling list every day.</p>
+    <button class="cta" onclick="play('daily')">Play today's list</button>
+    <div><button class="ghost" onclick="play('practice')">🎲 Practice (random list)</button></div>
   </div>
 
   <div id="playArea" class="hide">
     <div class="status">
-      <div class="seg"><span class="chip">List <b id="roundNo">1</b>/<span id="roundTot">5</span></span><span class="chip">Score <b id="score">0</b></span></div>
-      <div class="seg"><span class="chip lives" id="lives">❤❤❤</span><span class="chip timer" id="timer">1:15</span></div>
+      <div class="seg"><span class="chip" id="modeChip">Daily</span><span class="chip">Found <b id="score">0</b>/10</span></div>
+      <div class="seg"><span class="chip lives" id="lives">❤❤❤</span></div>
     </div>
     <div class="qcard">
-      <div class="qno" id="qno">List 1</div>
+      <div class="qno" id="qno">Today's list</div>
       <h2 id="qtext">…</h2>
       <div class="sub" id="qsub"></div>
     </div>
     <div class="gin"><input id="gInput" autocomplete="off" autocapitalize="words" placeholder="Type an answer…"></div>
     <div class="gbtns">
-      <button class="go" onclick="submitGuess()">Submit</button>
-      <button class="pass" onclick="endRound('pass')">Give up list</button>
+      <button class="go" id="goBtn" onclick="submitGuess()">Submit</button>
+      <button class="pass" id="passBtn" onclick="finish('pass')">Give up</button>
     </div>
     <div class="board" id="board"></div>
+    <div id="resultPanel" class="panel hide" style="margin-top:16px"></div>
   </div>
 </main>
 
 <dialog id="howto">
   <h3>How to Play</h3>
-  <p><b style="color:var(--ink)">Tenable</b> is all about lists. Each round shows one question — and the hidden list of answers that go with it.</p>
+  <p><b style="color:var(--ink)">Tenable</b> is all about lists of <b style="color:var(--ink)">10</b>. Each day there's one football list and one hurling list — the same for everyone.</p>
   <ul>
     <li>Type answers one at a time. Get one right and it locks into the board.</li>
     <li>Spelling is forgiving — nicknames and small typos still count.</li>
-    <li>A wrong answer (or one that's not on the list) costs a <b style="color:var(--ink)">strike</b>. Three strikes and the round is over.</li>
-    <li>Fill the <b style="color:var(--ink)">whole list</b> for a full-house bonus.</li>
-    <li>Beat the clock — each list is timed.</li>
+    <li>A wrong answer (or one not on the list) costs a <b style="color:var(--ink)">strike</b>. Three strikes ends it.</li>
+    <li>Get all 10 for a clean sweep, then share your result.</li>
+    <li>No clock — take your time. Come back tomorrow for a new list.</li>
   </ul>
-  <p style="margin-top:10px">Five lists per game. Rack up the highest score you can.</p>
+  <p style="margin-top:10px">Want more? Hit <b style="color:var(--ink)">Practice</b> for a random list any time.</p>
   <button class="close" onclick="howto.close()">Got it</button>
 </dialog>
 
@@ -140,152 +146,126 @@ footer a{color:var(--ink-dim);text-decoration:none}
 <script src="tenable-data.js"></script>
 <script>
 const CODE = "hurling";               // ← this file = hurling game
-const ROUNDS = 5;
-const ROUND_SECONDS = 75;
 const MAX_STRIKES = 3;
+const SHARE_URL = "https://playgaelic.ie/tenable-hurling.html";
+const EMOJI = "🏑";
 
 const $=id=>document.getElementById(id);
-const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/^(county|co)\b/,"").replace(/[^a-z0-9]/g,"");
+const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/^(the|county|co)\b/,"").replace(/[^a-z0-9]/g,"");
 function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;const d=[...Array(m+1)].map((_,i)=>[i,...Array(n).fill(0)]);for(let j=0;j<=n;j++)d[0][j]=j;
   for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
 
 $("codeLabel").textContent = CODE==="hurling"?"GAA Hurling":"GAA Football";
 
-let bank=[], G=null, tickHandle=null;
+const BANK = (TENABLE_DATA[CODE]||[]).filter(l=>Array.isArray(l.answers) && l.answers.length===10);
 
-function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function dayIndex(){ const n=new Date(); return Math.floor(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate())/86400000); }
+function dateKey(){ const n=new Date(); return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`; }
+function prettyDate(){ return new Date().toLocaleDateString("en-IE",{day:"numeric",month:"short"}); }
+const DAILY = BANK.length ? BANK[dayIndex()%BANK.length] : null;
 
-function startGame(){
-  bank = shuffle(TENABLE_DATA[CODE]).slice(0, Math.min(ROUNDS, TENABLE_DATA[CODE].length));
-  $("roundTot").textContent = bank.length;
-  G = { i:-1, total:0 };
+$("startDate").textContent = prettyDate();
+
+let S = null;
+
+function storeKey(){ return `tenable_${CODE}_${dateKey()}`; }
+function saveDaily(){ if(S.mode!=="daily") return; try{ localStorage.setItem(storeKey(), JSON.stringify({found:[...S.found],strikes:S.strikes,done:S.done})); }catch(e){} }
+function loadDaily(){ try{ return JSON.parse(localStorage.getItem(storeKey())); }catch(e){ return null; } }
+
+function play(mode){
+  let list, saved=null;
+  if(mode==="daily"){ list=DAILY; saved=loadDaily(); }
+  else { list = BANK[Math.floor(Math.random()*BANK.length)]; }
+  if(!list){ toast("No list available",true); return; }
+  S = { mode, list, found:new Set(saved?saved.found:[]), strikes:saved?saved.strikes:0, done:saved?!!saved.done:false };
   $("startPanel").classList.add("hide");
   $("playArea").classList.remove("hide");
-  if(window.pgTrack) pgTrack("tenable_start",{code:CODE});
-  nextRound();
-}
-
-function nextRound(){
-  G.i++;
-  if(G.i >= bank.length){ return finish(); }
-  const list = bank[G.i];
-  G.round = { list, found:new Set(), strikes:0, left:ROUND_SECONDS, done:false };
-  $("roundNo").textContent = G.i+1;
-  $("score").textContent = G.total;
-  $("qno").textContent = `List ${G.i+1} of ${bank.length}`;
+  $("resultPanel").classList.add("hide");
+  $("modeChip").textContent = mode==="daily" ? `Daily · ${prettyDate()}` : "Practice";
+  $("modeChip").className = "chip" + (mode==="practice"?" practice":"");
+  $("qno").textContent = mode==="daily" ? "Today's list" : "Practice list";
   $("qtext").textContent = list.q;
-  $("qsub").textContent = list.sub || `Name all ${list.answers.length}`;
-  renderLives(); renderBoard();
-  $("gInput").value=""; $("gInput").disabled=false; $("gInput").focus();
-  startTimer();
+  $("qsub").textContent = list.sub || "Name all 10";
+  renderLives(); renderBoard(S.done); updateScore();
+  if(S.done){ showResult(true); }
+  else { $("gInput").disabled=false; $("goBtn").disabled=false; $("passBtn").disabled=false; $("gInput").value=""; $("gInput").focus(); }
+  if(window.pgTrack) pgTrack("tenable_start",{code:CODE,mode});
 }
 
-function renderLives(){
-  const s=G.round.strikes, full=MAX_STRIKES-s;
-  $("lives").textContent = "❤".repeat(full) + "✕".repeat(s);
-}
+function updateScore(){ $("score").textContent = S.found.size; }
+function renderLives(){ const left=MAX_STRIKES-S.strikes; $("lives").textContent = "❤".repeat(Math.max(0,left))+"✕".repeat(S.strikes); }
 function renderBoard(reveal){
-  const r=G.round, a=r.list.answers;
+  const a=S.list.answers;
   $("board").innerHTML = a.map((ans,i)=>{
-    const got = r.found.has(ans);
-    if(got) return `<div class="slot got"><span class="num">${i+1}</span><span class="txt">${ans}</span></div>`;
+    if(S.found.has(ans)) return `<div class="slot got"><span class="num">${i+1}</span><span class="txt">${ans}</span></div>`;
     if(reveal) return `<div class="slot miss"><span class="num">${i+1}</span><span class="txt">${ans}</span></div>`;
     return `<div class="slot"><span class="num">${i+1}</span><span class="txt">▢ ▢ ▢</span></div>`;
   }).join("");
 }
 
-function startTimer(){
-  clearInterval(tickHandle);
-  updateTimer();
-  tickHandle = setInterval(()=>{
-    if(!G.round || G.round.done){ clearInterval(tickHandle); return; }
-    G.round.left--; updateTimer();
-    if(G.round.left<=0){ clearInterval(tickHandle); endRound('time'); }
-  },1000);
-}
-function updateTimer(){
-  const t=Math.max(0,G.round.left), m=Math.floor(t/60), s=t%60;
-  const el=$("timer"); el.textContent=`${m}:${String(s).padStart(2,"0")}`;
-  el.classList.toggle("low", t<=15);
-}
-
 function matchGuess(raw){
-  const ni = norm(raw);
-  if(!ni) return null;
-  const ans = G.round.list.answers;
-  const aliased = TENABLE_ALIASES[ni];
-  for(const a of ans){ if(norm(a)===ni || (aliased && aliased===a)) return a; }
+  const ni=norm(raw); if(!ni) return null;
+  const ans=S.list.answers, aliased=TENABLE_ALIASES[ni];
+  for(const a of ans){ if(norm(a)===ni || (aliased&&aliased===a)) return a; }
   let best=null,bestD=99;
-  for(const a of ans){ const d=lev(ni,norm(a)); const tol = norm(a).length<=5?1:2; if(d<=tol && d<bestD){best=a;bestD=d;} }
+  for(const a of ans){ const d=lev(ni,norm(a)); const tol=norm(a).length<=5?1:2; if(d<=tol&&d<bestD){best=a;bestD=d;} }
   return best;
 }
 
 function submitGuess(){
-  if(!G || !G.round || G.round.done) return;
-  const raw=$("gInput").value.trim();
-  if(!raw) return;
+  if(!S || S.done) return;
+  const raw=$("gInput").value.trim(); if(!raw) return;
   $("gInput").value="";
   const m=matchGuess(raw);
   if(m){
-    if(G.round.found.has(m)){ toast(`Already got ${m}`, false); return; }
-    G.round.found.add(m);
-    G.total++; $("score").textContent=G.total;
-    renderBoard();
-    toast(`✓ ${m}`, false);
-    if(G.round.found.size===G.round.list.answers.length){ endRound('clear'); }
+    if(S.found.has(m)){ toast(`Already got ${m}`,false); return; }
+    S.found.add(m); updateScore(); renderBoard(); saveDaily(); toast(`✓ ${m}`,false);
+    if(S.found.size===10){ finish("clear"); }
   } else {
-    G.round.strikes++; renderLives();
-    toast("✕ Not on this list", true);
-    if(G.round.strikes>=MAX_STRIKES){ endRound('out'); }
+    S.strikes++; renderLives(); saveDaily(); toast("✕ Not on this list",true);
+    if(S.strikes>=MAX_STRIKES){ finish("out"); }
   }
 }
 
-function endRound(reason){
-  if(!G.round || G.round.done) return;
-  G.round.done=true; clearInterval(tickHandle);
-  $("gInput").disabled=true;
-  const got=G.round.found.size, tot=G.round.list.answers.length, full=(got===tot);
-  if(full){ G.total += tot; $("score").textContent=G.total; }
+function finish(reason){
+  if(!S || S.done) return;
+  S.done=true; saveDaily();
+  $("gInput").disabled=true; $("goBtn").disabled=true; $("passBtn").disabled=true;
   renderBoard(true);
-  let head, sub;
-  if(full){ head="FULL HOUSE! 🏆"; sub=`All ${tot} — bonus +${tot} points.`; }
-  else if(reason==='time'){ head="TIME'S UP"; sub=`You got ${got} of ${tot}.`; }
-  else if(reason==='out'){ head="THREE STRIKES"; sub=`You got ${got} of ${tot} before striking out.`; }
-  else { head="LIST PASSED"; sub=`You got ${got} of ${tot}.`; }
-  const last = (G.i+1>=bank.length);
-  showPanel(`<div class="qno">List ${G.i+1} of ${bank.length}</div><h2>${head}</h2><p>${sub}</p>
-    <p style="margin-top:8px">Running score: <b style="color:var(--gold)">${G.total}</b></p>
-    <button class="cta" onclick="afterRound()">${last?"See final score":"Next list →"}</button>`);
+  showResult(false);
+  if(window.pgTrack) pgTrack("tenable_end",{code:CODE,mode:S.mode,score:S.found.size,reason});
 }
 
-function afterRound(){ hidePanel(); nextRound(); }
-
-function finish(){
-  clearInterval(tickHandle);
-  $("playArea").classList.add("hide");
-  const lens=bank.map(l=>l.answers.length); const maxScore=lens.reduce((a,b)=>a+b,0)*2;
-  const pct = G.total/maxScore;
-  let rank;
-  if(pct>=0.85) rank="GAA Oracle — phenomenal.";
-  else if(pct>=0.6) rank="Serious GAA head.";
-  else if(pct>=0.35) rank="Decent knowledge — keep at it.";
-  else rank="Room to grow — back to the terraces!";
-  showPanel(`<h2>GAME OVER</h2><div class="big">${G.total}</div><p>out of a possible ${maxScore}</p><p style="margin-top:8px">${rank}</p>
-    <button class="cta" onclick="location.reload()">Play again</button>`, true);
-  if(window.pgTrack) pgTrack("tenable_end",{code:CODE,score:G.total,max:maxScore});
-}
-
-function showPanel(html, final){
-  let p=$("ovPanel");
-  if(!p){ p=document.createElement("div"); p.id="ovPanel"; p.className="panel"; p.style.marginTop="14px"; document.querySelector("main").appendChild(p); }
-  p.innerHTML=html; p.classList.remove("hide");
-  if(!final){ $("playArea").classList.add("hide"); }
+function showResult(replay){
+  const got=S.found.size, clean=(got===10);
+  let head = clean?"CLEAN SWEEP! 🏆" : got>=7?"GOOD GOING" : got>=4?"NOT BAD" : "TOUGH ONE";
+  const grid = S.list.answers.map(a=>S.found.has(a)?"🟩":"⬜").join("");
+  const tomorrow = S.mode==="daily" ? "<p>That's today's list. A new one drops tomorrow.</p>" : "";
+  const p=$("resultPanel");
+  p.innerHTML = `<h2>${head}</h2><div class="big">${got}/10</div>
+    <div class="sharebox">${grid}</div>
+    ${tomorrow}
+    <button class="cta" id="shareBtn">📋 Copy result</button>
+    <div><button class="ghost" onclick="play('practice')">🎲 Play a practice list</button></div>`;
+  p.classList.remove("hide");
+  $("shareBtn").onclick = copyResult;
   p.scrollIntoView({behavior:"smooth",block:"center"});
 }
-function hidePanel(){ const p=$("ovPanel"); if(p) p.classList.add("hide"); $("playArea").classList.remove("hide"); }
+
+function copyResult(){
+  const got=S.found.size;
+  const grid=S.list.answers.map(a=>S.found.has(a)?"🟩":"⬜").join("");
+  const label = S.mode==="daily" ? `Daily · ${prettyDate()}` : "Practice";
+  const text = `PlayGaelic Tenable ${EMOJI} ${label}\n${S.list.q}\n${grid} ${got}/10\n${SHARE_URL}`;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>toast("Result copied — paste it anywhere",false),()=>toast("Couldn't copy",true));
+  } else { toast("Copy not supported here",true); }
+}
 
 function toast(m,bad){ const t=$("toast"); t.textContent=m; t.className="toast "+(bad?"bad ":"")+"show"; clearTimeout(window.__tt); window.__tt=setTimeout(()=>t.classList.remove("show"),1700); }
 $("gInput").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); submitGuess(); }});
+
+(function(){ const saved=loadDaily(); if(saved && saved.done){ play("daily"); } })();
 </script>
 </body>
 </html>
